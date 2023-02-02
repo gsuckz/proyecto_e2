@@ -2,15 +2,17 @@
 
 ## Objetivo
 
-        Diseñar un reloj que muestre Fecha y Hora, con minutos y segundos, además de poder configurarse cada parametro con un teclado de 4 botones (+ , - , ← , →). La comunicacion con el display será un puerto VGA.
-        Se tienen en cuenta la cantidad de dias de cada mes, y los años bisiestos. El año va desde 2000 hasta el 3024.
+        Diseñar un reloj que muestre Fecha y Hora, (hora y minutos), además de poder configurarse cada parametro con un teclado de 4 botones (+ , - , ← , →). La comunicacion con el display será un puerto VGA.
+        Se tienen en cuenta la cantidad de dias de cada mes, y los años bisiestos. El año va desde 2000 hasta el 3023.
 
 ### Pantalla
         Se conectara con un puerto VGA, para el mismo se usará  DAC de 2 bits para las señales "R", "G" y "B". El formato propuesto para mostrar la informacion se adjunta en una imagen.
-        La resolución será ??x?? @ ?? fps. Correspondiente a un pixel clock de ?? (Acorde a tinyVGA).    
+        La resolución será 640x480 @ 60 fps. Correspondiente a un pixel clock de 25 Mhz (Acorde a tinyVGA).    
+        Testbench?
 
 ### Teclado
         Con los botones (→) y (←), se va a desplazar a través de los parametros a modificar, para incrementarlos o decrementarlos se usara respectivamente (+) y (-). 
+        Los botones llevan sistema antirebote?
 
 ### Configuracion de color, fecha y  hora
         Al presionar cualquier botón, se destacará el parametro a modificar con un color diferente y un parpadeo, si no se presiona un boton en 10 segundos, el reloj vuelve a su operacion normal. Se recuerda el ultimo parametro a modificar, si no se ha modificado nada desde el ultimo encendido, el parametro a cambiar es la decenas de hora. Asi todos los parametros numericos se modifican en decenas y unidades por separado, para facilidad del usuario. Si se cambia el mes, y el dia era mayor a la cantidad de dias del nuevo mes, se cambia por la cantidad de dias del mes seleccionado.
