@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 use work.ffd_pkg.all;
 
 
-entity display_vga is 
+entity sincronismo_vga is 
     port (
         hsync       :   out std_logic;
         rst         :   in std_logic;
@@ -16,9 +16,9 @@ entity display_vga is
         linea       :   out std_logic_vector (9 downto 0);
         columna     :   out std_logic_vector (9 downto 0)
     );
-end display_vga ;
+end sincronismo_vga ;
 
-architecture  solucion of display_vga is
+architecture  solucion of sincronismo_vga is
 
     component ffd is
         generic(

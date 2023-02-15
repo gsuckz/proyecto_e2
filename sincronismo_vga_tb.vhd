@@ -4,12 +4,12 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use std.env.finish;
 
-entity display_vga_tb is 
-end display_vga_tb;
+entity sincronismo_vga_tb is 
+end sincronismo_vga_tb;
 
 
-architecture tb of display_vga_tb is 
-    component display_vga is 
+architecture tb of sincronismo_vga_tb is 
+    component sincronismo_vga is 
         port (
         hsync       :   out std_logic;
         vsync       :   out std_logic;
@@ -31,7 +31,7 @@ architecture tb of display_vga_tb is
 begin 
 
 hab <= '1';
-DUT : display_vga port map(
+DUT : sincronismo_vga port map(
 p_clk => p_clk_in,
 hsync => hsync_out,
 vsync => vsync_out,
