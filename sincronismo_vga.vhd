@@ -104,34 +104,4 @@ begin
             end if;
     end process;
 
-    process (all)
-    begin
-        if  rst = '1' then
-            cuenta <= 0;
-        elsif  rising_edge(p_clk) and cuenta < 63 then
-            cuenta <= cuenta + 1;
-        elsif rising_edge(p_clk) and cuenta = 63 then
-            cuenta <= 0;
-        end if;    
-    end process;
-
-    with char_n select char <=
-    X"1824424242422418" when "0000",
-    X"1838781818183c7e" when "0001",
-    X"182442040810207e" when "0010",
-    X"3e0204280402423c" when "0011",
-    X"1111111111111111" when "0100",
-    X"1111111111111111" when "0101",
-    X"1111111111111111" when "0110",
-    X"1111111111111111" when "0111",
-    X"1111111111111111" when "1000",
-    X"1111111111111111" when "1001",
-    X"1111111111111111" when "1010",
-    (others => '0') when others;
-            char_n <= "0000";
-    process (all)
-    begin        
-            punto <= char (cuenta );
-    end process;
-
 end solucion;
