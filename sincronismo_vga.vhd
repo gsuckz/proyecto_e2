@@ -32,6 +32,7 @@ architecture  solucion of sincronismo_vga is
     end component;    
     signal columna_D, linea_D : std_logic_vector(9 downto 0);
     signal hab_linea : std_logic;
+
 begin
 
         

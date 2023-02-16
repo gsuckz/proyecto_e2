@@ -1,21 +1,29 @@
-
 ops = --std=08
 arch_cf = work-obj08.cf
-nombre = sincronismo_vga
-tb = $(nombre)_tb
-arch_wav = $(nombre).ghw
-wav_ops = --assert-level=none --wave=$(arch_wav)
-all : test
-.PHONY: all test wav
-test: $(arch_cf) 
-	ghdl -m $(ops) $(tb)
-	ghdl -r $(ops) $(tb)
+wav_ops = --assert-level=none
 
-wav: $(arch_wav)
-	gtkwave -f $(arch_wav)
+all : posicion_txt sincronismo_vga
 
-$(arch_wav): $(arch_cf)
-	ghdl -m $(ops) $(tb)
-	ghdl -r $(ops) $(tb) $(wav_ops)
+.PHONY: all posicion_txt sincronismo_vga wav_posicion_txt wav_sincronismo_vga 
+
+sincronismo_vga: $(arch_cf) 
+	ghdl -m $(ops) sincronismo_vga_tb
+	ghdl -r $(ops) sincronismo_vga_tb
+wav_sincronismo_vga: sincronismo_vga.ghw
+	gtkwave -f sincronismo_vga.ghw
+sincronismo_vga.ghw: $(arch_cf)
+	ghdl -m $(ops) sincronismo_vga_tb
+	ghdl -r $(ops) sincronismo_vga_tb $(wav_ops) --wave=sincronismo_vga.ghw
+
+posicion_txt: $(arch_cf) 
+	ghdl -m $(ops) posicion_txt_tb
+	ghdl -r $(ops) posicion_txt_tb
+wav_posicion_txt: posicion_txt.ghw
+	gtkwave -f posicion_txt.ghw
+posicion_txt.ghw: $(arch_cf)
+	ghdl -m $(ops) posicion_txt_tb
+	ghdl -r $(ops) posicion_txt_tb $(wav_ops) --wave=posicion_txt.ghw
+
+
 $(arch_cf): *.vhd
 	ghdl -i $(ops) *.vhd
