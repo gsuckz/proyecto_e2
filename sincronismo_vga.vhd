@@ -31,7 +31,11 @@ architecture  solucion of sincronismo_vga is
             Q   : out std_logic_vector (N-1 downto 0));
     end component;    
     signal columna_D, linea_D : std_logic_vector(9 downto 0);
-    signal hab_linea : std_logic;
+    signal hab_linea, punto :  std_logic;
+    signal cuenta   :   integer;
+    signal char     :   std_logic_vector (63 downto 0);
+    signal char_n   :   std_logic_vector (3 downto 0);
+
 begin
 
         
@@ -101,6 +105,36 @@ begin
             else
                 vsync <= '0';
             end if;
+    end process;
+
+    process (all)
+    begin
+        if  rst = '1' then
+            cuenta <= 0;
+        elsif  rising_edge(p_clk) and cuenta < 63 then
+            cuenta <= cuenta + 1;
+        elsif rising_edge(p_clk) and cuenta = 63 then
+            cuenta <= 0;
+        end if;    
+    end process;
+
+    with char_n select char <=
+    X"1824424242422418" when "0000",
+    X"1838781818183c7e" when "0001",
+    X"182442040810207e" when "0010",
+    X"3e0204280402423c" when "0011",
+    X"1111111111111111" when "0100",
+    X"1111111111111111" when "0101",
+    X"1111111111111111" when "0110",
+    X"1111111111111111" when "0111",
+    X"1111111111111111" when "1000",
+    X"1111111111111111" when "1001",
+    X"1111111111111111" when "1010",
+    (others => '0') when others;
+            char_n <= "0000";
+    process (all)
+    begin        
+            punto <= char (cuenta );
     end process;
 
 end solucion;
