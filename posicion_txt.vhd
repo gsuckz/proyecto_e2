@@ -27,7 +27,7 @@ begin
 
     valido <= '1' when (unsigned (linea) > 47 and unsigned (linea) < 431 and visible = '1') else '0';
 
-    n_zona <= columna (9 downto 7) & linea (8 downto 7);
+    n_zona <= columna (9 downto 7) & alinea (8 downto 7);
 
 end solucion;
 
