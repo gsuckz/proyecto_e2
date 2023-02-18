@@ -12,7 +12,7 @@ entity calendario is
     d_mes       : out std_logic;
     u_mes       : out std_logic_vector (3 downto 0);
     d_dia       : out std_logic_vector (1 downto 0);
-    u_dia       : out std_logic_vector (3 downto 0);
+    u_dia       : out std_logic_vector (3 downto 0)
     );
 end calendario;
 
@@ -73,7 +73,7 @@ port map(
 process (all)
     begin
         if (u_mes_d = "0000" ) then
-            d_med_d <= !d_mes ;
+            d_med_d <= not d_mes ;
         else 
             d_med_d <= d_mes;
         end if;
@@ -82,9 +82,9 @@ process (all)
 process (all)
     begin   
         if (d_mes = '1'  and d_dia_d = "00" and u_mes = "0010") then
-            u_mes_d <= "0001" 
+            u_mes_d <= "0001"; 
         elsif  d_mes = '0' and u_mes = "1001" and d_mes = '0' and d_dia_d = "00" then
-            u_mes_d <= "0000"
+            u_mes_d <= "0000";
         elsif d_dia_d = "00" then
             u_mes_d <= std_logic_vector ( unsigned (u_mes) + 1 );
         else
@@ -99,24 +99,24 @@ process (all)
         elsif u_dia_d = "0000" then
             d_dia_d <= std_logic_vector ( unsigned (d_dia) + 1 );
         else
-            d_dia_d <= d_dia
+            d_dia_d <= d_dia;
     end if;
 end process;
 
-u_dia_d <=  "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" d_dia = "11" and u_mes = "0001") else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "1000" d_dia = "10" and u_mes = "0010" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" d_dia = "11" and u_mes = "0011" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" d_dia = "11" and u_mes = "0100" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" d_dia = "11" and u_mes = "0101" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" d_dia = "11" and u_mes = "0110" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" d_dia = "11" and u_mes = "0111" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" d_dia = "11" and u_mes = "1000" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" d_dia = "11" and u_mes = "1001" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0001" d_dia = "11" and u_mes = "0000" ) else            
-            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0000" d_dia = "11" and u_mes = "0001" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0001" d_dia = "11" and u_mes = "0010" ) else
-            "0000" when (d_hora_d = "00" u_dia = "1001") else
+u_dia_d <=  "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0001") else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "1000" and d_dia = "10" and u_mes = "0010" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0011" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" and d_dia = "11" and u_mes = "0100" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0101" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" and d_dia = "11" and u_mes = "0110" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0111" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "1000" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" and d_dia = "11" and u_mes = "1001" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0001" and d_dia = "11" and u_mes = "0000" ) else            
+            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0000" and d_dia = "11" and u_mes = "0001" ) else
+            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0001" and d_dia = "11" and u_mes = "0010" ) else
+            "0000" when (d_hora_d = "00" and u_dia = "1001") else
             std_logic_vector ( unsigned (u_dia) + 1 ) when (d_hora_d = "00") else
             u_dia ;
-
+end solucion;
     

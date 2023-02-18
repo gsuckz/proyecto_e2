@@ -8,12 +8,12 @@ entity reloj is
     c_clk       : in std_logic;
     parametro   : in std_logic_vector (3 downto 0);
     change_in   : in std_logic_vector (1 downto 0);
-    d_hora      : out std_logic_vector (1 downto 0);
-    u_hora      : out std_logic_vector (3 downto 0);
-    d_min       : out std_logic_vector (2 downto 0);
-    u_min       : out std_logic_vector (3 downto 0);
+    d_hora_out      : out std_logic_vector (1 downto 0);
+    u_hora_out      : out std_logic_vector (3 downto 0);
+    d_min_out      : out std_logic_vector (2 downto 0);
+    u_min_out      : out std_logic_vector (3 downto 0);
     d_hora_d_out : out std_logic_vector (1 downto 0);
-    pulse : out std_logic;
+    pulse : out std_logic
     );
 end reloj;
 
@@ -30,9 +30,24 @@ architecture solucion of reloj is
             Q   : out std_logic_vector (N-1 downto 0));
     end component;    
 
+signal rst, hab : std_logic;
+signal d_hora          : std_logic_vector(1 downto 0);
+signal d_hora_d    : std_logic_vector(1 downto 0);
+signal u_hora          : std_logic_vector(3 downto 0);
+signal u_hora_d          : std_logic_vector(3 downto 0);
+signal u_min          : std_logic_vector(3 downto 0);
+signal u_min_d          : std_logic_vector(3 downto 0);
+signal base_min          : std_logic_vector( 9 downto 0);
+signal base_min_d          : std_logic_vector( 9 downto 0);
+signal d_min          : std_logic_vector(3 downto 0);
+signal d_min_d          : std_logic_vector(3 downto 0);
+signal change : std_logic_vector (1 downto 0);
 
 
     begin
+rst <= '0';
+hab <= '0';
+
 registro_d_hora : ffd 
 generic map (N => 2)
 port map( 
@@ -44,7 +59,7 @@ port map(
 );
 
 registro_d_min : ffd 
-generic map (N => 3)
+generic map (N => 4)
 port map( 
     rst => rst,
     hab => hab,
@@ -63,7 +78,7 @@ port map(
     D => u_hora_D
 );
 
-registro_d_min : ffd 
+registro_u_min : ffd 
 generic map (N => 4)
 port map( 
     rst => rst,
@@ -73,8 +88,8 @@ port map(
     D => u_min_D
 );
 
-base_min : ffd 
-generic map (N => ?) -- frecuencia de c_clk?
+base_minuto : ffd 
+generic map (N => 10) -- frecuencia de c_clk?
 port map( 
     rst => rst,
     hab => hab,
@@ -85,9 +100,9 @@ port map(
 
 base_min_D <= std_logic_vector( unsigned (base_min) + 1);
 
-change(1) <= change_in(1) and base_min(??);
-change(0) <= change_in(0) and base_min(??);
-pulse <= base_min (??);
+change(1) <= change_in(1) and base_min(5);
+change(0) <= change_in(0) and base_min(5);
+pulse <= base_min (5);
 
 process (all)
     begin
@@ -114,7 +129,7 @@ process (all)
     process (all)
     begin
         if (d_min = "110" and u_min_d = "0000") then
-            d_min_d <= "000";
+            d_min_d <= "0000";
         elsif (u_min_d = "0000" or (parametro = "1001" and change = "01")) then
             d_min_d <= std_logic_vector(unsigned (d_min) + 1);
         elsif (parametro = "01" and change = "10") then

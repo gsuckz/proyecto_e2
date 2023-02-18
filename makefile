@@ -23,6 +23,9 @@ wav_posicion_txt: posicion_txt.ghw
 posicion_txt.ghw: $(arch_cf)
 	ghdl -m $(ops) posicion_txt_tb
 	ghdl -r $(ops) posicion_txt_tb $(wav_ops) --wave=posicion_txt.ghw
+posicion_txt.ghw: $(arch_cf)
+	ghdl -m $(ops) posicion_txt_tb
+	ghdl -r $(ops) posicion_txt_tb $(wav_ops) --wave=posicion_txt.ghw
 
 
 $(arch_cf): *.vhd

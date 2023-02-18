@@ -20,12 +20,12 @@ component posicion_txt is
         valido          : out   std_logic
     );
 end component;
-signal linea, columna  : std_logic_vector (9 downto 0);
-signal linea_z         :     std_logic_vector    (2 downto 0);
-signal columna_Z       :     std_logic_vector    (2 downto 0);  
-signal n_zona          :    std_logic_vector    (4 downto 0);
-signal valido          :    std_logic;
-signal visible         :    std_logic;
+signal linea, columna  :        std_logic_vector (9 downto 0);
+signal linea_z         :        std_logic_vector    (2 downto 0);
+signal columna_Z       :        std_logic_vector    (2 downto 0);  
+signal n_zona          :        std_logic_vector    (4 downto 0);
+signal valido          :        std_logic;
+signal visible         :        std_logic;
 begin
 
     estimulo : process
