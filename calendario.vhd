@@ -26,7 +26,9 @@ architecture solucion of calendario is
             hab : in std_logic;
             clk : in std_logic;
             Q   : out std_logic_vector (N-1 downto 0));
-    end component;    
+    end component;   
+    
+    signal dia_max : std_logic;
 
     begin
 
@@ -92,31 +94,40 @@ process (all)
         end if;
     end process;
 
-process (all)
-    begin 
-        if u_dia_d = "0000" and (d_dia = "11"  or (d_dia = "10" and u_mes = "0010" and d_mes = '0' ) ) then
-            d_dia_d <= "00";
-        elsif u_dia_d = "0000" then
-            d_dia_d <= std_logic_vector ( unsigned (d_dia) + 1 );
-        else
-            d_dia_d <= d_dia;
-    end if;
-end process;
+    process (all)
+    begin
+            if (u_dia_d = "0001" or (mas = '1' and parametro = "0100")) then
+                if d_dia = "1001" then
+                    d_dia_d <= "0000";
+                else 
+                    d_dia_d <= std_logic_vector ( unsigned (d_dia) + 1);
+                end if;
+            elsif (parametro = "0100" and menos = '1')   then 
+                if d_dia = "0000" then
+                    d_dia_d <= "1001";
+                else 
+                    d_dia_d <= std_logic_vector ( unsigned (d_dia) - 1); 
+                end if; 
+            else
+               d_dia_d <= d_dia;
+            end if;
+    end process;
 
-u_dia_d <=  "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0001") else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "1000" and d_dia = "10" and u_mes = "0010" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0011" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" and d_dia = "11" and u_mes = "0100" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0101" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" and d_dia = "11" and u_mes = "0110" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "0111" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0001" and d_dia = "11" and u_mes = "1000" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '0' and u_dia = "0000" and d_dia = "11" and u_mes = "1001" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0001" and d_dia = "11" and u_mes = "0000" ) else            
-            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0000" and d_dia = "11" and u_mes = "0001" ) else
-            "0000" when (d_hora_d = "00" and d_mes = '1' and u_dia = "0001" and d_dia = "11" and u_mes = "0010" ) else
-            "0000" when (d_hora_d = "00" and u_dia = "1001") else
-            std_logic_vector ( unsigned (u_dia) + 1 ) when (d_hora_d = "00") else
-            u_dia ;
+dia_max <=  "110001" when (d_mes = '0' and u_mes = "0001" ) else
+            "011000" when (d_mes = '0' and u_mes = "0010" ) else
+            "110001" when (d_mes = '0' and u_mes = "0011" ) else
+            '110000' when (d_mes = '0' and u_mes = "0100" ) else
+            "110001" when (d_mes = '0' and u_mes = "0101" ) else
+            '110000' when (d_mes = '0' and u_mes = "0110" ) else
+            "110001" when (d_mes = '0' and u_mes = "0111" ) else
+            "110001" when (d_mes = '0' and u_mes = "1000" ) else
+            '110000' when (d_mes = '0' and u_mes = "1001" ) else
+            "110001" when (d_mes = '1' and u_mes = "0000" ) else            
+            '110000' when (d_mes = '1' and u_mes = "0001" ) else
+            "110001" when (d_mes = '1' and u_mes = "0010" ) else
+            else
+            "110000";
+
+dia <= d_dia & u_dia;            
 end solucion;
     

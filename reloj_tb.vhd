@@ -10,13 +10,14 @@ entity reloj_tb is
 architecture tb of reloj_tb is
     component reloj is
         port (
+        rst               : in std_logic;
         c_clk           : in std_logic;
         parametro       : in std_logic_vector  (3 downto 0);
         change_in       : in std_logic_vector  (1 downto 0);
-        d_hora          : out std_logic_vector (1 downto 0);
-        u_hora          : out std_logic_vector (3 downto 0);
-        d_min           : out std_logic_vector (2 downto 0);
-        u_min           : out std_logic_vector (3 downto 0);
+        d_hora_out          : out std_logic_vector (1 downto 0);
+        u_hora_out          : out std_logic_vector (3 downto 0);
+        d_min_out          : out std_logic_vector (3 downto 0);
+        u_min_out          : out std_logic_vector (3 downto 0);
         d_hora_d_out    : out std_logic_vector (1 downto 0);
         pulse           : out std_logic
         );
@@ -27,21 +28,24 @@ signal    parametro       : std_logic_vector  (3 downto 0);
 signal    change_in       : std_logic_vector  (1 downto 0);
 signal    d_hora          :  std_logic_vector (1 downto 0);
 signal    u_hora          :  std_logic_vector (3 downto 0);
-signal    d_min           :  std_logic_vector (2 downto 0);
+signal    d_min           :  std_logic_vector (3 downto 0);
 signal    u_min           :  std_logic_vector (3 downto 0);
 signal    d_hora_d_out    :  std_logic_vector (1 downto 0);
 signal    pulse           :  std_logic;
+signal    rst               : std_logic;
+
 
 begin
   DUT : reloj 
   port map(  
+    rst => rst,
     c_clk              =>    c_clk       ,
     parametro          =>    parametro   ,
     change_in          =>    change_in   ,
-    d_hora             =>    d_hora      ,
-    u_hora             =>    u_hora      ,
-    d_min              =>    d_min       ,
-    u_min              =>    u_min       ,
+    u_hora_out            =>    u_hora      ,
+    d_min_out            =>    d_min       ,
+    d_hora_out            =>    d_hora      ,
+    u_min_out            =>    u_min       ,
     d_hora_d_out       =>    d_hora_d_out,
     pulse              =>    pulse       
   );
@@ -57,7 +61,7 @@ begin
     sim: process
     begin
         rst <= '1';
-        wait for 1 ns;
+        wait for 10 ns;
         rst <= '0';
         wait for 17 ms;
         finish;
@@ -65,6 +69,7 @@ begin
 
     usuario: process
         begin
+            wait for 15 ms;
             parametro <= "1111";
             wait for 100 ns;
             parametro <= "0000";
