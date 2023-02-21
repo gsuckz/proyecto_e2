@@ -47,14 +47,14 @@ signal d_min_d          : std_logic_vector(3 downto 0);
 
 
 
-    begin
+begin
 
 
 registro_d_hora : ffd 
 generic map (N => 2)
 port map( 
     rst => rst,
-    hab => hab,
+    hab => hab(0),
     clk => c_clk,
     Q => d_hora,
     D => d_hora_D
@@ -64,7 +64,7 @@ registro_d_min : ffd
 generic map (N => 4)
 port map( 
     rst => rst,
-    hab => hab,
+    hab => hab(1),
     clk => c_clk,
     Q => d_min,
     D => d_min_D
@@ -74,7 +74,7 @@ registro_u_hora : ffd
 generic map (N => 4)
 port map( 
     rst => rst,
-    hab => hab,
+    hab => hab(2),
     clk => c_clk,
     Q => u_hora,
     D => u_hora_D
@@ -84,7 +84,7 @@ registro_u_min : ffd
 generic map (N => 4)
 port map( 
     rst => rst,
-    hab => hab,
+    hab => hab(3),
     clk => c_clk,
     Q => u_min,
     D => u_min_D
@@ -101,9 +101,12 @@ port map(
 );
 
 base_min_D <= std_logic_vector( unsigned (base_min) + 1);
-hab <= '1';
+hab <=  "0001" when parametro = "0000" else
+        "0010" when parametro = "0001" else
+        "0100" when parametro = "0010" else
+        "1000" when parametro = "0011" else
+        "1111";
 pulse <= base_min (5);
-
 process (all)
 begin
         if ((u_hora_d = "0000" and d_min_d="0000" and u_min_d = "0000" and base_min_d = "0000000000") or (mas = '1' and parametro = "0000")) then

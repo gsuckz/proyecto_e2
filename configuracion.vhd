@@ -5,19 +5,19 @@ use work.ffd_pkg.all;
 
 entity configuracion is
     port (
-    bot_I               : in std_logic;
-    bot_D               : in std_logic;
-    bot_mas               : in std_logic;
-    bot_menos               : in std_logic;
-    n_zona              : in std_logic_vector  (4 downto 0);
-    p_clk               : in std_logic;
+    bot_I               : in  std_logic;
+    bot_D               : in  std_logic;
+    bot_mas             : in  std_logic;
+    bot_menos           : in  std_logic;
+    n_zona              : in  std_logic_vector (4 downto 0);
+    p_clk               : in  std_logic;
     pulse               : in  std_logic;
+    rst                 : in  std_logic;
+    hab                 : in  std_logic;
     parametro_out       : out std_logic_vector (2 downto 0);
     static_out          : out std_logic;
-    mas_out             :   out std_logic;
-    menos_out           : out std_logic;
-    rst : in std_logic;
-    hab : in std_logic
+    mas_out             : out std_logic;
+    menos_out           : out std_logic
     );
 
 end configuracion;
@@ -34,31 +34,31 @@ component ffd is
         Q   : out std_logic_vector (N-1 downto 0));
 end component;
 
-signal parametro : std_logic_vector (3 downto 0);
-signal parametro_D : std_logic_vector (3 downto 0);
-signal pul_cnt : std_logic_vector (2 downto 0);
-signal pul_cnt_d : std_logic_vector (2 downto 0);
-signal e_izq : std_logic_vector (1 downto 0);
-signal e_izq_d : std_logic_vector (1 downto 0);
-signal e_pul : std_logic_vector (1 downto 0);
-signal e_pul_d : std_logic_vector (1 downto 0);
-signal e_der : std_logic_vector (1 downto 0);
-signal e_der_d : std_logic_vector (1 downto 0);
-signal e_mas : std_logic_vector (1 downto 0);
-signal e_mas_d : std_logic_vector (1 downto 0);
-signal e_menos : std_logic_vector (1 downto 0);
-signal e_menos_d : std_logic_vector (1 downto 0);
-signal edge_izq : std_logic;
-signal edge_der : std_logic;
-signal edge_mas : std_logic;
-signal edge_menos : std_logic;
-signal rst_pul_cnt : std_logic;
-signal edge_pulse : std_logic;
-signal parametro_on : std_logic;
-signal mas       : std_logic;
-signal menos     : std_logic;
-signal der       : std_logic;
-signal izq       : std_logic;
+signal parametro        : std_logic_vector (3 downto 0);
+signal parametro_D      : std_logic_vector (3 downto 0);
+signal pul_cnt          : std_logic_vector (2 downto 0);
+signal pul_cnt_d        : std_logic_vector (2 downto 0);
+signal e_izq            : std_logic_vector (1 downto 0);
+signal e_izq_d          : std_logic_vector (1 downto 0);
+signal e_pul            : std_logic_vector (1 downto 0);
+signal e_pul_d          : std_logic_vector (1 downto 0);
+signal e_der            : std_logic_vector (1 downto 0);
+signal e_der_d          : std_logic_vector (1 downto 0);
+signal e_mas            : std_logic_vector (1 downto 0);
+signal e_mas_d          : std_logic_vector (1 downto 0);
+signal e_menos          : std_logic_vector (1 downto 0);
+signal e_menos_d        : std_logic_vector (1 downto 0);
+signal edge_izq         : std_logic;
+signal edge_der         : std_logic;
+signal edge_mas         : std_logic;
+signal edge_menos       : std_logic;
+signal rst_pul_cnt      : std_logic;
+signal edge_pulse       : std_logic;
+signal parametro_on     : std_logic;
+signal mas              : std_logic;
+signal menos            : std_logic;
+signal der              : std_logic;
+signal izq              : std_logic;
 
 
 begin
@@ -140,28 +140,36 @@ begin
                             '1';  
 
 
-    process (all)
-        begin
-            parametro_d <= parametro;
-            if (izq = '1') then
-                if parametro = "0000" then
-                    parametro_d <= "0111";
-                else 
-                    parametro_d <= std_logic_vector(unsigned(parametro)-1);
-                end if;
+process (all)
+    begin
+        parametro_d <= parametro;
+        if (izq = '1') then
+            if parametro = "0000" then
+                parametro_d <= "0111";
+            else 
+                parametro_d <= std_logic_vector(unsigned(parametro)-1);
             end if;
-            if (der = '1') then
-                if parametro = "0111" then
-                    parametro_d <= "0000";
-                else 
-                    parametro_d <= std_logic_vector(unsigned(parametro)+1);
-                end if;
+        end if;
+        if (der = '1') then
+            if parametro = "0111" then
+                parametro_d <= "0000";
+            else 
+                parametro_d <= std_logic_vector(unsigned(parametro)+1);
+            end if;
             end if;
             if parametro_on = '0' then
                 parametro_d <= "1111";
-            end if;            
-        end process; 
-
+                end if;            
+                end process; 
+process (all)
+    begin
+        if pul_cnt = "111" then
+            pul_cnt_d <= pul_cnt;
+        else
+            pul_cnt_d <= std_logic_vector(unsigned (pul_cnt) + 1);
+        end if;
+    end process;
+                    
     e_pul_d(0) <= pulse;
     e_pul_d(1) <= e_pul(0);
     edge_pulse <= '1' when (e_pul(0) = '1') xor (e_pul(1) = '1') else '0';       
@@ -184,13 +192,5 @@ begin
     parametro_on <= '1' when pul_cnt = "111"  else
                     '0' ;
     rst_pul_cnt <= '1' when der = '1' or izq = '1' or mas = '1' or menos = '1' else '0';
-    process (all)
-        begin
-            if pul_cnt = "111" then
-                pul_cnt_d <= pul_cnt;
-            else
-                pul_cnt_d <= std_logic_vector(unsigned (pul_cnt) + 1);
-            end if;
-        end process;
 
 end solucion;
