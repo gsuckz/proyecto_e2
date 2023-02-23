@@ -33,7 +33,7 @@ architecture solucion of reloj is
             Q   : out std_logic_vector (N-1 downto 0));
     end component;    
 
-signal  hab : std_logic;
+signal  hab : std_logic_vector(3 downto 0);
 signal d_hora          : std_logic_vector(1 downto 0);
 signal d_hora_d    : std_logic_vector(1 downto 0);
 signal u_hora          : std_logic_vector(3 downto 0);
@@ -44,6 +44,7 @@ signal base_min          : std_logic_vector( 9 downto 0);
 signal base_min_d          : std_logic_vector( 9 downto 0);
 signal d_min          : std_logic_vector(3 downto 0);
 signal d_min_d          : std_logic_vector(3 downto 0);
+signal habx : std_logic;
 
 
 
@@ -89,12 +90,12 @@ port map(
     Q => u_min,
     D => u_min_D
 );
-
+habx <= '1';
 base_minuto : ffd 
 generic map (N => 10) -- frecuencia de c_clk?
 port map( 
     rst => rst,
-    hab => hab,
+    hab => habx,
     clk => c_clk,
     Q => base_min,
     D => base_min_D
@@ -129,7 +130,7 @@ end process;
     process (all)
     begin
             if ((d_min_d="0000" and u_min_d = "0000" and base_min_d = "0000000000") or (mas = '1' and parametro = "0001")) then
-                if u_hora = "1001" then
+                if u_hora = "1001" or (d_hora = "10" and u_hora = "0011" ) then
                     u_hora_d <= "0000";
                 else 
                     u_hora_d <= std_logic_vector ( unsigned (u_hora) + 1);

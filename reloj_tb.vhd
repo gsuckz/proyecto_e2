@@ -10,16 +10,17 @@ entity reloj_tb is
 architecture tb of reloj_tb is
     component reloj is
         port (
-        rst               : in std_logic;
-        c_clk           : in std_logic;
-        parametro       : in std_logic_vector  (3 downto 0);
-        change_in       : in std_logic_vector  (1 downto 0);
-        d_hora_out          : out std_logic_vector (1 downto 0);
-        u_hora_out          : out std_logic_vector (3 downto 0);
-        d_min_out          : out std_logic_vector (3 downto 0);
-        u_min_out          : out std_logic_vector (3 downto 0);
-        d_hora_d_out    : out std_logic_vector (1 downto 0);
-        pulse           : out std_logic
+            rst         :   in std_logic;
+            c_clk       : in std_logic;
+            parametro   : in std_logic_vector (3 downto 0);
+            mas : in std_logic;
+            menos : in std_logic;
+            d_hora_out      : out std_logic_vector (1 downto 0);
+            u_hora_out      : out std_logic_vector (3 downto 0);
+            d_min_out      : out std_logic_vector (3 downto 0);
+            u_min_out      : out std_logic_vector (3 downto 0);
+            d_hora_d_out : out std_logic_vector (1 downto 0);
+            pulse : out std_logic
         );
     end component;
 
@@ -33,6 +34,8 @@ signal    u_min           :  std_logic_vector (3 downto 0);
 signal    d_hora_d_out    :  std_logic_vector (1 downto 0);
 signal    pulse           :  std_logic;
 signal    rst               : std_logic;
+signal mas, menos : std_logic;
+
 
 
 begin
@@ -41,7 +44,8 @@ begin
     rst => rst,
     c_clk              =>    c_clk       ,
     parametro          =>    parametro   ,
-    change_in          =>    change_in   ,
+    mas => mas,
+    menos => menos,
     u_hora_out            =>    u_hora      ,
     d_min_out            =>    d_min       ,
     d_hora_out            =>    d_hora      ,
