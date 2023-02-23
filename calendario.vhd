@@ -116,17 +116,17 @@ process (all)
 dia_max <=  "110001" when (d_mes = '0' and u_mes = "0001" ) else
             "011000" when (d_mes = '0' and u_mes = "0010" ) else
             "110001" when (d_mes = '0' and u_mes = "0011" ) else
-            '110000' when (d_mes = '0' and u_mes = "0100" ) else
+            "110000" when (d_mes = '0' and u_mes = "0100" ) else
             "110001" when (d_mes = '0' and u_mes = "0101" ) else
-            '110000' when (d_mes = '0' and u_mes = "0110" ) else
+            "110000" when (d_mes = '0' and u_mes = "0110" ) else
             "110001" when (d_mes = '0' and u_mes = "0111" ) else
             "110001" when (d_mes = '0' and u_mes = "1000" ) else
-            '110000' when (d_mes = '0' and u_mes = "1001" ) else
+            "110000" when (d_mes = '0' and u_mes = "1001" ) else
             "110001" when (d_mes = '1' and u_mes = "0000" ) else            
-            '110000' when (d_mes = '1' and u_mes = "0001" ) else
+            "110000" when (d_mes = '1' and u_mes = "0001" ) else
             "110001" when (d_mes = '1' and u_mes = "0010" ) else
-            else
-            "110000";
+                                                                        
+            "110000" ;
 
 dia <= d_dia & u_dia;            
 end solucion;
