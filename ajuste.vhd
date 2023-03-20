@@ -9,15 +9,14 @@ entity configuracion is
     bot_D               : in  std_logic;
     bot_mas             : in  std_logic;
     bot_menos           : in  std_logic;
-    n_zona              : in  std_logic_vector (4 downto 0);
+    n_zona              : in  std_logic_vector (4 downto 0); --Indica la posicion del caracter como un nùmero de zona
     p_clk               : in  std_logic;
-    pulse               : in  std_logic;
+    pul_seg               : in  std_logic; --Pulso alto (ancho perìodo c_clk) cada 1 seg aprox
     rst                 : in  std_logic;
     hab                 : in  std_logic;
-    parametro_out       : out std_logic_vector (2 downto 0);
-    static_out          : out std_logic;
-    mas_out             : out std_logic;
-    menos_out           : out std_logic
+    ajuste_out       : out std_logic_vector (2 downto 0);--Señal que indica que valor se modifica 
+    mas_out             : out std_logic;--Señal que incrementa el valor apuntado por ajuste
+    menos_out           : out std_logic-- Idem con decremento
     );
 
 end configuracion;
@@ -34,8 +33,8 @@ component ffd is
         Q   : out std_logic_vector (N-1 downto 0));
 end component;
 
-signal parametro        : std_logic_vector (3 downto 0);
-signal parametro_D      : std_logic_vector (3 downto 0);
+signal ajuste        : std_logic_vector (3 downto 0);
+signal ajuste_D      : std_logic_vector (3 downto 0);
 signal pul_cnt          : std_logic_vector (2 downto 0);
 signal pul_cnt_d        : std_logic_vector (2 downto 0);
 signal e_izq            : std_logic_vector (1 downto 0);
@@ -54,7 +53,7 @@ signal edge_mas         : std_logic;
 signal edge_menos       : std_logic;
 signal rst_pul_cnt      : std_logic;
 signal edge_pulse       : std_logic;
-signal parametro_on     : std_logic;
+signal ajuste_on     : std_logic;
 signal mas              : std_logic;
 signal menos            : std_logic;
 signal der              : std_logic;
@@ -62,21 +61,21 @@ signal izq              : std_logic;
 
 
 begin
-    registro_parametro : ffd 
+    registro_ajuste : ffd 
     generic map (N => 4) 
     port map( 
         rst => rst,
         hab => hab,
         clk => p_clk,
-        Q => parametro,
-        D => parametro_D
+        Q => ajuste,
+        D => ajuste_D
     );
     registro_pulsos : ffd 
     generic map (N => 3) 
     port map( 
         rst => rst_pul_cnt,
         hab => hab,
-        clk => pulse,
+        clk => pul_seg,
         Q => pul_cnt,
         D => pul_cnt_D
     );
@@ -126,39 +125,28 @@ begin
     D => e_menos_D
     );
 
-       
-    static_out <=           '0'             when n_zona = "00000" and parametro = "0000"  else
-                            '0'             when n_zona = "00100" and parametro = "0001" else
-                            '0'             when n_zona = "01000"  else
-                            '0'             when n_zona = "01100" and parametro = "0010" else
-                            '0'             when n_zona = "10000" and parametro = "0011" else
-                            '0'             when n_zona = "00001" and parametro = "0100" else
-                            '0'             when n_zona = "00101" and parametro = "0101" else
-                            '0'             when n_zona = "01001"  else
-                            '0'             when n_zona = "01101" and parametro = "0110" else
-                            '0'             when n_zona = "10001" and parametro = "0111" else
-                            '1';  
+
 
 
 process (all)
     begin
-        parametro_d <= parametro;
+        ajuste_d <= ajuste;
         if (izq = '1') then
-            if parametro = "0000" then
-                parametro_d <= "0111";
+            if ajuste = "0000" then
+                ajuste_d <= "0111";
             else 
-                parametro_d <= std_logic_vector(unsigned(parametro)-1);
+                ajuste_d <= std_logic_vector(unsigned(ajuste)-1);
             end if;
         end if;
         if (der = '1') then
-            if parametro = "0111" then
-                parametro_d <= "0000";
+            if ajuste = "0111" then
+                ajuste_d <= "0000";
             else 
-                parametro_d <= std_logic_vector(unsigned(parametro)+1);
+                ajuste_d <= std_logic_vector(unsigned(ajuste)+1);
             end if;
             end if;
-            if parametro_on = '0' then
-                parametro_d <= "1111";
+            if ajuste_on = '0' then
+                ajuste_d <= "1111";
                 end if;            
                 end process; 
 process (all)
@@ -170,7 +158,7 @@ process (all)
         end if;
     end process;
                     
-    e_pul_d(0) <= pulse;
+    e_pul_d(0) <= pul_seg;
     e_pul_d(1) <= e_pul(0);
     edge_pulse <= '1' when (e_pul(0) = '1') xor (e_pul(1) = '1') else '0';       
     e_der_d(0) <= bot_d;
@@ -184,12 +172,12 @@ process (all)
     edge_mas <='1' when  e_mas(0)='1' xor e_mas(1)='1' else '0'; 
     e_menos_d(0) <= bot_menos;
     e_menos_d(1) <= e_menos(0);
-    edge_menos <= '1' when e_menos(0)='1' xor e_menos(1)='1' else '0'; 
-    der <= '1' when (edge_der = '1') or (edge_pulse = '1' and bot_d = '1') else '0';        
+    edge_menos <= '1' when e_menos(0)='1' xor e_menos(1)='1' else '0'; --no cuenta con antirebote
+    der <= '1' when (edge_der = '1') or (edge_pulse = '1' and bot_d = '1') else '0';        --que pasa si aprieto y justo despues hay un pulso
     izq <= '1' when (edge_izq = '1' or (edge_pulse = '1' and bot_i = '1')) else '0';
     mas <= '1' when edge_mas = '1' or (edge_pulse = '1' and bot_mas = '1') else '0';
     menos <= '1' when edge_menos = '1' or (edge_pulse = '1' and bot_menos = '1') else '0';        
-    parametro_on <= '1' when pul_cnt = "111"  else
+    ajuste_on <= '1' when pul_cnt = "111"  else
                     '0' ;
     rst_pul_cnt <= '1' when der = '1' or izq = '1' or mas = '1' or menos = '1' else '0';
 
