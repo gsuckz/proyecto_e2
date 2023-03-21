@@ -1,0 +1,245 @@
+ble_pack Q_45__i0_LC_20 {Q_45__i0, Q_45_add_4_2, Q_45_add_4_2_lut}
+ble_pack Q_45__i1_LC_25 {Q_45__i1, Q_45_add_4_3, Q_45_add_4_3_lut}
+ble_pack Q_45__i2_LC_26 {Q_45__i2, Q_45_add_4_4, Q_45_add_4_4_lut}
+ble_pack Q_45__i3_LC_27 {Q_45__i3, Q_45_add_4_5, Q_45_add_4_5_lut}
+ble_pack Q_45__i4_LC_28 {Q_45__i4, Q_45_add_4_6, Q_45_add_4_6_lut}
+ble_pack Q_45__i5_LC_29 {Q_45__i5, Q_45_add_4_7, Q_45_add_4_7_lut}
+ble_pack Q_45__i6_LC_30 {Q_45__i6, Q_45_add_4_8, Q_45_add_4_8_lut}
+ble_pack Q_45__i7_LC_31 {Q_45__i7, Q_45_add_4_9, Q_45_add_4_9_lut}
+clb_pack PLB_0 {Q_45__i0_LC_20, Q_45__i1_LC_25, Q_45__i2_LC_26, Q_45__i3_LC_27, Q_45__i4_LC_28, Q_45__i5_LC_29, Q_45__i6_LC_30, Q_45__i7_LC_31}
+ble_pack Q_45__i8_LC_0 {Q_45__i8, Q_45_add_4_10, Q_45_add_4_10_lut}
+ble_pack Q_45__i9_LC_1 {Q_45__i9, Q_45_add_4_11, Q_45_add_4_11_lut}
+ble_pack Q_45__i10_LC_2 {Q_45__i10, Q_45_add_4_12, Q_45_add_4_12_lut}
+ble_pack Q_45__i11_LC_3 {Q_45__i11, Q_45_add_4_13, Q_45_add_4_13_lut}
+ble_pack Q_45__i12_LC_4 {Q_45__i12, Q_45_add_4_14, Q_45_add_4_14_lut}
+ble_pack Q_45__i13_LC_5 {Q_45__i13, Q_45_add_4_15, Q_45_add_4_15_lut}
+ble_pack Q_45__i14_LC_6 {Q_45__i14, Q_45_add_4_16, Q_45_add_4_16_lut}
+ble_pack Q_45__i15_LC_7 {Q_45__i15, Q_45_add_4_17, Q_45_add_4_17_lut}
+clb_pack PLB_1 {Q_45__i8_LC_0, Q_45__i9_LC_1, Q_45__i10_LC_2, Q_45__i11_LC_3, Q_45__i12_LC_4, Q_45__i13_LC_5, Q_45__i14_LC_6, Q_45__i15_LC_7}
+ble_pack Q_45__i16_LC_8 {Q_45__i16, Q_45_add_4_18, Q_45_add_4_18_lut}
+ble_pack Q_45__i17_LC_9 {Q_45__i17, Q_45_add_4_19, Q_45_add_4_19_lut}
+ble_pack Q_45__i18_LC_10 {Q_45__i18, Q_45_add_4_20, Q_45_add_4_20_lut}
+ble_pack Q_45__i19_LC_11 {Q_45__i19, Q_45_add_4_21, Q_45_add_4_21_lut}
+ble_pack Q_45__i20_LC_12 {Q_45__i20, Q_45_add_4_22, Q_45_add_4_22_lut}
+ble_pack Q_45__i21_LC_13 {Q_45__i21, Q_45_add_4_23, Q_45_add_4_23_lut}
+ble_pack Q_45__i22_LC_14 {Q_45__i22, Q_45_add_4_24, Q_45_add_4_24_lut}
+ble_pack Q_45__i23_LC_15 {Q_45__i23, Q_45_add_4_25, Q_45_add_4_25_lut}
+clb_pack PLB_2 {Q_45__i16_LC_8, Q_45__i17_LC_9, Q_45__i18_LC_10, Q_45__i19_LC_11, Q_45__i20_LC_12, Q_45__i21_LC_13, Q_45__i22_LC_14, Q_45__i23_LC_15}
+ble_pack Q_45__i24_LC_16 {Q_45__i24, Q_45_add_4_26, Q_45_add_4_26_lut}
+ble_pack Q_45__i25_LC_17 {Q_45__i25, Q_45_add_4_27, Q_45_add_4_27_lut}
+ble_pack Q_45__i26_LC_18 {Q_45__i26, Q_45_add_4_28, Q_45_add_4_28_lut}
+ble_pack Q_45__i27_LC_19 {Q_45__i27, Q_45_add_4_29, Q_45_add_4_29_lut}
+ble_pack Q_45__i28_LC_21 {Q_45__i28, Q_45_add_4_30, Q_45_add_4_30_lut}
+ble_pack Q_45__i29_LC_22 {Q_45__i29, Q_45_add_4_31, Q_45_add_4_31_lut}
+ble_pack Q_45__i30_LC_23 {Q_45__i30, Q_45_add_4_32, Q_45_add_4_32_lut}
+ble_pack Q_45__i31_LC_24 {Q_45__i31, Q_45_add_4_33_lut}
+clb_pack PLB_3 {Q_45__i24_LC_16, Q_45__i25_LC_17, Q_45__i26_LC_18, Q_45__i27_LC_19, Q_45__i28_LC_21, Q_45__i29_LC_22, Q_45__i30_LC_23, Q_45__i31_LC_24}
+ble_pack sincronismo.Q_46__i0_LC_89 {sincronismo.Q_46__i0, sincronismo.Q_46_add_4_2, sincronismo.Q_46_add_4_2_lut}
+ble_pack sincronismo.Q_46__i1_LC_90 {sincronismo.Q_46__i1, sincronismo.Q_46_add_4_3, sincronismo.Q_46_add_4_3_lut}
+ble_pack sincronismo.Q_46__i2_LC_91 {sincronismo.Q_46__i2, sincronismo.Q_46_add_4_4, sincronismo.Q_46_add_4_4_lut}
+ble_pack sincronismo.Q_46__i3_LC_92 {sincronismo.Q_46__i3, sincronismo.Q_46_add_4_5, sincronismo.Q_46_add_4_5_lut}
+ble_pack sincronismo.Q_46__i4_LC_93 {sincronismo.Q_46__i4, sincronismo.Q_46_add_4_6, sincronismo.Q_46_add_4_6_lut}
+ble_pack sincronismo.Q_46__i5_LC_94 {sincronismo.Q_46__i5, sincronismo.Q_46_add_4_7, sincronismo.Q_46_add_4_7_lut}
+ble_pack sincronismo.Q_46__i6_LC_95 {sincronismo.Q_46__i6, sincronismo.Q_46_add_4_8, sincronismo.Q_46_add_4_8_lut}
+ble_pack sincronismo.Q_46__i7_LC_96 {sincronismo.Q_46__i7, sincronismo.Q_46_add_4_9, sincronismo.Q_46_add_4_9_lut}
+clb_pack PLB_4 {sincronismo.Q_46__i0_LC_89, sincronismo.Q_46__i1_LC_90, sincronismo.Q_46__i2_LC_91, sincronismo.Q_46__i3_LC_92, sincronismo.Q_46__i4_LC_93, sincronismo.Q_46__i5_LC_94, sincronismo.Q_46__i6_LC_95, sincronismo.Q_46__i7_LC_96}
+ble_pack sincronismo.Q_46__i8_LC_87 {sincronismo.Q_46__i8, sincronismo.Q_46_add_4_10, sincronismo.Q_46_add_4_10_lut}
+ble_pack sincronismo.Q_46__i9_LC_88 {sincronismo.Q_46__i9, sincronismo.Q_46_add_4_11_lut}
+clb_pack PLB_5 {sincronismo.Q_46__i8_LC_87, sincronismo.Q_46__i9_LC_88}
+ble_pack sincronismo.Q_47__i0_LC_99 {sincronismo.Q_47__i0, sincronismo.Q_47_add_4_2, sincronismo.Q_47_add_4_2_lut}
+ble_pack sincronismo.Q_47__i1_LC_100 {sincronismo.Q_47__i1, sincronismo.Q_47_add_4_3, sincronismo.Q_47_add_4_3_lut}
+ble_pack sincronismo.Q_47__i2_LC_101 {sincronismo.Q_47__i2, sincronismo.Q_47_add_4_4, sincronismo.Q_47_add_4_4_lut}
+ble_pack sincronismo.Q_47__i3_LC_102 {sincronismo.Q_47__i3, sincronismo.Q_47_add_4_5, sincronismo.Q_47_add_4_5_lut}
+ble_pack sincronismo.Q_47__i4_LC_103 {sincronismo.Q_47__i4, sincronismo.Q_47_add_4_6, sincronismo.Q_47_add_4_6_lut}
+ble_pack sincronismo.Q_47__i5_LC_104 {sincronismo.Q_47__i5, sincronismo.Q_47_add_4_7, sincronismo.Q_47_add_4_7_lut}
+ble_pack sincronismo.Q_47__i6_LC_105 {sincronismo.Q_47__i6, sincronismo.Q_47_add_4_8, sincronismo.Q_47_add_4_8_lut}
+ble_pack sincronismo.Q_47__i7_LC_106 {sincronismo.Q_47__i7, sincronismo.Q_47_add_4_9, sincronismo.Q_47_add_4_9_lut}
+clb_pack PLB_6 {sincronismo.Q_47__i0_LC_99, sincronismo.Q_47__i1_LC_100, sincronismo.Q_47__i2_LC_101, sincronismo.Q_47__i3_LC_102, sincronismo.Q_47__i4_LC_103, sincronismo.Q_47__i5_LC_104, sincronismo.Q_47__i6_LC_105, sincronismo.Q_47__i7_LC_106}
+ble_pack sincronismo.Q_47__i8_LC_97 {sincronismo.Q_47__i8, sincronismo.Q_47_add_4_10, sincronismo.Q_47_add_4_10_lut}
+ble_pack sincronismo.Q_47__i9_LC_98 {sincronismo.Q_47__i9, sincronismo.Q_47_add_4_11_lut}
+clb_pack PLB_7 {sincronismo.Q_47__i8_LC_97, sincronismo.Q_47__i9_LC_98}
+ble_pack generador.i104914_i1_4_lut_LC_32 {generador.i104914_i1_4_lut}
+ble_pack generador.i4_4_lut_LC_42 {generador.i4_4_lut}
+ble_pack generador.i1380_3_lut_4_lut_LC_33 {generador.i1380_3_lut_4_lut}
+ble_pack generador.i1_3_lut_LC_41 {generador.i1_3_lut}
+ble_pack sincronismo.i2_3_lut_LC_129 {sincronismo.i2_3_lut}
+ble_pack sincronismo.i1003_4_lut_LC_107 {sincronismo.i1003_4_lut}
+ble_pack sincronismo.i1475_4_lut_LC_117 {sincronismo.i1475_4_lut}
+ble_pack sincronismo.i989_4_lut_LC_143 {sincronismo.i989_4_lut}
+clb_pack PLB_8 {generador.i104914_i1_4_lut_LC_32, generador.i4_4_lut_LC_42, generador.i1380_3_lut_4_lut_LC_33, generador.i1_3_lut_LC_41, sincronismo.i2_3_lut_LC_129, sincronismo.i1003_4_lut_LC_107, sincronismo.i1475_4_lut_LC_117, sincronismo.i989_4_lut_LC_143}
+ble_pack generador.i1_2_lut_3_lut_4_lut_LC_40 {generador.i1_2_lut_3_lut_4_lut}
+ble_pack sincronismo.i1471_2_lut_2_lut_3_lut_4_lut_LC_116 {sincronismo.i1471_2_lut_2_lut_3_lut_4_lut}
+ble_pack sincronismo.i1_2_lut_3_lut_LC_120 {sincronismo.i1_2_lut_3_lut}
+ble_pack tabla.i1467_2_lut_3_lut_4_lut_LC_188 {tabla.i1467_2_lut_3_lut_4_lut}
+ble_pack tabla.i898_2_lut_3_lut_4_lut_LC_198 {tabla.i898_2_lut_3_lut_4_lut}
+ble_pack tabla.i965_2_lut_3_lut_4_lut_LC_201 {tabla.i965_2_lut_3_lut_4_lut}
+ble_pack tabla.i1_2_lut_3_lut_4_lut_LC_189 {tabla.i1_2_lut_3_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_20_i7_3_lut_4_lut_LC_165 {tabla.codigo_char_3__I_0_Mux_20_i7_3_lut_4_lut}
+clb_pack PLB_9 {generador.i1_2_lut_3_lut_4_lut_LC_40, sincronismo.i1471_2_lut_2_lut_3_lut_4_lut_LC_116, sincronismo.i1_2_lut_3_lut_LC_120, tabla.i1467_2_lut_3_lut_4_lut_LC_188, tabla.i898_2_lut_3_lut_4_lut_LC_198, tabla.i965_2_lut_3_lut_4_lut_LC_201, tabla.i1_2_lut_3_lut_4_lut_LC_189, tabla.codigo_char_3__I_0_Mux_20_i7_3_lut_4_lut_LC_165}
+ble_pack generador.i617_4_lut_LC_43 {generador.i617_4_lut}
+ble_pack generador.i630_4_lut_LC_46 {generador.i630_4_lut}
+ble_pack generador.i1409_3_lut_3_lut_LC_39 {generador.i1409_3_lut_3_lut}
+ble_pack generador.px_visible_N_106_1__bdd_4_lut_4_lut_4_lut_LC_63 {generador.px_visible_N_106_1__bdd_4_lut_4_lut_4_lut}
+ble_pack generador.n2006_bdd_4_lut_4_lut_LC_56 {generador.n2006_bdd_4_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_36_i15_4_lut_LC_170 {tabla.codigo_char_3__I_0_Mux_36_i15_4_lut}
+ble_pack sincronismo.px_visible_I_3_i24_3_lut_3_lut_LC_148 {sincronismo.px_visible_I_3_i24_3_lut_3_lut}
+ble_pack generador.n1970_bdd_4_lut_4_lut_LC_51 {generador.n1970_bdd_4_lut_4_lut}
+clb_pack PLB_10 {generador.i617_4_lut_LC_43, generador.i630_4_lut_LC_46, generador.i1409_3_lut_3_lut_LC_39, generador.px_visible_N_106_1__bdd_4_lut_4_lut_4_lut_LC_63, generador.n2006_bdd_4_lut_4_lut_LC_56, tabla.codigo_char_3__I_0_Mux_36_i15_4_lut_LC_170, sincronismo.px_visible_I_3_i24_3_lut_3_lut_LC_148, generador.n1970_bdd_4_lut_4_lut_LC_51}
+ble_pack generador.i628_4_lut_LC_45 {generador.i628_4_lut}
+ble_pack generador.i1389_3_lut_3_lut_LC_35 {generador.i1389_3_lut_3_lut}
+ble_pack tabla.px_visible_I_3_i51_3_lut_3_lut_LC_209 {tabla.px_visible_I_3_i51_3_lut_3_lut}
+ble_pack generador.i1390_3_lut_LC_36 {generador.i1390_3_lut}
+ble_pack tabla.n1952_bdd_4_lut_4_lut_4_lut_LC_203 {tabla.n1952_bdd_4_lut_4_lut_4_lut}
+ble_pack generador.px_visible_N_106_0__bdd_4_lut_1503_4_lut_4_lut_LC_58 {generador.px_visible_N_106_0__bdd_4_lut_1503_4_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_60_i15_3_lut_LC_182 {tabla.codigo_char_3__I_0_Mux_60_i15_3_lut}
+ble_pack sincronismo.px_visible_I_3_i55_3_lut_3_lut_LC_153 {sincronismo.px_visible_I_3_i55_3_lut_3_lut}
+clb_pack PLB_11 {generador.i628_4_lut_LC_45, generador.i1389_3_lut_3_lut_LC_35, tabla.px_visible_I_3_i51_3_lut_3_lut_LC_209, generador.i1390_3_lut_LC_36, tabla.n1952_bdd_4_lut_4_lut_4_lut_LC_203, generador.px_visible_N_106_0__bdd_4_lut_1503_4_lut_4_lut_LC_58, tabla.codigo_char_3__I_0_Mux_60_i15_3_lut_LC_182, sincronismo.px_visible_I_3_i55_3_lut_3_lut_LC_153}
+ble_pack generador.i6_4_lut_4_lut_LC_47 {generador.i6_4_lut_4_lut}
+ble_pack sincronismo.i7_4_lut_LC_135 {sincronismo.i7_4_lut}
+ble_pack sincronismo.i2_3_lut_adj_6_LC_130 {sincronismo.i2_3_lut_adj_6}
+ble_pack sincronismo.i641_4_lut_LC_134 {sincronismo.i641_4_lut}
+ble_pack sincronismo.i2_2_lut_LC_128 {sincronismo.i2_2_lut}
+ble_pack sincronismo.i1446_2_lut_4_lut_LC_111 {sincronismo.i1446_2_lut_4_lut}
+ble_pack sincronismo.i803_4_lut_LC_136 {sincronismo.i803_4_lut}
+ble_pack sincronismo.i2_4_lut_LC_131 {sincronismo.i2_4_lut}
+clb_pack PLB_12 {generador.i6_4_lut_4_lut_LC_47, sincronismo.i7_4_lut_LC_135, sincronismo.i2_3_lut_adj_6_LC_130, sincronismo.i641_4_lut_LC_134, sincronismo.i2_2_lut_LC_128, sincronismo.i1446_2_lut_4_lut_LC_111, sincronismo.i803_4_lut_LC_136, sincronismo.i2_4_lut_LC_131}
+ble_pack generador.linea_4__bdd_4_lut_4_lut_4_lut_LC_48 {generador.linea_4__bdd_4_lut_4_lut_4_lut}
+ble_pack generador.n2000_bdd_4_lut_4_lut_LC_55 {generador.n2000_bdd_4_lut_4_lut}
+ble_pack posicion.i120_2_lut_LC_82 {posicion.i120_2_lut}
+ble_pack generador.i1393_3_lut_LC_38 {generador.i1393_3_lut}
+ble_pack generador.i1392_3_lut_LC_37 {generador.i1392_3_lut}
+ble_pack generador.n1958_bdd_4_lut_LC_49 {generador.n1958_bdd_4_lut}
+ble_pack generador.px_visible_N_106_2__bdd_4_lut_4_lut_LC_64 {generador.px_visible_N_106_2__bdd_4_lut_4_lut}
+ble_pack generador.n1976_bdd_4_lut_4_lut_LC_52 {generador.n1976_bdd_4_lut_4_lut}
+clb_pack PLB_13 {generador.linea_4__bdd_4_lut_4_lut_4_lut_LC_48, generador.n2000_bdd_4_lut_4_lut_LC_55, posicion.i120_2_lut_LC_82, generador.i1393_3_lut_LC_38, generador.i1392_3_lut_LC_37, generador.n1958_bdd_4_lut_LC_49, generador.px_visible_N_106_2__bdd_4_lut_4_lut_LC_64, generador.n1976_bdd_4_lut_4_lut_LC_52}
+ble_pack generador.n1964_bdd_4_lut_4_lut_LC_50 {generador.n1964_bdd_4_lut_4_lut}
+ble_pack generador.px_visible_N_106_1__bdd_4_lut_1508_4_lut_4_lut_LC_59 {generador.px_visible_N_106_1__bdd_4_lut_1508_4_lut_4_lut}
+ble_pack tabla.px_visible_I_3_i54_3_lut_3_lut_3_lut_LC_210 {tabla.px_visible_I_3_i54_3_lut_3_lut_3_lut}
+ble_pack tabla.px_visible_I_3_i58_4_lut_4_lut_4_lut_LC_211 {tabla.px_visible_I_3_i58_4_lut_4_lut_4_lut}
+ble_pack sincronismo.px_visible_I_3_i57_3_lut_3_lut_LC_154 {sincronismo.px_visible_I_3_i57_3_lut_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_57_i15_4_lut_LC_179 {tabla.codigo_char_3__I_0_Mux_57_i15_4_lut}
+ble_pack tabla.i337_3_lut_3_lut_3_lut_LC_192 {tabla.i337_3_lut_3_lut_3_lut}
+ble_pack tabla.i3_4_lut_LC_193 {tabla.i3_4_lut}
+clb_pack PLB_14 {generador.n1964_bdd_4_lut_4_lut_LC_50, generador.px_visible_N_106_1__bdd_4_lut_1508_4_lut_4_lut_LC_59, tabla.px_visible_I_3_i54_3_lut_3_lut_3_lut_LC_210, tabla.px_visible_I_3_i58_4_lut_4_lut_4_lut_LC_211, sincronismo.px_visible_I_3_i57_3_lut_3_lut_LC_154, tabla.codigo_char_3__I_0_Mux_57_i15_4_lut_LC_179, tabla.i337_3_lut_3_lut_3_lut_LC_192, tabla.i3_4_lut_LC_193}
+ble_pack generador.n1982_bdd_4_lut_4_lut_LC_53 {generador.n1982_bdd_4_lut_4_lut}
+ble_pack generador.px_visible_N_106_1__bdd_4_lut_1518_4_lut_4_lut_LC_61 {generador.px_visible_N_106_1__bdd_4_lut_1518_4_lut_4_lut}
+ble_pack tabla.px_visible_I_3_i1_3_lut_3_lut_3_lut_LC_206 {tabla.px_visible_I_3_i1_3_lut_3_lut_3_lut}
+ble_pack tabla.px_visible_I_3_i5_3_lut_3_lut_3_lut_LC_212 {tabla.px_visible_I_3_i5_3_lut_3_lut_3_lut}
+ble_pack sincronismo.px_visible_I_3_i2_3_lut_3_lut_LC_149 {sincronismo.px_visible_I_3_i2_3_lut_3_lut}
+ble_pack sincronismo.px_visible_I_3_i4_3_lut_3_lut_LC_152 {sincronismo.px_visible_I_3_i4_3_lut_3_lut}
+ble_pack sincronismo.i1010_3_lut_3_lut_LC_108 {sincronismo.i1010_3_lut_3_lut}
+ble_pack generador.n1988_bdd_4_lut_4_lut_LC_54 {generador.n1988_bdd_4_lut_4_lut}
+clb_pack PLB_15 {generador.n1982_bdd_4_lut_4_lut_LC_53, generador.px_visible_N_106_1__bdd_4_lut_1518_4_lut_4_lut_LC_61, tabla.px_visible_I_3_i1_3_lut_3_lut_3_lut_LC_206, tabla.px_visible_I_3_i5_3_lut_3_lut_3_lut_LC_212, sincronismo.px_visible_I_3_i2_3_lut_3_lut_LC_149, sincronismo.px_visible_I_3_i4_3_lut_3_lut_LC_152, sincronismo.i1010_3_lut_3_lut_LC_108, generador.n1988_bdd_4_lut_4_lut_LC_54}
+ble_pack generador.px_visible_N_106_0__bdd_4_lut_1490_4_lut_4_lut_LC_57 {generador.px_visible_N_106_0__bdd_4_lut_1490_4_lut_4_lut}
+ble_pack tabla.n1946_bdd_4_lut_4_lut_4_lut_LC_202 {tabla.n1946_bdd_4_lut_4_lut_4_lut}
+ble_pack tabla.px_visible_N_106_0__bdd_4_lut_4_lut_4_lut_4_lut_LC_213 {tabla.px_visible_N_106_0__bdd_4_lut_4_lut_4_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_42_i15_3_lut_LC_173 {tabla.codigo_char_3__I_0_Mux_42_i15_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_38_i15_3_lut_LC_171 {tabla.codigo_char_3__I_0_Mux_38_i15_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_43_i15_4_lut_4_lut_LC_176 {tabla.codigo_char_3__I_0_Mux_43_i15_4_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_30_i7_3_lut_3_lut_LC_167 {tabla.codigo_char_3__I_0_Mux_30_i7_3_lut_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_25_i15_3_lut_LC_166 {tabla.codigo_char_3__I_0_Mux_25_i15_3_lut}
+clb_pack PLB_16 {generador.px_visible_N_106_0__bdd_4_lut_1490_4_lut_4_lut_LC_57, tabla.n1946_bdd_4_lut_4_lut_4_lut_LC_202, tabla.px_visible_N_106_0__bdd_4_lut_4_lut_4_lut_4_lut_LC_213, tabla.codigo_char_3__I_0_Mux_42_i15_3_lut_LC_173, tabla.codigo_char_3__I_0_Mux_38_i15_3_lut_LC_171, tabla.codigo_char_3__I_0_Mux_43_i15_4_lut_4_lut_LC_176, tabla.codigo_char_3__I_0_Mux_30_i7_3_lut_3_lut_LC_167, tabla.codigo_char_3__I_0_Mux_25_i15_3_lut_LC_166}
+ble_pack generador.px_visible_N_106_1__bdd_4_lut_1513_4_lut_4_lut_LC_60 {generador.px_visible_N_106_1__bdd_4_lut_1513_4_lut_4_lut}
+ble_pack sincronismo.px_visible_I_3_i19_3_lut_3_lut_LC_147 {sincronismo.px_visible_I_3_i19_3_lut_3_lut}
+ble_pack tabla.px_visible_I_3_i20_3_lut_3_lut_3_lut_LC_207 {tabla.px_visible_I_3_i20_3_lut_3_lut_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_20_i15_3_lut_LC_164 {tabla.codigo_char_3__I_0_Mux_20_i15_3_lut}
+ble_pack sincronismo.n1994_bdd_4_lut_4_lut_LC_144 {sincronismo.n1994_bdd_4_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_43_i14_3_lut_3_lut_LC_175 {tabla.codigo_char_3__I_0_Mux_43_i14_3_lut_3_lut}
+ble_pack tabla.char_code_2__bdd_4_lut_4_lut_4_lut_LC_155 {tabla.char_code_2__bdd_4_lut_4_lut_4_lut}
+ble_pack tabla.i1375_4_lut_4_lut_LC_187 {tabla.i1375_4_lut_4_lut}
+clb_pack PLB_17 {generador.px_visible_N_106_1__bdd_4_lut_1513_4_lut_4_lut_LC_60, sincronismo.px_visible_I_3_i19_3_lut_3_lut_LC_147, tabla.px_visible_I_3_i20_3_lut_3_lut_3_lut_LC_207, tabla.codigo_char_3__I_0_Mux_20_i15_3_lut_LC_164, sincronismo.n1994_bdd_4_lut_4_lut_LC_144, tabla.codigo_char_3__I_0_Mux_43_i14_3_lut_3_lut_LC_175, tabla.char_code_2__bdd_4_lut_4_lut_4_lut_LC_155, tabla.i1375_4_lut_4_lut_LC_187}
+ble_pack generador.px_visible_N_106_1__bdd_4_lut_1531_4_lut_4_lut_LC_62 {generador.px_visible_N_106_1__bdd_4_lut_1531_4_lut_4_lut}
+ble_pack sincronismo.px_visible_I_3_i11_3_lut_3_lut_LC_145 {sincronismo.px_visible_I_3_i11_3_lut_3_lut}
+ble_pack tabla.px_visible_I_3_i12_3_lut_3_lut_3_lut_LC_204 {tabla.px_visible_I_3_i12_3_lut_3_lut_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_14_i15_3_lut_LC_158 {tabla.codigo_char_3__I_0_Mux_14_i15_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_13_i15_3_lut_4_lut_LC_157 {tabla.codigo_char_3__I_0_Mux_13_i15_3_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_50_i15_3_lut_4_lut_LC_178 {tabla.codigo_char_3__I_0_Mux_50_i15_3_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_49_i15_3_lut_LC_177 {tabla.codigo_char_3__I_0_Mux_49_i15_3_lut}
+ble_pack tabla.i916_2_lut_4_lut_LC_200 {tabla.i916_2_lut_4_lut}
+clb_pack PLB_18 {generador.px_visible_N_106_1__bdd_4_lut_1531_4_lut_4_lut_LC_62, sincronismo.px_visible_I_3_i11_3_lut_3_lut_LC_145, tabla.px_visible_I_3_i12_3_lut_3_lut_3_lut_LC_204, tabla.codigo_char_3__I_0_Mux_14_i15_3_lut_LC_158, tabla.codigo_char_3__I_0_Mux_13_i15_3_lut_4_lut_LC_157, tabla.codigo_char_3__I_0_Mux_50_i15_3_lut_4_lut_LC_178, tabla.codigo_char_3__I_0_Mux_49_i15_3_lut_LC_177, tabla.i916_2_lut_4_lut_LC_200}
+ble_pack i11_4_lut_LC_65 {i11_4_lut}
+ble_pack i18_3_lut_LC_72 {i18_3_lut}
+ble_pack i1478_4_lut_LC_68 {i1478_4_lut}
+ble_pack i1_2_lut_LC_73 {i1_2_lut}
+ble_pack i8_4_lut_LC_79 {i8_4_lut}
+ble_pack i6_4_lut_LC_78 {i6_4_lut}
+clb_pack PLB_19 {i11_4_lut_LC_65, i18_3_lut_LC_72, i1478_4_lut_LC_68, i1_2_lut_LC_73, i8_4_lut_LC_79, i6_4_lut_LC_78}
+ble_pack i12_4_lut_LC_66 {i12_4_lut}
+ble_pack i967_3_lut_LC_80 {i967_3_lut}
+ble_pack i992_4_lut_LC_81 {i992_4_lut}
+ble_pack i3_4_lut_LC_76 {i3_4_lut}
+ble_pack i14_4_lut_LC_70 {i14_4_lut}
+ble_pack i2_4_lut_LC_75 {i2_4_lut}
+ble_pack i1481_4_lut_LC_69 {i1481_4_lut}
+ble_pack i13_4_lut_LC_67 {i13_4_lut}
+clb_pack PLB_20 {i12_4_lut_LC_66, i967_3_lut_LC_80, i992_4_lut_LC_81, i3_4_lut_LC_76, i14_4_lut_LC_70, i2_4_lut_LC_75, i1481_4_lut_LC_69, i13_4_lut_LC_67}
+ble_pack i15_4_lut_LC_71 {i15_4_lut}
+ble_pack salida.n_zona_4__I_0_Mux_1_i15_4_lut_LC_86 {salida.n_zona_4__I_0_Mux_1_i15_4_lut}
+ble_pack sincronismo.i1_4_lut_adj_5_LC_127 {sincronismo.i1_4_lut_adj_5}
+ble_pack sincronismo.i1_3_lut_LC_124 {sincronismo.i1_3_lut}
+ble_pack sincronismo.i834_4_lut_LC_141 {sincronismo.i834_4_lut}
+ble_pack salida.i1453_2_lut_3_lut_LC_85 {salida.i1453_2_lut_3_lut}
+ble_pack sincronismo.i1465_2_lut_3_lut_LC_114 {sincronismo.i1465_2_lut_3_lut}
+ble_pack sincronismo.i829_3_lut_4_lut_LC_139 {sincronismo.i829_3_lut_4_lut}
+clb_pack PLB_21 {i15_4_lut_LC_71, salida.n_zona_4__I_0_Mux_1_i15_4_lut_LC_86, sincronismo.i1_4_lut_adj_5_LC_127, sincronismo.i1_3_lut_LC_124, sincronismo.i834_4_lut_LC_141, salida.i1453_2_lut_3_lut_LC_85, sincronismo.i1465_2_lut_3_lut_LC_114, sincronismo.i829_3_lut_4_lut_LC_139}
+ble_pack sincronismo.i19_4_lut_LC_118 {sincronismo.i19_4_lut}
+ble_pack sincronismo.i830_4_lut_LC_140 {sincronismo.i830_4_lut}
+ble_pack sincronismo.i822_4_lut_LC_138 {sincronismo.i822_4_lut}
+ble_pack sincronismo.i1454_2_lut_LC_112 {sincronismo.i1454_2_lut}
+ble_pack sincronismo.i1_2_lut_3_lut_adj_8_LC_121 {sincronismo.i1_2_lut_3_lut_adj_8}
+ble_pack sincronismo.i820_4_lut_3_lut_LC_137 {sincronismo.i820_4_lut_3_lut}
+ble_pack sincronismo.i1469_2_lut_LC_115 {sincronismo.i1469_2_lut}
+ble_pack sincronismo.i1_3_lut_adj_9_LC_125 {sincronismo.i1_3_lut_adj_9}
+clb_pack PLB_22 {sincronismo.i19_4_lut_LC_118, sincronismo.i830_4_lut_LC_140, sincronismo.i822_4_lut_LC_138, sincronismo.i1454_2_lut_LC_112, sincronismo.i1_2_lut_3_lut_adj_8_LC_121, sincronismo.i820_4_lut_3_lut_LC_137, sincronismo.i1469_2_lut_LC_115, sincronismo.i1_3_lut_adj_9_LC_125}
+ble_pack sincronismo.i1_2_lut_4_lut_LC_122 {sincronismo.i1_2_lut_4_lut}
+ble_pack sincronismo.i4_4_lut_LC_132 {sincronismo.i4_4_lut}
+ble_pack posicion.i132_2_lut_3_lut_LC_84 {posicion.i132_2_lut_3_lut}
+ble_pack sincronismo.i1460_2_lut_3_lut_LC_113 {sincronismo.i1460_2_lut_3_lut}
+ble_pack posicion.i122_2_lut_LC_83 {posicion.i122_2_lut}
+ble_pack sincronismo.i1_4_lut_LC_126 {sincronismo.i1_4_lut}
+ble_pack generador.i622_3_lut_LC_44 {generador.i622_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_11_i15_3_lut_LC_156 {tabla.codigo_char_3__I_0_Mux_11_i15_3_lut}
+clb_pack PLB_23 {sincronismo.i1_2_lut_4_lut_LC_122, sincronismo.i4_4_lut_LC_132, posicion.i132_2_lut_3_lut_LC_84, sincronismo.i1460_2_lut_3_lut_LC_113, posicion.i122_2_lut_LC_83, sincronismo.i1_4_lut_LC_126, generador.i622_3_lut_LC_44, tabla.codigo_char_3__I_0_Mux_11_i15_3_lut_LC_156}
+ble_pack sincronismo.i621_3_lut_4_lut_4_lut_LC_133 {sincronismo.i621_3_lut_4_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_18_i7_3_lut_LC_160 {tabla.codigo_char_3__I_0_Mux_18_i7_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_17_i15_3_lut_LC_159 {tabla.codigo_char_3__I_0_Mux_17_i15_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_9_i15_3_lut_4_lut_LC_186 {tabla.codigo_char_3__I_0_Mux_9_i15_3_lut_4_lut}
+ble_pack sincronismo.px_visible_I_3_i17_3_lut_3_lut_LC_146 {sincronismo.px_visible_I_3_i17_3_lut_3_lut}
+ble_pack tabla.px_visible_I_3_i16_3_lut_3_lut_3_lut_LC_205 {tabla.px_visible_I_3_i16_3_lut_3_lut_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_19_i15_4_lut_4_lut_LC_161 {tabla.codigo_char_3__I_0_Mux_19_i15_4_lut_4_lut}
+ble_pack sincronismo.px_visible_I_3_i42_3_lut_3_lut_LC_150 {sincronismo.px_visible_I_3_i42_3_lut_3_lut}
+clb_pack PLB_24 {sincronismo.i621_3_lut_4_lut_4_lut_LC_133, tabla.codigo_char_3__I_0_Mux_18_i7_3_lut_LC_160, tabla.codigo_char_3__I_0_Mux_17_i15_3_lut_LC_159, tabla.codigo_char_3__I_0_Mux_9_i15_3_lut_4_lut_LC_186, sincronismo.px_visible_I_3_i17_3_lut_3_lut_LC_146, tabla.px_visible_I_3_i16_3_lut_3_lut_3_lut_LC_205, tabla.codigo_char_3__I_0_Mux_19_i15_4_lut_4_lut_LC_161, sincronismo.px_visible_I_3_i42_3_lut_3_lut_LC_150}
+ble_pack tabla.codigo_char_3__I_0_Mux_1_i7_3_lut_3_lut_4_lut_LC_163 {tabla.codigo_char_3__I_0_Mux_1_i7_3_lut_3_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_33_i7_3_lut_4_lut_LC_169 {tabla.codigo_char_3__I_0_Mux_33_i7_3_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_42_i7_3_lut_4_lut_LC_174 {tabla.codigo_char_3__I_0_Mux_42_i7_3_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_6_i7_3_lut_3_lut_4_lut_LC_185 {tabla.codigo_char_3__I_0_Mux_6_i7_3_lut_3_lut_4_lut}
+ble_pack tabla.i893_2_lut_3_lut_4_lut_LC_197 {tabla.i893_2_lut_3_lut_4_lut}
+ble_pack tabla.i904_3_lut_4_lut_LC_199 {tabla.i904_3_lut_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_1_i15_3_lut_LC_162 {tabla.codigo_char_3__I_0_Mux_1_i15_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_6_i15_3_lut_LC_184 {tabla.codigo_char_3__I_0_Mux_6_i15_3_lut}
+clb_pack PLB_25 {tabla.codigo_char_3__I_0_Mux_1_i7_3_lut_3_lut_4_lut_LC_163, tabla.codigo_char_3__I_0_Mux_33_i7_3_lut_4_lut_LC_169, tabla.codigo_char_3__I_0_Mux_42_i7_3_lut_4_lut_LC_174, tabla.codigo_char_3__I_0_Mux_6_i7_3_lut_3_lut_4_lut_LC_185, tabla.i893_2_lut_3_lut_4_lut_LC_197, tabla.i904_3_lut_4_lut_LC_199, tabla.codigo_char_3__I_0_Mux_1_i15_3_lut_LC_162, tabla.codigo_char_3__I_0_Mux_6_i15_3_lut_LC_184}
+ble_pack tabla.codigo_char_3__I_0_Mux_59_i14_3_lut_4_lut_LC_180 {tabla.codigo_char_3__I_0_Mux_59_i14_3_lut_4_lut}
+ble_pack tabla.i498_2_lut_LC_194 {tabla.i498_2_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_61_i15_3_lut_4_lut_LC_183 {tabla.codigo_char_3__I_0_Mux_61_i15_3_lut_4_lut}
+ble_pack tabla.i619_3_lut_LC_195 {tabla.i619_3_lut}
+ble_pack tabla.i620_3_lut_LC_196 {tabla.i620_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_5_i15_3_lut_LC_181 {tabla.codigo_char_3__I_0_Mux_5_i15_3_lut}
+ble_pack sincronismo.px_visible_I_3_i43_3_lut_3_lut_LC_151 {sincronismo.px_visible_I_3_i43_3_lut_3_lut}
+ble_pack generador.i1386_3_lut_3_lut_LC_34 {generador.i1386_3_lut_3_lut}
+clb_pack PLB_26 {tabla.codigo_char_3__I_0_Mux_59_i14_3_lut_4_lut_LC_180, tabla.i498_2_lut_LC_194, tabla.codigo_char_3__I_0_Mux_61_i15_3_lut_4_lut_LC_183, tabla.i619_3_lut_LC_195, tabla.i620_3_lut_LC_196, tabla.codigo_char_3__I_0_Mux_5_i15_3_lut_LC_181, sincronismo.px_visible_I_3_i43_3_lut_3_lut_LC_151, generador.i1386_3_lut_3_lut_LC_34}
+ble_pack tabla.i1_4_lut_LC_190 {tabla.i1_4_lut}
+ble_pack tabla.i2_4_lut_LC_191 {tabla.i2_4_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_33_i15_3_lut_LC_168 {tabla.codigo_char_3__I_0_Mux_33_i15_3_lut}
+ble_pack tabla.px_visible_I_3_i32_3_lut_3_lut_3_lut_LC_208 {tabla.px_visible_I_3_i32_3_lut_3_lut_3_lut}
+ble_pack sincronismo.i1018_3_lut_3_lut_LC_109 {sincronismo.i1018_3_lut_3_lut}
+ble_pack sincronismo.i988_3_lut_3_lut_LC_142 {sincronismo.i988_3_lut_3_lut}
+ble_pack sincronismo.i1_2_lut_adj_7_LC_123 {sincronismo.i1_2_lut_adj_7}
+ble_pack i2_3_lut_LC_74 {i2_3_lut}
+clb_pack PLB_27 {tabla.i1_4_lut_LC_190, tabla.i2_4_lut_LC_191, tabla.codigo_char_3__I_0_Mux_33_i15_3_lut_LC_168, tabla.px_visible_I_3_i32_3_lut_3_lut_3_lut_LC_208, sincronismo.i1018_3_lut_3_lut_LC_109, sincronismo.i988_3_lut_3_lut_LC_142, sincronismo.i1_2_lut_adj_7_LC_123, i2_3_lut_LC_74}
+ble_pack i5_3_lut_LC_77 {i5_3_lut}
+ble_pack tabla.codigo_char_3__I_0_Mux_41_i14_3_lut_LC_172 {tabla.codigo_char_3__I_0_Mux_41_i14_3_lut}
+ble_pack sincronismo.i1376_2_lut_LC_110 {sincronismo.i1376_2_lut}
+ble_pack sincronismo.i1_2_lut_LC_119 {sincronismo.i1_2_lut}
+ble_pack GB_BUFFER_clk_c_THRU_LUT4_0_LC_214 {GB_BUFFER_clk_c_THRU_LUT4_0}
+ble_pack LC_215 {CONSTANT_ONE_LUT4}
+clb_pack PLB_28 {i5_3_lut_LC_77, tabla.codigo_char_3__I_0_Mux_41_i14_3_lut_LC_172, sincronismo.i1376_2_lut_LC_110, sincronismo.i1_2_lut_LC_119, GB_BUFFER_clk_c_THRU_LUT4_0_LC_214, LC_215}

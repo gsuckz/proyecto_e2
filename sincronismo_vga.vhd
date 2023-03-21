@@ -88,18 +88,18 @@ begin
     logica_salida_columna: process (all)
     begin 
             if unsigned (columna) > 655 and unsigned (columna) < 751 then
-                hsync <= '1';
-            else
                 hsync <= '0';
+            else
+                hsync <= '1';
             end if;
     end process;
 
     logica_salida_linea: process (all)
     begin 
             if unsigned (linea) > 512 and unsigned (linea) < 722 then
-                vsync <= '1';
-            else
                 vsync <= '0';
+            else
+                vsync <= '1';
             end if;
     end process;
 

@@ -35,14 +35,20 @@ begin
                    -- u_dia           when "10001", 
                     -- "1111"          when others;  
                     
-                    codigo_char <=  "0000" when "00000",
-                    "0001" when "00100",
-                    "1111" when "01000",
-                    "1010" when "01100",
-                    "1011" when "10100",
-                    "1100" when "00001",
-                    "1111" when "00101",
-                    "1000" when "01001",
-                    "0101" when "01101",
-                    "0011" when "10001";
+                    char_code <=  x"0" when "00000",
+                    x"1" when "00100",
+                    x"2" when "01000",
+                    x"3" when "01100",
+                    x"4" when "10000",
+                    x"5" when "00001",
+                    x"6" when "00101",
+                    x"7" when "01001",
+                    x"8" when "01101",
+                    x"9" when "10001",
+                    x"A" when "00010",
+                    x"B" when "00110",
+                    x"C" when "01010",
+                    x"D" when "01110",
+                    x"E" when "10010",
+	          "1111" when others;
 end solucion;

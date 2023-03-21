@@ -1,0 +1,140 @@
+* ******************************************************************************
+
+* iCEcube Packer
+
+* Version:            2020.12.27943
+
+* Build Date:         Dec  9 2020 17:31:51
+
+* File Generated:     Mar 21 2023 19:36:26
+
+* Purpose:            General info of design implementation
+
+* Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+* ******************************************************************************
+
+Command Line: C:\lscc\iCEcube2.2020.12\sbt_backend\bin\win32\opt\packer.exe  C:\lscc\iCEcube2.2020.12\sbt_backend\devices\ICE40P04.dev  C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2/proyecto_e2_Implmnt\sbt\netlist\oadb-top  --package  TQ144  --outdir  C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2/proyecto_e2_Implmnt\sbt\outputs\packer  --translator  C:\lscc\iCEcube2.2020.12\sbt_backend\bin\sdc_translator.tcl  --src_sdc_file  C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2/proyecto_e2_Implmnt\sbt\outputs\placer\top_pl.sdc  --dst_sdc_file  C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2/proyecto_e2_Implmnt\sbt\outputs\packer\top_pk.sdc  --devicename  iCE40HX4K  
+
+***** Device Info *****
+Chip: iCE40HX4K
+Package: TQ144
+Size: 24 X 20
+
+***** Design Utilization Info *****
+Design: top
+Used Logic Cell: 216/3520
+Used Logic Tile: 39/440
+Used IO Cell:    5/176
+Used Bram Cell For iCE40: 0/20
+Used PLL For iCE40: 1/2
+Ram Cascading Used: 0
+Lut Cascading Used: 1
+
+***** Clock Info *****
+Clock Domain: p_clk
+Clock Source: GNDG0 CONSTANT_ONE_NET GB_BUFFER_clk_c_THRU_CO 
+Clock Driver: pll.pll_px_clk_inst (SB_PLL40_CORE)
+Driver Position: (12, 0, 1)
+Fanout to FF: 20
+Fanout to Tile: 4
+
+Clock Domain: clk_c
+Clock Source: clk 
+Clock Driver: clk_pad (ICE_GB_IO)
+Driver Position: (25, 11, 0)
+Fanout to FF: 33
+Fanout to Tile: 5
+
+
+***** Placement Info *****
+Logic cell utilization per tile
+    . . . . + . . . . 1 . . . . + . . . . 2 . . . . + . 
+   ----------------------------------------------------
+21|                                                     
+20|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+19|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+18|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+17|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+16|   0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+15|   0 0 1 0 1 6 8 3 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+14|   0 0 2 0 8 8 8 8 6 0 0 8 0 0 0 0 0 0 0 0 0 0 0 0   
+13|   0 0 2 0 7 8 8 8 5 1 7 8 0 0 0 0 0 0 0 0 0 0 0 0   
+12|   0 0 8 0 5 2 8 7 8 0 6 8 0 0 0 0 0 0 0 0 0 0 0 0   
+11|   0 0 1 0 6 8 0 7 6 0 3 8 0 0 0 0 0 0 0 0 0 0 0 0   
+10|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 9|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 8|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 7|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 6|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 5|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 4|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 3|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 2|   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+ 1|   0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0   
+ 0|                                                     
+
+Maximum number of Logic cells per logic tile: 8
+Average number of Logic cells per logic tile: 5.54
+
+***** Input Pin Density Info *****
+Number of input nets per logic tile
+     .  .  .  .  +  .  .  .  .  1  .  .  .  .  +  .  .  .  .  2  .  .  .  .  +  . 
+   ------------------------------------------------------------------------------
+21|                                                                               
+20|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+19|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+18|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+17|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+16|     0  0  0  0  0  0  0  0  3  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+15|     0  0  4  0  2 19 22  9  3  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+14|     0  0  8  0 20 21 16 18 17  0  0 17  0  0  0  0  0  0  0  0  0  0  0  0    
+13|     0  0  4  0 13 16 21 16 12  4 22 17  0  0  0  0  0  0  0  0  0  0  0  0    
+12|     0  0 16  0 16  4 15 15 12  0 22 17  0  0  0  0  0  0  0  0  0  0  0  0    
+11|     0  0  3  0 12 16  0 18 16  0 10 17  0  0  0  0  0  0  0  0  0  0  0  0    
+10|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 9|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 8|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 7|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 6|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 5|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 4|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 3|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 2|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 1|     0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0    
+ 0|                                                                               
+
+Maximum number of input nets per logic tile: 22
+Average number of input nets per logic tile: 13.18
+
+Number of input pins per logic tile
+     .  .  .  .  +  .  .  .  .  1  .  .  .  .  +  .  .  .  .  2  .  .  .  .  +  . 
+   ------------------------------------------------------------------------------
+21|                                                                               
+20|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+19|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+18|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+17|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+16|     0  0  0  0  0  0  0  0  3  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+15|     0  0  4  0  2 21 30  9  3  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+14|     0  0  8  0 27 28 28 30 21  0  0 24  0  0  0  0  0  0  0  0  0  0  0  0    
+13|     0  0  4  0 24 25 28 27 18  4 26 24  0  0  0  0  0  0  0  0  0  0  0  0    
+12|     0  0 16  0 18  4 28 23 30  0 22 24  0  0  0  0  0  0  0  0  0  0  0  0    
+11|     0  0  3  0 20 16  0 24 20  0 10 23  0  0  0  0  0  0  0  0  0  0  0  0    
+10|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 9|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 8|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 7|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 6|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 5|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 4|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 3|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 2|     0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0    
+ 1|     0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0    
+ 0|                                                                               
+
+Maximum number of input pins per logic tile: 30
+Average number of input pins per logic tile: 17.95
+
+***** Run Time Info *****
+Run Time:  1

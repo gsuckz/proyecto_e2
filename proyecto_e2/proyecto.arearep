@@ -1,0 +1,57 @@
+----------------------------------------------------------------------
+Report for cell proyecto.TECH
+Register bits:  20 of 3520 (0.568%)
+I/O cells:      0
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        18          100.0
+                          SB_DFFESR        10          100.0
+                           SB_DFFSR        10          100.0
+                           SB_GB_IO         1          100.0
+                              SB_IO         3          100.0
+                            SB_LUT4       155          100.0
+SUB MODULES
+               generador_caracteres         1
+                       posicion_txt         1
+                    salida_pantalla         1
+                    sincronismo_vga         1
+                   tabla_caracteres         1
+                              TOTAL       202
+----------------------------------------------------------------------
+Report for cell tabla_caracteres.v1
+Instance Path : tabla
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4        71           45.8
+                              TOTAL        71
+----------------------------------------------------------------------
+Report for cell generador_caracteres.v1
+Instance Path : generador
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4        30           19.4
+                              TOTAL        30
+----------------------------------------------------------------------
+Report for cell posicion_txt.v1
+Instance Path : posicion
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4        12            7.7
+                              TOTAL        12
+----------------------------------------------------------------------
+Report for cell salida_pantalla.v1
+Instance Path : salida
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4        11            7.1
+                              TOTAL        11
+----------------------------------------------------------------------
+Report for cell sincronismo_vga.v1
+Instance Path : sincronismo
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        18          100.0
+                          SB_DFFESR        10          100.0
+                           SB_DFFSR        10          100.0
+                            SB_LUT4        31           20.0
+                              TOTAL        69

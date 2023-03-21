@@ -1,0 +1,3 @@
+
+: 0 work.tabla_caracteres "C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\tabla_caraceteres.vhd" 6 7 
+: 0 work.proyecto "C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\top.vhd" 6 7 work.salida_pantalla work.posicion_txt work.generador_caracteres work.sincronismo_vga 

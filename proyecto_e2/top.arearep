@@ -1,0 +1,67 @@
+----------------------------------------------------------------------
+Report for cell top.TECH
+Register bits:  52 of 3520 (1.477%)
+I/O cells:      0
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        49          100.0
+                          SB_DFFESR        10          100.0
+                           SB_DFFSR        25          100.0
+                           SB_DFFSS        17          100.0
+                           SB_GB_IO         1          100.0
+                              SB_IO         4          100.0
+                            SB_LUT4       214          100.0
+                      SB_PLL40_CORE         1          100.0
+SUB MODULES
+       generador_caracteres_default         1
+                         pll_px_clk         1
+               posicion_txt_default         1
+            salida_pantalla_default         1
+            sincronismo_vga_default         1
+           tabla_caracteres_default         1
+                              TOTAL       327
+----------------------------------------------------------------------
+Report for cell tabla_caracteres_default.v1
+Instance Path : tabla
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4        59           27.6
+                              TOTAL        59
+----------------------------------------------------------------------
+Report for cell generador_caracteres_default.v1
+Instance Path : generador
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4        33           15.4
+                              TOTAL        33
+----------------------------------------------------------------------
+Report for cell pll_px_clk.v1
+Instance Path : pll
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                      SB_PLL40_CORE         1          100.0
+                              TOTAL         1
+----------------------------------------------------------------------
+Report for cell posicion_txt_default.v1
+Instance Path : posicion
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4         3            1.4
+                              TOTAL         3
+----------------------------------------------------------------------
+Report for cell salida_pantalla_default.v1
+Instance Path : salida
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                            SB_LUT4         2            0.9
+                              TOTAL         2
+----------------------------------------------------------------------
+Report for cell sincronismo_vga_default.v1
+Instance Path : sincronismo
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                           SB_CARRY        18           36.7
+                          SB_DFFESR        10          100.0
+                           SB_DFFSR        10           40.0
+                            SB_LUT4        68           31.8
+                              TOTAL       106

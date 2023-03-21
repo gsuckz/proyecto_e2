@@ -13,7 +13,7 @@ architecture solucion of tabla_caracteres is
 
     begin 
     with codigo_char select
-    codigo_char <=  X"3c7e666666667e3c" when "0000", 
+    char <=  X"3c7e666666667e3c" when "0000", 
                     X"1838781818187e7e" when "0001",  
                     X"3c7e061e38707e7e" when "0010",  
                     X"3c7e063c3c067e3c" when "0011",  

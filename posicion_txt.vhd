@@ -25,7 +25,7 @@ begin
     alinea <= std_logic_vector( unsigned (linea) - 48);
     linea_z <=  alinea (6 downto 4);
 
-    valido <= '1' when (unsigned (linea) > 47 and unsigned (linea) < 431 and visible = '1') else '0';
+    valido <= '1' when (unsigned (linea) > 47 and unsigned (linea) < 432 and visible = '1') else '0';
 
     n_zona <= columna (9 downto 7) & alinea (8 downto 7);
 
