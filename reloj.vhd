@@ -5,18 +5,17 @@ use work.ffd_pkg.all;
 
 entity reloj is
     port (
-    rst         :   in std_logic;
-
-    c_clk       : in std_logic; --? p_clk?
-    ajuste   : in std_logic_vector (3 downto 0); --?
-    mas : in std_logic; --?
-    menos : in std_logic; --?
-    d_hora_out      : out std_logic_vector (1 downto 0);
-    u_hora_out      : out std_logic_vector (3 downto 0);
-    d_min_out      : out std_logic_vector (3 downto 0);
-    u_min_out      : out std_logic_vector (3 downto 0);
-    new_day : out std_logic_vector (1 downto 0);
-    pul_seg : out std_logic
+    rst                   :   in std_logic;
+    c_clk                 : in std_logic; --? p_clk?
+    ajuste                : in std_logic_vector (3 downto 0); --?
+    mas                   : in std_logic; --?
+    menos                 : in std_logic; --?
+    d_hora_out            : out std_logic_vector (1 downto 0);
+    u_hora_out            : out std_logic_vector (3 downto 0);
+    d_min_out             : out std_logic_vector (3 downto 0);
+    u_min_out             : out std_logic_vector (3 downto 0);
+    new_day               : out std_logic;
+    pul_seg               : out std_logic
     );
 end reloj;
 
@@ -184,7 +183,7 @@ end process;
             end if;
     end process;
 
-new_day <= '1' when d_hora_d = (others => '0') and u_hora_d  = (others => '0') and d_min_d = (others => '0') and u_min_d = (others => '0') and base_min_d = (others => '0');
+new_day <= '1' when d_hora_d = "00" and u_hora_d  = "0000" and d_min_d = "0000" and u_min_d = "0000" and base_min_d = "0000000000";
 d_hora_out   <=  d_hora;
 u_hora_out   <=  u_hora;
 d_min_out    <= d_min;

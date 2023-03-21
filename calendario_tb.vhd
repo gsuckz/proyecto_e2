@@ -20,4 +20,6 @@ architecture tb of calendario_tb is
         u_dia       : out std_logic_vector (3 downto 0)
         );
     end component;
+    begin
+    END tb;
 

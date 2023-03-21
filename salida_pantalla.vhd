@@ -23,15 +23,26 @@ architecture solucion of salida_pantalla is
 
 begin
     with n_zona  select 
-    char_code <=    "00" & d_hora   when "00000", 
-                    u_hora          when "00100", 
-                    "1010"          when "01000", 
-                    "0" & d_min     when "01100", 
-                    u_min           when "10000", 
-                    "000" & d_mes   when "00001", 
-                    u_mes           when "00101", 
-                    "1011"          when "01001",
-                    "00" & d_dia    when "01101", 
-                    u_dia           when "10001", 
-                    "1111"          when others;   
+ --   char_code <=    "00" & d_hora   when "00000", 
+   --                 u_hora          when "00100", 
+     --               "1010"          when "01000", 
+       --             "0" & d_min     when "01100", 
+         --           u_min           when "10000", 
+           --         "000" & d_mes   when "00001", 
+             --       u_mes           when "00101", 
+               --     "1011"          when "01001",
+                 --   "00" & d_dia    when "01101", 
+                   -- u_dia           when "10001", 
+                    -- "1111"          when others;  
+                    
+                    codigo_char <=  "0000" when "00000",
+                    "0001" when "00100",
+                    "1111" when "01000",
+                    "1010" when "01100",
+                    "1011" when "10100",
+                    "1100" when "00001",
+                    "1111" when "00101",
+                    "1000" when "01001",
+                    "0101" when "01101",
+                    "0011" when "10001";
 end solucion;
