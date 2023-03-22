@@ -27,7 +27,7 @@ architecture solucion of tabla_caracteres is
                     X"00060e1c38706000" when "1011",  -- /
                     X"ffffffffffffffff" when "1100",        
                     X"0000000000000000" when others;   
-    end solucion;
+end solucion;
 
 
 

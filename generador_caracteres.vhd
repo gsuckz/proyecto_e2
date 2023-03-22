@@ -14,9 +14,13 @@ entity generador_caracteres is
     px_visible     : out       std_logic
     );
 end  generador_caracteres;
+
 architecture solucion of generador_caracteres is
+
     signal static : std_logic;
-    begin
+
+begin
+    
     px_visible <= char (integer (unsigned (linea_z & columna_z) ) ) and (pulse or static) and visible;
            
     static <=               '0'             when n_zona = "00000" and ajuste = "0000"  else
@@ -30,5 +34,5 @@ architecture solucion of generador_caracteres is
                             '0'             when n_zona = "01101" and ajuste = "0110" else
                             '0'             when n_zona = "10001" and ajuste = "0111" else
                             '1';  
-    end solucion;
+end solucion;
 

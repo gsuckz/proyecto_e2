@@ -25,11 +25,13 @@ architecture solucion of calendario is
             hab : in std_logic;
             clk : in std_logic;
             Q   : out std_logic_vector (N-1 downto 0));
-    end component;   
+end component;   
     
 signal dia_max : std_logic;
 
 begin
+
+--Memorias de estado
 
 registro_d_mes : ffd
 generic map (N => 1)
@@ -71,23 +73,25 @@ port map(
     D => u_dia_D
 );
 
+--Logica combinacional/Salidas
 
-dia_max <=  "110001" when (d_mes = '0' and u_mes = "0001" ) else
-            "101000" when (d_mes = '0' and u_mes = "0010" ) else
-            "110001" when (d_mes = '0' and u_mes = "0011" ) else
-            "110000" when (d_mes = '0' and u_mes = "0100" ) else
-            "110001" when (d_mes = '0' and u_mes = "0101" ) else
-            "110000" when (d_mes = '0' and u_mes = "0110" ) else
-            "110001" when (d_mes = '0' and u_mes = "0111" ) else
-            "110001" when (d_mes = '0' and u_mes = "1000" ) else
-            "110000" when (d_mes = '0' and u_mes = "1001" ) else
-            "110001" when (d_mes = '1' and u_mes = "0000" ) else            
-            "110000" when (d_mes = '1' and u_mes = "0001" ) else
-            "110001" when (d_mes = '1' and u_mes = "0010" ) else                                                  
-            "110000" ;
-dia <= d_dia & u_dia;  
+dia_max         <=  "110001" when (d_mes = '0' and u_mes = "0001" ) else
+                    "101000" when (d_mes = '0' and u_mes = "0010" ) else
+                    "110001" when (d_mes = '0' and u_mes = "0011" ) else
+                    "110000" when (d_mes = '0' and u_mes = "0100" ) else
+                    "110001" when (d_mes = '0' and u_mes = "0101" ) else
+                    "110000" when (d_mes = '0' and u_mes = "0110" ) else
+                    "110001" when (d_mes = '0' and u_mes = "0111" ) else
+                    "110001" when (d_mes = '0' and u_mes = "1000" ) else
+                    "110000" when (d_mes = '0' and u_mes = "1001" ) else
+                    "110001" when (d_mes = '1' and u_mes = "0000" ) else            
+                    "110000" when (d_mes = '1' and u_mes = "0001" ) else
+                    "110001" when (d_mes = '1' and u_mes = "0010" ) else                                                  
+                    "110000" ;
 
-dia_maximo <= '0' when dia_max = dia else '1';
+dia             <= d_dia & u_dia;  --??consultar
+
+dia_maximo      <= '0' when dia_max = dia else '1';     --??consultar
 
 process (all)
     begin
@@ -109,7 +113,7 @@ process (all)
         if unsigned(dia) > unsigned (dia_max) then
             u_dia_d <= dia_max(3 downto 0);
         end if;
-    end process;
+end process;
 
 process (all)
     begin 
@@ -130,7 +134,7 @@ process (all)
     if unsigned(dia) > unsigned (dia_max) then
         d_dia_d <= dia_max(5 downto 4);
     end if;
-        end process;
+end process;
 
 process (all)
     begin 
@@ -141,21 +145,21 @@ process (all)
             else 
             u_mes_d <= std_logic_vector(unsigned(u_dia) + 1);
         end if;
-    elsif ((menos = '1' and ajuste = "0110")) then
-        if (u_mes = (others => '0')) then
-            if d_mes = "1" then
-                u_mes_d <= "0010";
-            else
-                u_mes_d <= "1001"; 
-            end if;  
-         else 
-            u_mes_d <= std_logic_vector(unsigned(u_dia) - 1);
+        elsif ((menos = '1' and ajuste = "0110")) then
+            if (u_mes = (others => '0')) then
+                if d_mes = "1" then
+                    u_mes_d <= "0010";
+                else
+                    u_mes_d <= "1001"; 
+                end if;  
+            else 
+                u_mes_d <= std_logic_vector(unsigned(u_dia) - 1);
 
+            end if;
         end if;
-    end if;
-if unsigned (u_mes) > unsigned ("0010") and d_mes = "1" then
-    u_mes_d <= "0010";
-end if; 
+    if unsigned (u_mes) > unsigned ("0010") and d_mes = "1" then
+        u_mes_d <= "0010";
+    end if;  
 
 end process;
 
@@ -180,7 +184,7 @@ process (all)
 
         end if;
     end if;
-            end process;
+end process;
 
 
 
