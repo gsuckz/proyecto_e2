@@ -36,6 +36,7 @@
 -lib work -vhd "../tabla_caraceteres.vhd" 
 -lib work -vhd "../top.vhd" 
 -ver "pll_px_clk.v"
+-lib work -vhd "../reloj.vhd" 
 -p "C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2"
 
 #set result format/file last

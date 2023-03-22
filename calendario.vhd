@@ -8,10 +8,12 @@ entity calendario is
     c_clk       : in std_logic;
     ajuste      : in std_logic_vector (3 downto 0);
     new_day     : in std_logic;
-    d_mes       : out std_logic_vector (0 downto 0);
-    u_mes       : out std_logic_vector (3 downto 0);
-    d_dia       : out std_logic_vector (1 downto 0);
-    u_dia       : out std_logic_vector (3 downto 0)
+    d_mes_out       : out std_logic_vector (0 downto 0);
+    u_mes_out       : out std_logic_vector (3 downto 0);
+    d_dia_out       : out std_logic_vector (1 downto 0);
+    u_dia_out       : out std_logic_vector (3 downto 0);
+    rst : in std_logic;
+ hab : in std_logic
     );
 end calendario;
 
@@ -28,6 +30,18 @@ architecture solucion of calendario is
 end component;   
     
 signal dia_max : std_logic;
+
+signal d_mes      :  std_logic_vector (0 downto 0);
+signal u_mes      :  std_logic_vector (3 downto 0);
+signal d_dia      :  std_logic_vector (1 downto 0);
+signal u_dia      :  std_logic_vector (3 downto 0);
+signal d_mes_d    :    std_logic_vector (0 downto 0);
+signal u_mes_d    :    std_logic_vector (3 downto 0);
+signal d_dia_d    :    std_logic_vector (1 downto 0);
+signal u_dia_d    :    std_logic_vector (3 downto 0);
+
+
+
 
 begin
 
@@ -91,7 +105,7 @@ dia_max         <=  "110001" when (d_mes = '0' and u_mes = "0001" ) else
 
 dia             <= d_dia & u_dia;  --??consultar
 
-dia_maximo      <= '0' when dia_max = dia else '1';     --??consultar
+dia_maximo      <= '0' when (dia_max = dia) else '1';     --??consultar
 
 process (all)
     begin
@@ -125,7 +139,7 @@ process (all)
             d_dia_d <= (others => '0');
         end if;
     elsif ((menos = '1' and ajuste = "0101")) then
-        if (d_dia = (others => '0') ) then
+        if (d_dia = "00" ) then
             d_dia_d <= std_logic_vector(unsigned(u_dia) - 1);
         else 
             d_dia_d <= dia_max( 5 downto 4);

@@ -15,7 +15,7 @@
 ###IOSet List 5
 set_io clk 94 -io_std SB_LVCMOS -pullup no
 set_io h_sync 8 -io_std SB_LVCMOS -pullup no
-set_io led_piloto 1 -io_std SB_LVCMOS -pullup no
+set_io led_1 1 -io_std SB_LVCMOS -pullup no
 set_io pixel 9 -io_std SB_LVCMOS -pullup no
 set_io v_sync 7 -io_std SB_LVCMOS -pullup no
 

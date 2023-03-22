@@ -1,7 +1,7 @@
 #--  Synopsys, Inc.
 #--  Version L-2016.09L+ice40
 #--  Project file C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\proyecto_e2\proyecto_e2_Implmnt\run_options.txt
-#--  Written on Tue Mar 21 15:47:44 2023
+#--  Written on Wed Mar 22 14:56:12 2023
 
 
 #project files
@@ -12,6 +12,8 @@ add_file -vhdl -lib work "../salida_pantalla.vhd"
 add_file -vhdl -lib work "../sincronismo_vga.vhd"
 add_file -vhdl -lib work "../tabla_caraceteres.vhd"
 add_file -vhdl -lib work "../top.vhd"
+add_file -verilog "pll_px_clk.v"
+add_file -vhdl -lib work "../reloj.vhd"
 
 
 

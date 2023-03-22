@@ -4,7 +4,7 @@ Running in Lattice mode
 Starting:    C:\lscc\iCEcube2.2020.12\synpbase\bin64\mbin\synbatch.exe
 Install:     C:\lscc\iCEcube2.2020.12\synpbase
 Hostname:    DESKTOP-OJR67Q4
-Date:        Tue Mar 21 15:47:44 2023
+Date:        Wed Mar 22 14:56:12 2023
 Version:     L-2016.09L+ice40
 
 Arguments:   -product synplify_pro -batch proyecto_e2_syn.prj
@@ -20,19 +20,19 @@ Running: proyecto_e2_Implmnt in foreground
 Running proyecto_e2_syn|proyecto_e2_Implmnt
 
 Running: compile (Compile) on proyecto_e2_syn|proyecto_e2_Implmnt
-# Tue Mar 21 15:47:44 2023
+# Wed Mar 22 14:56:12 2023
 
 Running: compile_flow (Compile Process) on proyecto_e2_syn|proyecto_e2_Implmnt
-# Tue Mar 21 15:47:44 2023
+# Wed Mar 22 14:56:12 2023
 
 Running: compiler (Compile Input) on proyecto_e2_syn|proyecto_e2_Implmnt
-# Tue Mar 21 15:47:44 2023
+# Wed Mar 22 14:56:12 2023
 compiler exited with errors
 Job failed on: proyecto_e2_syn|proyecto_e2_Implmnt
 
 Job: "compiler" terminated with error status: 2
 See log file: "C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\proyecto_e2\proyecto_e2_Implmnt\synlog\proyecto_e2_compiler.srr"
-# Tue Mar 21 15:47:44 2023
+# Wed Mar 22 14:56:12 2023
 
 Return Code: 2
 Run Time:00h:00m:00s

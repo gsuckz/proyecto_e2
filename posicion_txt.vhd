@@ -25,13 +25,12 @@ begin
 
     columna_z       <= columna (6 downto 4);
 
-<<<<<<< HEAD
-    valido <= '1' when (unsigned (linea) > 47 and unsigned (linea) < 432 and visible = '1') else '0';
-=======
+
+
     alinea          <= std_logic_vector( unsigned (linea) - 48);
     
     linea_z         <=  alinea (6 downto 4);
->>>>>>> 07966ec3f5c86ecdeae909640c08d4891badfb96
+
 
     valido          <= '1' when (unsigned (linea) > 47 and unsigned (linea) < 431 and visible = '1') else '0';
 

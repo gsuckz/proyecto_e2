@@ -1,5 +1,0 @@
-OUTPUT v_sync 	 location (0, 18, 1) 	 7 	 SB_LVCMOS
-OUTPUT pixel 	 location (0, 17, 1) 	 9 	 SB_LVCMOS
-OUTPUT led_piloto 	 location (0, 20, 1) 	 1 	 SB_LVCMOS
-OUTPUT h_sync 	 location (0, 18, 0) 	 8 	 SB_LVCMOS
-INPUT  clk 	 location (25, 11, 0) 	 94 	 SB_LVCMOS

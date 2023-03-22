@@ -8,7 +8,7 @@ entity top is
     pixel   : out std_logic;
     h_sync  : out std_logic;
     v_sync  : out  std_logic;
-    led_piloto : out std_logic;
+    led_1 : out std_logic;
     clk  : in std_logic
     );
 
@@ -40,9 +40,10 @@ component generador_caracteres is
     linea_z     : in        std_logic_vector    (2 downto 0);
     columna_z   : in        std_logic_vector    (2 downto 0);
     char        : in        std_logic_vector    (63 downto 0);
-    ajuste      : in        std_logic;
+    ajuste      : in        std_logic_vector (3 downto 0);
     visible     : in std_logic;
     pul_seg     : in std_logic;
+	n_zona : in std_logic_vector (4 downto 0);
     px_visible     : out       std_logic
     );
 end  component;
@@ -60,7 +61,7 @@ end component;
 component salida_pantalla is
     port (
     n_zona          : in std_logic_vector (4 downto 0);
-    d_mes           : in std_logic;
+    d_mes           : in std_logic_vector (0 downto 0);
     u_mes           : in std_logic_vector (3 downto 0);
     d_dia           : in std_logic_vector (1 downto 0);
     u_dia           : in std_logic_vector (3 downto 0);
@@ -72,6 +73,23 @@ component salida_pantalla is
     );
 end component;
 
+component reloj is
+    port (
+    rst                   : in std_logic;
+    c_clk                 : in std_logic; --? p_clk?
+    ajuste                : in std_logic_vector (3 downto 0); --?
+    mas                   : in std_logic; --?
+    menos                 : in std_logic; --?
+    new_day               : out std_logic;
+    d_hora_out   : std_logic_vector ( 1 downto 0);
+    u_hora_out   : std_logic_vector ( 3 downto 0 );
+    d_min_out    : std_logic_vector ( 2 downto 0);
+    u_min_out    : std_logic_vector ( 3 downto 0);
+    seg_ref            : in std_logic
+    );
+end component;
+
+
 component tabla_caracteres is 
 port (
     codigo_char     : in std_logic_vector (3 downto 0);
@@ -79,7 +97,24 @@ port (
 );
 end component;
 
-signal d_mes      :       std_logic;
+
+--component calendario is
+--    port (
+--    c_clk       : in std_logic;
+--    ajuste      : in std_logic_vector (3 downto 0);
+--    new_day     : in std_logic;
+--    d_mes       : out std_logic_vector (0 downto 0);
+--    u_mes       : out std_logic_vector (3 downto 0);
+--    d_dia       : out std_logic_vector (1 downto 0);
+--    u_dia       : out std_logic_vector (3 downto 0);
+--    rst : in std_logic;
+--    hab : in std_logic
+--    );
+--end component;
+
+
+
+signal d_mes      :       std_logic_vector (0 downto 0);
 signal u_mes      :       std_logic_vector (3 downto 0);
 signal d_dia      :       std_logic_vector (1 downto 0);
 signal u_dia      :       std_logic_vector (3 downto 0);
@@ -102,36 +137,69 @@ signal n_zona     :        std_logic_vector    (4 downto 0);
 signal valido     :        std_logic;
 signal     char            :  std_logic_vector (63 downto 0);
 signal pul_seg : std_logic;
-signal ajuste : std_logic;
+signal ajuste : std_logic_vector (3 downto 0);
+signal new_day : std_logic;
+signal mas : std_logic;
+signal menos : std_logic;
+signal bot_mas : std_logic;
+signal bot_menos : std_logic;
+signal led_piloto : std_logic;
 
 signal div_led_piloto, div_led_piloto_d : std_logic_vector (31 downto 0);
 constant cuenta_div_led_piloto : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(11999999,32));
 
 begin 
 pul_seg <= '0';
-rst <= '0';
+
 hab <= '1';
-ajuste <= '0';
-d_mes   <= '0';
-u_mes   <= "0000";
-d_dia   <= "00";
-u_dia   <= "0000";
-d_hora  <= "00";
-u_hora  <= "0000";
-d_min   <= "000";
-u_min   <= "0000";
+ajuste <= "1111";
+rst <= '0';
 
 
-mem_piloto : ffd generic map (N=>32) port map (rst=>rst,hab=>hab,clk=>clk,d=>div_led_piloto_d,q=>div_led_piloto);
+
+mem_piloto : ffd generic map (N=>32) port map (rst=>rst,hab=>hab,clk=>p_clk,d=>div_led_piloto_d,q=>div_led_piloto);
 
 div_led_piloto_d <= std_logic_vector (unsigned(div_led_piloto) - 1) when unsigned(div_led_piloto) /= 0 else cuenta_div_led_piloto;
 led_piloto <= '1' when unsigned(div_led_piloto) < 6000000 else '0';
+led_1 <= u_min(0);
 
 pll : pll_px_clk port map(
     REFERENCECLK => clk,
     RESET  => '1',
     PLLOUTGLOBAL => p_clk
 );
+
+--calendario_1 : calendario 
+--port map (
+--    c_clk       => p_clk  ,
+--    ajuste      => ajuste ,
+--    new_day     => new_day,
+--    d_mes       => d_mes  ,
+--    u_mes       => u_mes  ,
+--    d_dia       => d_dia  ,
+--    u_dia       => u_dia  ,
+--    hab => '1',
+--    rst => rst
+--    );
+
+
+relo : reloj 
+port map (
+    rst           => rst,    
+    c_clk         => p_clk,    
+    ajuste        => ajuste,    
+    mas           => mas,     
+    menos         => menos,        
+    new_day       => new_day    ,    
+    seg_ref       => led_piloto  ,  
+    d_hora_out => d_hora,   
+    u_hora_out => u_hora,   
+    d_min_out  => d_min,  
+    u_min_out  => u_min   
+
+);
+
+
 sincronismo : sincronismo_vga
 port map (
     hsync       => h_sync,
@@ -157,7 +225,8 @@ port map (
     char       => char       ,
     ajuste     => ajuste     ,
     visible    => valido    ,
-    pul_seg    => pul_seg    ,
+    pul_seg    => led_piloto    ,
+    n_zona     => n_zona,
     px_visible => pixel    
 );
 

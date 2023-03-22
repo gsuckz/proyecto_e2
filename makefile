@@ -33,15 +33,23 @@ reloj.ghw: $(arch_cf)
 	ghdl -m $(ops) reloj_tb
 	ghdl -r $(ops) reloj_tb $(wav_ops) --wave=reloj.ghw
 
-configuracion: $(arch_cf) 
-	ghdl -m $(ops) configuracion_tb
-	ghdl -r $(ops) configuracion_tb
-wav_configuracion: configuracion.ghw
-	gtkwave -f configuracion.ghw
-configuracion.ghw: $(arch_cf)
-	ghdl -m $(ops) configuracion_tb
-	ghdl -r $(ops) configuracion_tb $(wav_ops) --wave=configuracion.ghw
+calendario: $(arch_cf) 
+	ghdl -m $(ops) calendario_tb
+	ghdl -r $(ops) calendario_tb
+wav_calendario: calendario.ghw
+	gtkwave -f calendario.ghw
+calendario.ghw: $(arch_cf)
+	ghdl -m $(ops) calendario_tb
+	ghdl -r $(ops) calendario_tb $(wav_ops) --wave=calendario.ghw
 
+top: $(arch_cf) 
+	ghdl -m $(ops) top_tb
+	ghdl -r $(ops) top_tb
+wav_top: top.ghw
+	gtkwave -f top.ghw
+top.ghw: $(arch_cf)
+	ghdl -m $(ops) top_tb
+	ghdl -r $(ops) top_tb $(wav_ops) --wave=top.ghw
 
 
 

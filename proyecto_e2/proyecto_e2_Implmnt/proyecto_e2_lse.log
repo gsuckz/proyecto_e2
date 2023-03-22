@@ -3,7 +3,7 @@ Copyright (c) 1995 AT&T Corp.   All rights reserved.
 Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
 Copyright (c) 2001 Agere Systems   All rights reserved.
 Copyright (c) 2002-2015 Lattice Semiconductor Corporation,  All rights reserved.
-Tue Mar 21 19:35:54 2023
+Wed Mar 22 14:51:31 2023
 
 
 Command Line:  C:\lscc\iCEcube2.2020.12\LSE\bin\nt\synthesis.exe -f proyecto_e2_lse.prj 
@@ -84,6 +84,8 @@ VHDL library = work
 VHDL design file = ../tabla_caraceteres.vhd
 VHDL library = work
 VHDL design file = ../top.vhd
+VHDL library = work
+VHDL design file = ../reloj.vhd
 -sdc option: SDC file input not used.
 -vh2008
 
@@ -112,7 +114,7 @@ INFO - synthesis: ../ffd.vhd(22): analyzing entity ffd. VHDL-1012
 INFO - synthesis: ../ffd.vhd(34): analyzing architecture solucion. VHDL-1010
 Analyzing VHDL file ../generador_caracteres.vhd. VHDL-1481
 INFO - synthesis: ../generador_caracteres.vhd(6): analyzing entity generador_caracteres. VHDL-1012
-INFO - synthesis: ../generador_caracteres.vhd(17): analyzing architecture solucion. VHDL-1010
+INFO - synthesis: ../generador_caracteres.vhd(19): analyzing architecture solucion. VHDL-1010
 Analyzing VHDL file ../posicion_txt.vhd. VHDL-1481
 INFO - synthesis: ../posicion_txt.vhd(8): analyzing entity posicion_txt. VHDL-1012
 INFO - synthesis: ../posicion_txt.vhd(20): analyzing architecture solucion. VHDL-1010
@@ -128,19 +130,39 @@ INFO - synthesis: ../tabla_caraceteres.vhd(12): analyzing architecture solucion.
 Analyzing VHDL file ../top.vhd. VHDL-1481
 INFO - synthesis: ../top.vhd(6): analyzing entity top. VHDL-1012
 INFO - synthesis: ../top.vhd(17): analyzing architecture solucion. VHDL-1010
+Analyzing VHDL file ../reloj.vhd. VHDL-1481
+INFO - synthesis: ../reloj.vhd(6): analyzing entity reloj. VHDL-1012
+INFO - synthesis: ../reloj.vhd(23): analyzing architecture solucion. VHDL-1010
 WARNING - synthesis: Setting top as the top-level module. To specify the top-level module explicitly, use the -top option.
 INFO - synthesis: The default VHDL library search path is now "C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2". VHDL-1504
 Top module language type = VHDL.
 unit top is not yet analyzed. VHDL-1485
 ../top.vhd(6): executing top(solucion)
 
-INFO - synthesis: ../top.vhd(134): going to verilog side to elaborate module pll_px_clk. VHDL-1399
-INFO - synthesis: ../top.vhd(134): back to VHDL to continue elaboration. VHDL-1400
+WARNING - synthesis: ../top.vhd(117): using initial value "U" for d_mes since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(118): using initial value "UUUU" for u_mes since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(119): using initial value "UU" for d_dia since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(120): using initial value "UUUU" for u_dia since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(121): using initial value "UU" for d_hora since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(122): using initial value "UUUU" for u_hora since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(123): using initial value "UUU" for d_min since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(124): using initial value "UUUU" for u_min since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(142): using initial value 'U' for mas since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(143): using initial value 'U' for menos since it is never assigned. VHDL-1303
+WARNING - synthesis: ../top.vhd(151): using initial value "UUUU" for a_d since it is never assigned. VHDL-1303
+INFO - synthesis: ../top.vhd(172): going to verilog side to elaborate module pll_px_clk. VHDL-1399
+INFO - synthesis: ../top.vhd(172): back to VHDL to continue elaboration. VHDL-1400
 WARNING - synthesis: ../top.vhd(15): replacing existing netlist top(solucion). VHDL-1205
 Top module name (VHDL, mixed language): top
 Loading NGL library 'C:/lscc/iCEcube2.2020.12/LSE/xo2c00/data/xo2clib.ngl'...
 Loading NGL library 'C:/lscc/iCEcube2.2020.12/LSE/or5g00/data/orc5glib.ngl'...
 Top-level module name = top.
+WARNING - synthesis: Initial value found on net u_min_out[3] will be ignored due to unrecognized driver type
+WARNING - synthesis: Initial value found on net u_min_out[2] will be ignored due to unrecognized driver type
+WARNING - synthesis: Initial value found on net u_min_out[1] will be ignored due to unrecognized driver type
+WARNING - synthesis: Initial value found on net u_min_out[0] will be ignored due to unrecognized driver type
+WARNING - synthesis: ../top.vhd(161): Removing unused instance mem_a. VDB-5034
+WARNING - synthesis: ../top.vhd(188): Removing unused instance relo. VDB-5034
 
 
 
@@ -156,32 +178,30 @@ SB_CARRY => 49
 SB_DFFESR => 10
 SB_DFFSR => 25
 SB_DFFSS => 17
-SB_GB_IO => 1
-SB_IO => 4
-SB_LUT4 => 214
+SB_IO => 5
+SB_LUT4 => 196
 SB_PLL40_CORE => 1
 ################### End Area Report ##################
 
 ################### Begin Clock Report ######################
 Clock Nets
-Number of Clocks: 2
-  Net : clk_c, loads : 33
-  Net : pll/p_clk, loads : 21
+Number of Clocks: 1
+  Net : pll/p_clk, loads : 53
 Clock Enable Nets
 Number of Clock Enables: 0
 Top 0 highest fanout Clock Enables:
 Highest fanout non-clock nets
 Top 10 highest fanout non-clock nets:
-  Net : sincronismo/columna_4, loads : 32
-  Net : n1029, loads : 32
-  Net : sincronismo/char_code_3, loads : 30
-  Net : sincronismo/char_code_2, loads : 25
-  Net : sincronismo/char_code_1, loads : 24
-  Net : sincronismo/n1006, loads : 21
-  Net : sincronismo/columna_9, loads : 17
-  Net : sincronismo/columna_8, loads : 17
-  Net : sincronismo/columna_5, loads : 17
-  Net : sincronismo/n1212, loads : 16
+  Net : n1228, loads : 32
+  Net : sincronismo/columna_4, loads : 28
+  Net : sincronismo/char_code_3, loads : 25
+  Net : sincronismo/columna_5, loads : 23
+  Net : sincronismo/n1202, loads : 21
+  Net : sincronismo/char_code_2, loads : 19
+  Net : sincronismo/linea_7, loads : 15
+  Net : tabla/n1597, loads : 15
+  Net : sincronismo/linea_4, loads : 14
+  Net : sincronismo/columna_7, loads : 13
 ################### End Clock Report ##################
 
 Timing Report Summary
@@ -189,9 +209,6 @@ Timing Report Summary
 --------------------------------------------------------------------------------
 Constraint                              |   Constraint|       Actual|Levels
 --------------------------------------------------------------------------------
-                                        |             |             |
-create_clock -period 1000.000000 -name  |             |             |
-clk1 [get_nets clk_c]                   |    1.000 MHz|   19.352 MHz|    33  
                                         |             |             |
 create_clock -period 1000.000000 -name  |             |             |
 clk0 [get_nets p_clk]                   |            -|            -|     0  
@@ -202,8 +219,8 @@ clk0 [get_nets p_clk]                   |            -|            -|     0
 All constraints were met.
 
 
-Peak Memory Usage: 76.820  MB
+Peak Memory Usage: 80.305  MB
 
 --------------------------------------------------------------
-Elapsed CPU time for LSE flow : 2.688  secs
+Elapsed CPU time for LSE flow : 2.938  secs
 --------------------------------------------------------------

@@ -1,9 +1,5 @@
-@E: CD255 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\generador_caracteres.vhd":20:79:20:80|No identifier "pulse" in scope
-@E: CD264 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\salida_pantalla.vhd":38:20:38:30|Expecting assignment target
-@E: CG103 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\sincronismo_vga.vhd":59:38:59:40|Expecting expression
-@E: CD218 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\top.vhd":80:7:80:11|Declaration hides port p_clk
-@E: CG234 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\top.vhd":84:7:84:11|Duplicate definition of linea
-@E: CG234 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\top.vhd":85:7:85:13|Duplicate definition of columna
-@E: CD255 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\top.vhd":110:29:110:29|No identifier "char" in scope
+@E: CG103 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\sincronismo_vga.vhd":62:34:62:36|Expecting expression
+@E: CG103 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\reloj.vhd":112:23:112:25|Expecting expression
 @E: Parse errors encountered - exiting
+@E::VHDL compiler failed
 
