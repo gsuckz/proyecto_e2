@@ -40,7 +40,7 @@ begin
         elsif (rising_edge(clk) and hab = '1') then 
     Q <= D;
     end if;
-   end process P1;
+end process P1;
 
 
 end solucion;

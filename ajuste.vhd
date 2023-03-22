@@ -11,10 +11,10 @@ entity configuracion is
     bot_menos           : in  std_logic;
     n_zona              : in  std_logic_vector (4 downto 0); --Indica la posicion del caracter como un nùmero de zona
     p_clk               : in  std_logic;
-    pul_seg               : in  std_logic; --Pulso alto (ancho perìodo c_clk) cada 1 seg aprox
+    pul_seg             : in  std_logic; --Pulso alto (ancho perìodo c_clk) cada 1 seg aprox
     rst                 : in  std_logic;
     hab                 : in  std_logic;
-    ajuste_out       : out std_logic_vector (2 downto 0);--Señal que indica que valor se modifica 
+    ajuste_out          : out std_logic_vector (2 downto 0);--Señal que indica que valor se modifica 
     mas_out             : out std_logic;--Señal que incrementa el valor apuntado por ajuste
     menos_out           : out std_logic-- Idem con decremento
     );
@@ -33,8 +33,8 @@ component ffd is
         Q   : out std_logic_vector (N-1 downto 0));
 end component;
 
-signal ajuste        : std_logic_vector (3 downto 0);
-signal ajuste_D      : std_logic_vector (3 downto 0);
+signal ajuste           : std_logic_vector (3 downto 0);
+signal ajuste_D         : std_logic_vector (3 downto 0);
 signal pul_cnt          : std_logic_vector (2 downto 0);
 signal pul_cnt_d        : std_logic_vector (2 downto 0);
 signal e_izq            : std_logic_vector (1 downto 0);
@@ -53,12 +53,13 @@ signal edge_mas         : std_logic;
 signal edge_menos       : std_logic;
 signal rst_pul_cnt      : std_logic;
 signal edge_pulse       : std_logic;
-signal ajuste_on     : std_logic;
+signal ajuste_on        : std_logic;
 signal mas              : std_logic;
 signal menos            : std_logic;
 signal der              : std_logic;
 signal izq              : std_logic;
 
+-- Memorias de estado
 
 begin
     registro_ajuste : ffd 
@@ -70,6 +71,7 @@ begin
         Q => ajuste,
         D => ajuste_D
     );
+
     registro_pulsos : ffd 
     generic map (N => 3) 
     port map( 
@@ -79,6 +81,7 @@ begin
         Q => pul_cnt,
         D => pul_cnt_D
     );
+
     flanco_izq : ffd
     generic map (N => 2)
     port map(
@@ -88,6 +91,7 @@ begin
     Q => e_izq,
     D => e_izq_D
     );
+
     flanco_der : ffd
     generic map (N => 2)
     port map(
@@ -97,6 +101,7 @@ begin
     Q => e_der,
     D => e_der_D
     );
+
     flanco_pulso : ffd
     generic map (N => 2)
     port map(
@@ -106,6 +111,7 @@ begin
     Q => e_pul,
     D => e_pul_D
     );
+
     flanco_mas : ffd
     generic map (N => 2)
     port map(
@@ -115,6 +121,7 @@ begin
     Q => e_mas,
     D => e_mas_D
     );
+
     flanco_menos : ffd
     generic map (N => 2)
     port map(
@@ -126,7 +133,7 @@ begin
     );
 
 
-
+--Logica combinacional
 
 process (all)
     begin
@@ -148,7 +155,8 @@ process (all)
             if ajuste_on = '0' then
                 ajuste_d <= "1111";
                 end if;            
-                end process; 
+end process;
+
 process (all)
     begin
         if pul_cnt = "111" then
@@ -156,29 +164,30 @@ process (all)
         else
             pul_cnt_d <= std_logic_vector(unsigned (pul_cnt) + 1);
         end if;
-    end process;
+end process;
+
+--Logica de salida
                     
-    e_pul_d(0) <= pul_seg;
-    e_pul_d(1) <= e_pul(0);
-    edge_pulse <= '1' when (e_pul(0) = '1') xor (e_pul(1) = '1') else '0';       
-    e_der_d(0) <= bot_d;
-    e_der_d(1) <= e_der(0);
-    edge_der <= '1' when (e_der(0)='1') xor (e_der(1)='1') else '0';       
-    e_izq_d(0) <= bot_i;
-    e_izq_d(1) <= e_izq(0);
-    edge_izq <= '1' when (e_izq(0)='1' xor e_izq(1)='1') else '0';        
-    e_mas_d(0) <= bot_mas;
-    e_mas_d(1) <= e_mas(0);
-    edge_mas <='1' when  e_mas(0)='1' xor e_mas(1)='1' else '0'; 
-    e_menos_d(0) <= bot_menos;
-    e_menos_d(1) <= e_menos(0);
-    edge_menos <= '1' when e_menos(0)='1' xor e_menos(1)='1' else '0'; --no cuenta con antirebote
-    der <= '1' when (edge_der = '1') or (edge_pulse = '1' and bot_d = '1') else '0';        --que pasa si aprieto y justo despues hay un pulso
-    izq <= '1' when (edge_izq = '1' or (edge_pulse = '1' and bot_i = '1')) else '0';
-    mas <= '1' when edge_mas = '1' or (edge_pulse = '1' and bot_mas = '1') else '0';
-    menos <= '1' when edge_menos = '1' or (edge_pulse = '1' and bot_menos = '1') else '0';        
-    ajuste_on <= '1' when pul_cnt = "111"  else
-                    '0' ;
-    rst_pul_cnt <= '1' when der = '1' or izq = '1' or mas = '1' or menos = '1' else '0';
+    e_pul_d(0)          <= pul_seg;
+    e_pul_d(1)          <= e_pul(0);
+    edge_pulse          <= '1' when (e_pul(0) = '1') xor (e_pul(1) = '1') else '0';       
+    e_der_d(0)          <= bot_d;
+    e_der_d(1)          <= e_der(0);
+    edge_der            <= '1' when (e_der(0)='1') xor (e_der(1)='1') else '0';       
+    e_izq_d(0)          <= bot_i;
+    e_izq_d(1)          <= e_izq(0);
+    edge_izq            <= '1' when (e_izq(0)='1' xor e_izq(1)='1') else '0';        
+    e_mas_d(0)          <= bot_mas;
+    e_mas_d(1)          <= e_mas(0);
+    edge_mas            <='1' when  e_mas(0)='1' xor e_mas(1)='1' else '0'; 
+    e_menos_d(0)        <= bot_menos;
+    e_menos_d(1)        <= e_menos(0);
+    edge_menos          <= '1' when e_menos(0)='1' xor e_menos(1)='1' else '0'; --no cuenta con antirebote
+    der                 <= '1' when (edge_der = '1') or (edge_pulse = '1' and bot_d = '1') else '0';        --que pasa si aprieto y justo despues hay un pulso
+    izq                 <= '1' when (edge_izq = '1' or (edge_pulse = '1' and bot_i = '1')) else '0';
+    mas                 <= '1' when edge_mas = '1' or (edge_pulse = '1' and bot_mas = '1') else '0';
+    menos               <= '1' when edge_menos = '1' or (edge_pulse = '1' and bot_menos = '1') else '0';        
+    ajuste_on           <= '1' when pul_cnt = "111"  else '0' ;
+    rst_pul_cnt         <= '1' when der = '1' or izq = '1' or mas = '1' or menos = '1' else '0';
 
 end solucion;

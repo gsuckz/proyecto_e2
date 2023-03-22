@@ -5,7 +5,7 @@ use work.ffd_pkg.all;
 
 entity reloj is
     port (
-    rst                   :   in std_logic;
+    rst                   : in std_logic;
     c_clk                 : in std_logic; --? p_clk?
     ajuste                : in std_logic_vector (3 downto 0); --?
     mas                   : in std_logic; --?
@@ -30,25 +30,26 @@ architecture solucion of reloj is
             hab : in std_logic;
             clk : in std_logic;
             Q   : out std_logic_vector (N-1 downto 0));
-    end component;    
+end component;    
 
-signal  hab : std_logic_vector(3 downto 0);
-signal d_hora          : std_logic_vector(1 downto 0);
-signal d_hora_d    : std_logic_vector(1 downto 0);
-signal u_hora          : std_logic_vector(3 downto 0);
-signal u_hora_d          : std_logic_vector(3 downto 0);
-signal u_min          : std_logic_vector(3 downto 0);
-signal u_min_d          : std_logic_vector(3 downto 0);
-signal base_min          : std_logic_vector( 9 downto 0);
-signal base_min_d          : std_logic_vector( 9 downto 0);
-signal d_min          : std_logic_vector(3 downto 0);
-signal d_min_d          : std_logic_vector(3 downto 0);
-signal habx : std_logic;
+signal hab           : std_logic_vector(3 downto 0);
+signal d_hora        : std_logic_vector(1 downto 0);
+signal d_hora_d      : std_logic_vector(1 downto 0);
+signal u_hora        : std_logic_vector(3 downto 0);
+signal u_hora_d      : std_logic_vector(3 downto 0);
+signal u_min         : std_logic_vector(3 downto 0);
+signal u_min_d       : std_logic_vector(3 downto 0);
+signal base_min      : std_logic_vector(9 downto 0);
+signal base_min_d    : std_logic_vector(9 downto 0);
+signal d_min         : std_logic_vector(3 downto 0);
+signal d_min_d       : std_logic_vector(3 downto 0);
+signal habx          : std_logic;
 
 
 
 begin
 
+--Memorias de estado    
 
 registro_d_hora : ffd 
 generic map (N => 2)
@@ -89,6 +90,7 @@ port map(
     Q => u_min,
     D => u_min_D
 );
+
 habx <= '1';
 base_minuto : ffd 
 generic map (N => 10) -- frecuencia de c_clk?
@@ -100,13 +102,9 @@ port map(
     D => base_min_D
 );
 
-base_min_D <= std_logic_vector( unsigned (base_min) + 1);
-hab <=  "0001" when ajuste = "0000" else
-        "0010" when ajuste = "0001" else
-        "0100" when ajuste = "0010" else
-        "1000" when ajuste = "0011" else
-        "1111";
-pul_seg <= base_min (5);
+
+--Logica combinacional
+
 process (all)
 begin
         if ((u_hora_d = "0000" and d_min_d="0000" and u_min_d = "0000" and base_min_d = "0000000000") or (mas = '1' and ajuste = "0000")) then
@@ -126,7 +124,7 @@ begin
         end if;
 end process;
     
-    process (all)
+process (all)
     begin
             if ((d_min_d="0000" and u_min_d = "0000" and base_min_d = "0000000000") or (mas = '1' and ajuste = "0001")) then
                 if u_hora = "1001" or (d_hora = "10" and u_hora = "0011" ) then
@@ -143,9 +141,9 @@ end process;
             else
                 u_hora_d <= u_hora;
             end if;
-    end process;
+end process;
 
-    process (all)
+process (all)
     begin
             if ((u_min_d = "0000" and base_min_d = "0000000000") or (mas = '1' and ajuste = "0010")) then
                 if d_min = "0101" then
@@ -162,9 +160,9 @@ end process;
             else
                 d_min_d <= d_min;
             end if;
-    end process;
+end process;
 
-    process (all)
+process (all)
     begin
             if (base_min_d = "0000000000" or (mas = '1' and ajuste = "0011")) then
                 if u_min = "1001" then
@@ -181,11 +179,25 @@ end process;
             else
                 u_min_d <= u_min;
             end if;
-    end process;
+end process;
 
-new_day <= '1' when d_hora_d = "00" and u_hora_d  = "0000" and d_min_d = "0000" and u_min_d = "0000" and base_min_d = "0000000000";
-d_hora_out   <=  d_hora;
-u_hora_out   <=  u_hora;
-d_min_out    <= d_min;
-u_min_out    <=  u_min;
+--Logica de salida
+
+base_min_D <=   std_logic_vector( unsigned (base_min) + 1);
+
+hab        <=   "0001" when ajuste = "0000" else
+                "0010" when ajuste = "0001" else
+                "0100" when ajuste = "0010" else
+                "1000" when ajuste = "0011" else
+                "1111";
+
+pul_seg     <=  base_min (5);
+
+new_day       <= '1' when d_hora_d = "00" and u_hora_d  = "0000" and d_min_d = "0000" and u_min_d = "0000" and base_min_d = "0000000000";
+d_hora_out    <=  d_hora;
+u_hora_out    <=  u_hora;
+d_min_out     <=  d_min;
+u_min_out     <=  u_min;
+
+
 end solucion;
