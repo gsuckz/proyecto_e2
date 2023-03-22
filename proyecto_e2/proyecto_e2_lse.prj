@@ -8,6 +8,7 @@
 #constraint file
 
 #options
+-frequency 12
 -optimization_goal Area
 -twr_paths 3
 -bram_utilization 100.00
@@ -21,10 +22,11 @@
 -max_fanout 10000
 -fsm_encoding_style Auto
 -use_io_insertion 1
--use_io_reg auto
+-use_io_reg 0
 -resolve_mixed_drivers 0
 -RWCheckOnRam 0
 -fix_gated_clocks 1
+-top top
 -vh2008
 -loop_limit 1950
 

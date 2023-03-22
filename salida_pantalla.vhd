@@ -33,7 +33,7 @@ begin
                    "1011"          when "01010",
     --               "00" & d_dia    when "01101", 
       --              u_dia           when "10001", 
-                    "1100"          when others;  
+                    "1111"          when others;  
  
                     
 

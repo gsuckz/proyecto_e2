@@ -1,4 +1,10 @@
 *.ghw
 *.cf
-proyecto_e2/proyecto_e2_Implmnt/sbt/Log/iceCube2.log
-proyecto_e2/proyecto_e2_Implmnt/sbt/Log/iceCube2.log
+proyecto_e2/proyecto_e2_Implmnt
+proyecto_e2/.vbds
+proyecto_e2/xxx*
+proyecto_e2/*.*rep
+proyecto_e2/*.twr
+proyecto_e2/*.log
+proyecto_e2/*.*.bak
+
