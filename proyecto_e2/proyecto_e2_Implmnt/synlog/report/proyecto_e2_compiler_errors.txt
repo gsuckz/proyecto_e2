@@ -1,5 +1,0 @@
-@E: CG103 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\sincronismo_vga.vhd":62:34:62:36|Expecting expression
-@E: CG103 :"C:\Users\Labtel\Documents\eii\Avila Jesus\proyecto_e2\reloj.vhd":112:23:112:25|Expecting expression
-@E: Parse errors encountered - exiting
-@E::VHDL compiler failed
-
