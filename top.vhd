@@ -162,7 +162,7 @@ architecture solucion of top is
     signal div_pps    : std_logic_vector (31 downto 0);
     signal div_pps_d  : std_logic_vector (31 downto 0);
 
-    constant cuenta_div_pps : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(11999999,32));
+    constant cuenta_div_pps : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(25130000,32));
 
 begin 
 

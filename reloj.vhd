@@ -43,7 +43,10 @@ architecture solucion of reloj is
     signal segundo_d     : std_logic_vector(1 downto 0);
     signal d_min         : std_logic_vector(2 downto 0);
     signal d_min_d       : std_logic_vector(2 downto 0);
+    signal cnt_min       : std_logic_vector(5 downto 0);
+    signal cnt_min_d     : std_logic_vector(5 downto 0);
     signal habx          : std_logic;
+    signal minuto        : std_logic;
 
 begin
 
@@ -100,15 +103,30 @@ begin
         D => segundo_D
     );
 
+    registro_minuto : ffd 
+    generic map (N => 6) -- frecuencia de c_clk?
+    port map( 
+        rst => rst,
+        hab => habx,
+        clk => c_clk,
+        Q => cnt_min,
+        D => cnt_min_D
+    );
     --Logica combinacional
 
     segundo_D(1) <= segundo(0);
     segundo_D(0) <= seg_ref;
 
+    cnt_min_d <= "000000" when cnt_min = "111100" else std_logic_vector(unsigned(cnt_min) + 1) when segundo = "10" else cnt_min;
+    minuto <= '1' when cnt_min = "111100" else '0';
+
+
+
+
     hora_decenas: process (all)
     begin
         d_hora_d <= d_hora;
-        if (ajuste = "1111" and segundo = "01" and u_min = x"9" and d_min = o"5" and ((u_hora = x"3" and d_hora = "10") or u_hora = x"9")) then
+        if (ajuste = "1111" and minuto = '1' and u_min = x"9" and d_min = o"5" and ((u_hora = x"3" and d_hora = "10") or u_hora = x"9")) then
             if d_hora = "10" then
                 d_hora_d <= "00";
             else 
@@ -136,7 +154,7 @@ begin
     begin
         nueva_u_hora := unsigned(u_hora);
         u_hora_d <= u_hora;
-        if (ajuste = "1111" and segundo = "01" and u_min = x"9" and d_min = o"5") then
+        if (ajuste = "1111" and minuto = '1' and u_min = x"9" and d_min = o"5") then
             nueva_u_hora := nueva_u_hora + 1;
         elsif (ajuste = "0001") then
             if mas = '1' then
@@ -154,7 +172,7 @@ begin
     minuto_decena : process (all)
     begin
         d_min_d <= d_min;
-        if (ajuste = "1111" and segundo = "01" and u_min = x"9") then
+        if (ajuste = "1111" and minuto = '1' and u_min = x"9") then
             if d_min = o"5" then
                 d_min_d <= o"0";
             else 
@@ -163,7 +181,7 @@ begin
         elsif (ajuste = "0010") then
             if mas = '1' then
                 if d_min = o"5" then
-                    d_min_d <= x"0";
+                    d_min_d <= o"0";
                 else 
                     d_min_d <= std_logic_vector ( unsigned (d_min) + 1);
                 end if;               
@@ -181,7 +199,7 @@ begin
     minuto_unidad : process (all)
     begin
         u_min_d <= u_min;
-        if (ajuste = "1111" and segundo = "01") then
+        if (ajuste = "1111" and minuto = '1') then
             if u_min = x"9" then
                 u_min_d <= x"0";
             else 
