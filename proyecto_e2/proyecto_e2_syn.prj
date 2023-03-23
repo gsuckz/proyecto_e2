@@ -11,6 +11,7 @@ add_file -vhdl -lib work "../tabla_caraceteres.vhd"
 add_file -vhdl -lib work "../top.vhd" 
 add_file -verilog -lib work "pll_px_clk.v" 
 add_file -vhdl -lib work "../reloj.vhd" 
+add_file -vhdl -lib work "../ajuste.vhd" 
 #implementation: "proyecto_e2_Implmnt"
 impl -add proyecto_e2_Implmnt -type fpga
 

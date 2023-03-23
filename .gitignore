@@ -8,3 +8,8 @@ proyecto_e2/*.twr
 proyecto_e2/*.log
 proyecto_e2/*.*.bak
 
+proyecto_e2/top_prim.v
+proyecto_e2/.vdbs/dbStat.txt
+proyecto_e2/.vdbs/top_rtl.vdb
+proyecto_e2/.vdbs/top_tech.vdb
+

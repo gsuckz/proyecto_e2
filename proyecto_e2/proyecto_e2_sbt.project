@@ -4,7 +4,7 @@ Version=Lattice Semiconductor Corporation iCEcube - Release: 2020.12.27943 - Bui
 ProjectName=proyecto_e2
 Vendor=SiliconBlue
 Synthesis=lse
-ProjectVFiles=../ffd.vhd=work,../generador_caracteres.vhd=work,../posicion_txt.vhd=work,../salida_pantalla.vhd=work,../sincronismo_vga.vhd=work,../tabla_caraceteres.vhd=work,../top.vhd=work,pll_px_clk.v=work,../reloj.vhd=work
+ProjectVFiles=../ffd.vhd=work,../generador_caracteres.vhd=work,../posicion_txt.vhd=work,../salida_pantalla.vhd=work,../sincronismo_vga.vhd=work,../tabla_caraceteres.vhd=work,../top.vhd=work,pll_px_clk.v=work,../reloj.vhd=work,../ajuste.vhd
 ProjectCFiles=
 CurImplementation=proyecto_e2_Implmnt
 Implementations=proyecto_e2_Implmnt

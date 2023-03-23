@@ -51,6 +51,18 @@ top.ghw: $(arch_cf)
 	ghdl -m $(ops) top_tb
 	ghdl -r $(ops) top_tb $(wav_ops) --wave=top.ghw
 
+ajuste: $(arch_cf) 
+	ghdl -m $(ops) ajuste_tb
+	ghdl -r $(ops) ajuste_tb
+wav_ajuste: ajuste.ghw
+	gtkwave -f ajuste.ghw
+ajuste.ghw: $(arch_cf)
+	ghdl -m $(ops) ajuste_tb
+	ghdl -r $(ops) ajuste_tb $(wav_ops) --wave=ajuste.ghw
+
+
+
+
 
 
 
