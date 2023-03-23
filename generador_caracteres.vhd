@@ -26,7 +26,7 @@ architecture solucion of generador_caracteres is
     -- 
     static <=               '0'             when n_zona = "00000" and ajuste = "0000"  else
                             '0'             when n_zona = "00100" and ajuste = "0001" else
-                            '0'             when n_zona = "01000"  else
+                            '0'             when n_zona = "01000" and ajuste /= "1111" else
                             '0'             when n_zona = "01100" and ajuste = "0010" else
                             '0'             when n_zona = "10000" and ajuste = "0011" else
                             '0'             when n_zona = "00001" and ajuste = "0100" else
