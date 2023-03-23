@@ -116,19 +116,21 @@ architecture solucion of top is
         );
     end component;
 
-    --component calendario is
-    --    port (
-    --    c_clk       : in std_logic;
-    --    ajuste      : in std_logic_vector (3 downto 0);
-    --    new_day     : in std_logic;
-    --    d_mes       : out std_logic_vector (0 downto 0);
-    --    u_mes       : out std_logic_vector (3 downto 0);
-    --    d_dia       : out std_logic_vector (1 downto 0);
-    --    u_dia       : out std_logic_vector (3 downto 0);
-    --    rst : in std_logic;
-    --    hab : in std_logic
-    --    );
-    --end component;
+  component calendario is
+      port (
+    mas             : in std_logic;
+    menos           : in std_logic;       
+    c_clk           : in std_logic;
+    ajuste          : in std_logic_vector (3 downto 0);
+    new_day         : in std_logic;
+    d_mes_out       : out std_logic_vector (0 downto 0);
+    u_mes_out       : out std_logic_vector (3 downto 0);
+    d_dia_out       : out std_logic_vector (1 downto 0);
+    u_dia_out       : out std_logic_vector (3 downto 0);
+    rst             : in std_logic;
+    hab             : in std_logic
+      );
+  end component;
 
 
 
@@ -162,7 +164,7 @@ architecture solucion of top is
     signal div_pps    : std_logic_vector (31 downto 0);
     signal div_pps_d  : std_logic_vector (31 downto 0);
 
-    constant cuenta_div_pps : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(25130000,32));
+    constant cuenta_div_pps : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(251,32)); -- Para 1 seg : 25130000
 
 begin 
 
@@ -190,18 +192,20 @@ begin
         PLLOUTGLOBAL => p_clk
     );
 
-    --calendario_1 : calendario 
-    --port map (
-    --    c_clk       => p_clk  ,
-    --    ajuste      => ajuste ,
-    --    new_day     => new_day,
-    --    d_mes       => d_mes  ,
-    --    u_mes       => u_mes  ,
-    --    d_dia       => d_dia  ,
-    --    u_dia       => u_dia  ,
-    --    hab => '1',
-    --    rst => rst
-    --    );
+   calendario_1 : calendario 
+   port map (
+    mas       => mas  ,
+    menos     => menos,    
+       c_clk       => p_clk  ,
+       ajuste      => ajuste ,
+       new_day     => new_day,
+       d_mes_out       => d_mes  ,
+       u_mes_out       => u_mes  ,
+       d_dia_out       => d_dia  ,
+       u_dia_out       => u_dia  ,
+       hab => '1',
+       rst => rst
+       );
 
     ajst : ajust 
     port map (

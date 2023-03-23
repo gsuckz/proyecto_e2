@@ -117,7 +117,7 @@ begin
     segundo_D(1) <= segundo(0);
     segundo_D(0) <= seg_ref;
 
-    cnt_min_d <= "000000" when cnt_min = "111100" else std_logic_vector(unsigned(cnt_min) + 1) when segundo = "10" else cnt_min;
+    cnt_min_d <= "000000" when cnt_min = "111100" or ajuste /= "1111" else std_logic_vector(unsigned(cnt_min) + 1) when segundo = "10" and ajuste = "1111" else cnt_min;
     minuto <= '1' when cnt_min = "111100" else '0';
 
 
@@ -226,7 +226,7 @@ begin
 
  hab        <=  "1111";
 
-new_day    <= '1' when d_hora_d = "00" and u_hora_d  = "0000" and d_min_d = "000" and u_min_d = "0000" and segundo = "10";
+new_day    <= '1' when d_hora = "10" and u_hora  = x"3" and d_min = o"5" and u_min = x"9" and minuto = '1' and ajuste ="1111" else '0';
 d_hora_out <=  d_hora;
 u_hora_out <=  u_hora;
 d_min_out  <=  d_min;

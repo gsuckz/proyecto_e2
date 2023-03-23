@@ -28,11 +28,11 @@ begin
                     "1010"          when "01000", 
                     "0" & d_min     when "01100", 
                     u_min           when "10000", 
-  --                 "000" & d_mes   when "00001", 
-        --           u_mes           when "00101", 
+                  "000" & d_mes   when "00010", 
+                  u_mes           when "00110", 
                    "1011"          when "01010",
-    --               "00" & d_dia    when "01101", 
-      --              u_dia           when "10001", 
+                 "00" & d_dia    when "01110", 
+                  u_dia           when "10010", 
                     "1111"          when others;  
  
                     

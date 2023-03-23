@@ -40,6 +40,7 @@
 -ver "pll_px_clk.v"
 -lib work -vhd "../reloj.vhd" 
 -lib work -vhd "../ajuste.vhd" 
+-lib work -vhd "../calendario.vhd" 
 -p "C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2"
 
 #set result format/file last

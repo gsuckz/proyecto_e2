@@ -5,50 +5,40 @@ use work.ffd_pkg.all;
 
 entity calendario is
     port (
-    c_clk       : in std_logic;
-    ajuste      : in std_logic_vector (3 downto 0);
-    new_day     : in std_logic;
-    d_mes_out       : out std_logic_vector (0 downto 0);
-    u_mes_out       : out std_logic_vector (3 downto 0);
-    d_dia_out       : out std_logic_vector (1 downto 0);
-    u_dia_out       : out std_logic_vector (3 downto 0);
-    rst : in std_logic;
- hab : in std_logic
+        mas         : in  std_logic;
+        menos       : in  std_logic;       
+        c_clk       : in  std_logic;
+        ajuste      : in  std_logic_vector (3 downto 0);
+        new_day     : in  std_logic;
+        d_mes_out   : out std_logic_vector (0 downto 0);
+        u_mes_out   : out std_logic_vector (3 downto 0);
+        d_dia_out   : out std_logic_vector (1 downto 0);
+        u_dia_out   : out std_logic_vector (3 downto 0);
+        rst         : in  std_logic;
+        hab         : in  std_logic
     );
 end calendario;
 
 architecture solucion of calendario is
-    component ffd is
-        generic(
-            constant N : natural := 1);
-        port(
-            rst : in std_logic;
-            D   : in std_logic_vector (N-1 downto 0);
-            hab : in std_logic;
-            clk : in std_logic;
-            Q   : out std_logic_vector (N-1 downto 0));
-end component;   
-    
-signal dia_max : std_logic;
-
-signal d_mes      :  std_logic_vector (0 downto 0);
-signal u_mes      :  std_logic_vector (3 downto 0);
-signal d_dia      :  std_logic_vector (1 downto 0);
-signal u_dia      :  std_logic_vector (3 downto 0);
-signal d_mes_d    :    std_logic_vector (0 downto 0);
-signal u_mes_d    :    std_logic_vector (3 downto 0);
-signal d_dia_d    :    std_logic_vector (1 downto 0);
-signal u_dia_d    :    std_logic_vector (3 downto 0);
-
-
-
+-- BCD
+    signal dia_max    : std_logic_vector (7 downto 0);
+    signal dia        : std_logic_vector (7 downto 0);
+    signal dia_maximo : std_logic;
+    signal d_mes      : std_logic_vector (3 downto 0);
+    signal u_mes      : std_logic_vector (3 downto 0);
+    signal d_dia      : std_logic_vector (3 downto 0);
+    signal u_dia      : std_logic_vector (3 downto 0);
+    signal d_mes_d    : std_logic_vector (3 downto 0);
+    signal u_mes_d    : std_logic_vector (3 downto 0);
+    signal d_dia_d    : std_logic_vector (3 downto 0);
+    signal u_dia_d    : std_logic_vector (3 downto 0);
 
 begin
 
 --Memorias de estado
 
 registro_d_mes : ffd
-generic map (N => 1)
+generic map (N => d_mes'length)
 port map(
     rst => rst,
     hab => hab,
@@ -58,7 +48,7 @@ port map(
 );
 
 registro_u_mes : ffd 
-generic map (N => 4)
+generic map (N => u_mes'length)
 port map( 
     rst => rst,
     hab => hab,
@@ -68,17 +58,17 @@ port map(
 );
 
 registro_d_dia : ffd 
-generic map (N => 2)
+generic map (N => d_dia'length)
 port map( 
     rst => rst,
     hab => hab,
     clk => c_clk,
     Q => d_dia,
-    D => d_mes_D
+    D => d_dia_D
 );
 
 registro_u_dia : ffd 
-generic map (N => 4)
+generic map (N => u_dia'length)
 port map( 
     rst => rst,
     hab => hab,
@@ -89,117 +79,123 @@ port map(
 
 --Logica combinacional/Salidas
 
-dia_max         <=  "110001" when (d_mes = '0' and u_mes = "0001" ) else
-                    "101000" when (d_mes = '0' and u_mes = "0010" ) else
-                    "110001" when (d_mes = '0' and u_mes = "0011" ) else
-                    "110000" when (d_mes = '0' and u_mes = "0100" ) else
-                    "110001" when (d_mes = '0' and u_mes = "0101" ) else
-                    "110000" when (d_mes = '0' and u_mes = "0110" ) else
-                    "110001" when (d_mes = '0' and u_mes = "0111" ) else
-                    "110001" when (d_mes = '0' and u_mes = "1000" ) else
-                    "110000" when (d_mes = '0' and u_mes = "1001" ) else
-                    "110001" when (d_mes = '1' and u_mes = "0000" ) else            
-                    "110000" when (d_mes = '1' and u_mes = "0001" ) else
-                    "110001" when (d_mes = '1' and u_mes = "0010" ) else                                                  
-                    "110000" ;
+with d_mes&u_mes select
+    dia_max <=  x"31" when x"01",
+                x"28" when x"02",
+                x"31" when x"03",
+                x"30" when x"04",
+                x"31" when x"05",
+                x"30" when x"06",
+                x"31" when x"07",
+                x"31" when x"08",
+                x"30" when x"09",
+                x"31" when x"10",            
+                x"30" when x"11",
+                x"31" when x"12",                                                  
+                x"31" when others;
 
-dia             <= d_dia & u_dia;  --??consultar
+-- dia             <= d_dia & u_dia;  --??consultar
+-- dia_maximo <= '1' when dia = dia_max else '0';
 
-dia_maximo      <= '0' when (dia_max = dia) else '1';     --??consultar
 
-process (all)
-    begin
+
+
+
+
+--dia_unidades: process (all)
+--variable nuevo_valor : unsigned (3 downto 0);
+--begin
+--nuevo_valor := unsigned(d_mes);
+--d_mes_d <= d_mes;
+--if (ajuste = "1111" and new_day = '1' and u_dia = dia_max (3 downto 0) and d_dia = dia_max (5 downto 4) and ((u_mes = x"9") or (U_mes = x"2" and d_mes = "1" ) then
+--    nuevo_valor := nuevo_valor + 1;
+--elsif (ajuste = "0001") then
+--    if mas = '1' then
+--        nuevo_valor := nuevo_valor + 1;
+--    elsif menos = '1' then
+--        nuevo_valor := nuevo_valor - 1;
+--    end if;
+--end if;
+--if  nuevo_valor > 9 or (nuevo_valor > dia_max(3 downto 0)) then
+--    nuevo_valor := x"0";
+--end if;
+--d_mes_d <= std_logic_vector(nuevo_valor);    
+--end process;
+
+-- d_mes_d <= not d_mes when (ajuste = "1111" and new_day = '1'  and u_dia = dia_max (3 downto 0) and d_dia = dia_max (5 downto 4)) or (ajuste = "" and (mas = '1' or menos = '1')) else 
+--                     d_mes;
+
+mes_unidades: process (all)
+    variable nuevo_valor : unsigned (3 downto 0);
+begin
+    nuevo_valor := unsigned(u_mes);
+    if (ajuste = "1111" and new_day = '1'  and d_dia&u_dia = dia_max) then
+        nuevo_valor := nuevo_valor + 1;
+    elsif (ajuste = "0101") then
+        if mas = '1' then
+            nuevo_valor := nuevo_valor + 1;
+        elsif menos = '1' then
+            nuevo_valor := nuevo_valor - 1;
+        end if;
+    end if;
+    if  nuevo_valor > 9 or (d_mes = "1" and unsigned (u_mes) > 2) then
+        nuevo_valor := x"0";
+    end if;
+    u_mes_d <= std_logic_vector(nuevo_valor);    
+end process;
+
+
+
+
+
+dia_decenas: process (all)
+variable nuevo_valor1 : unsigned (1 downto 0);
+begin
+    nuevo_valor1 :=unsigned(d_dia);
+    if (ajuste = "1111" and new_day = '1' and u_dia = x"9") then 
+        nuevo_valor1 := nuevo_valor1 + 1;
+        elsif  (ajuste = "0110" and mas = '1') then
+            nuevo_valor1 := nuevo_valor1 + 1;
+        elsif  (ajuste = "0110" and menos = '1' ) then
+                nuevo_valor1 := nuevo_valor1 - 1 ;
+    end if;
+
+
+        
+end process;
+
+
+
+dia_unidades: process (all)
+    variable nuevo_valor : unsigned (3 downto 0);
+begin
+    nuevo_valor := unsigned(u_dia);
     u_dia_d <= u_dia;
-        if ((mas = '1' and ajuste = "0110") or (new_day = '1')) then
-            if (dia_maximo = '1') then
-                u_dia_d <= std_logic_vector(unsigned(u_dia) + 1);
-            else 
-                u_dia_d <= (others => '0');
-            end if;
-        elsif ((menos = '1' and ajuste = "0110")) then
-            if (u_dia = "0000") then
-                u_dia_d <= std_logic_vector(unsigned(u_dia) - 1);
-            else 
-                u_dia_d <= dia_max (3 downto 0);
-            end if;
-        end if;
-
-        if unsigned(dia) > unsigned (dia_max) then
-            u_dia_d <= dia_max(3 downto 0);
-        end if;
-end process;
-
-process (all)
-    begin 
-    d_dia_d <= d_dia;
-    if ((mas = '1' and ajuste = "0101") or (new_day = '1' and u_dia_d = (others => '0'))) then
-        if (dia_maximo = '1') then
-            d_dia_d <= std_logic_vector(unsigned(u_dia) + 1);
-        else 
-            d_dia_d <= (others => '0');
-        end if;
-    elsif ((menos = '1' and ajuste = "0101")) then
-        if (d_dia = "00" ) then
-            d_dia_d <= std_logic_vector(unsigned(u_dia) - 1);
-        else 
-            d_dia_d <= dia_max( 5 downto 4);
+    if (ajuste = "1111" and new_day = '1') then
+        nuevo_valor := nuevo_valor + 1; --Latch? 
+    elsif (ajuste = "0111") then
+        if mas = '1' then
+            nuevo_valor := nuevo_valor + 1;
+        elsif menos = '1' then
+            nuevo_valor := nuevo_valor - 1;
         end if;
     end if;
-    if unsigned(dia) > unsigned (dia_max) then
-        d_dia_d <= dia_max(5 downto 4);
-    end if;
-end process;
-
-process (all)
-    begin 
-    u_mes_d <= u_mes;
-    if ((mas = '1' and ajuste = "0110") or (new_day = '1' and u_dia_d = (others => '0') and d_dia_d = (others => '0'))) then
-        if (u_mes = "1001" or (u_mes = "0010" and d_mes = "1") ) then
-            u_mes_d <= (others => '0');
-            else 
-            u_mes_d <= std_logic_vector(unsigned(u_dia) + 1);
-        end if;
-        elsif ((menos = '1' and ajuste = "0110")) then
-            if (u_mes = (others => '0')) then
-                if d_mes = "1" then
-                    u_mes_d <= "0010";
-                else
-                    u_mes_d <= "1001"; 
-                end if;  
-            else 
-                u_mes_d <= std_logic_vector(unsigned(u_dia) - 1);
-
-            end if;
-        end if;
-    if unsigned (u_mes) > unsigned ("0010") and d_mes = "1" then
-        u_mes_d <= "0010";
-    end if;  
-
-end process;
-
-process (all)
-    begin 
-    d_mes_d <= d_mes;
-    if ((mas = '1' and ajuste = "0110") or (new_day = '1' and u_dia_d = (others => '0') and d_dia_d = (others => '0') and u_mes_d = (others => '0')  )) then
-        if (d_mes = "1" ) then
-            u_mes_d <= "0";
-            else 
-            u_mes_d <= std_logic_vector(unsigned(u_dia) + 1);
-        end if;
-    elsif ((menos = '1' and ajuste = "0110")) then
-        if (u_mes = (others => '0')) then
-            if d_mes = "1" then
-                u_mes_d <= "0010";
-            else
-                u_mes_d <= "1001"; 
-            end if;  
-         else 
-            u_mes_d <= std_logic_vector(unsigned(u_dia) - 1);
-
+    if  nuevo_valor > 9 or unsigned(d_dia)&nuevo_valor > unsigned(dia_max) then
+        nuevo_valor := x"1";
+    elsif nuevo_valor < 1 then
+        if d_dia = dia_max(7 downto 4) then
+            nuevo_valor := unsigned(dia_max(3 downto 0));
+        else
+            nuevo_valor := x"9";
         end if;
     end if;
+    u_dia_d <= std_logic_vector(nuevo_valor);   
 end process;
 
+d_mes_out <=   d_mes;
+u_mes_out <=   u_mes;
+d_dia_out <=   d_dia;
+u_dia_out <=   u_dia;
 
 
 end solucion;
