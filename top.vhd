@@ -66,7 +66,7 @@ architecture solucion of top is
     component salida_pantalla is
         port (
         n_zona          : in std_logic_vector (4 downto 0);
-        d_mes           : in std_logic_vector (0 downto 0);
+        d_mes           : in std_logic_vector (3 downto 0);
         u_mes           : in std_logic_vector (3 downto 0);
         d_dia           : in std_logic_vector (1 downto 0);
         u_dia           : in std_logic_vector (3 downto 0);
@@ -124,7 +124,7 @@ architecture solucion of top is
     c_clk           : in std_logic;
     ajuste          : in std_logic_vector (3 downto 0);
     new_day         : in std_logic;
-    d_mes_out       : out std_logic_vector (0 downto 0);
+    d_mes_out       : out std_logic_vector (3 downto 0);
     u_mes_out       : out std_logic_vector (3 downto 0);
     d_dia_out       : out std_logic_vector (1 downto 0);
     u_dia_out       : out std_logic_vector (3 downto 0);
@@ -135,7 +135,7 @@ architecture solucion of top is
 
 
 
-    signal d_mes      : std_logic_vector (0 downto 0);
+    signal d_mes      : std_logic_vector (3 downto 0);
     signal u_mes      : std_logic_vector (3 downto 0);
     signal d_dia      : std_logic_vector (1 downto 0);
     signal u_dia      : std_logic_vector (3 downto 0);

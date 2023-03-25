@@ -10,7 +10,7 @@ entity calendario is
         c_clk       : in  std_logic;
         ajuste      : in  std_logic_vector (3 downto 0);
         new_day     : in  std_logic;
-        d_mes_out   : out std_logic_vector (0 downto 0);
+        d_mes_out   : out std_logic_vector (3 downto 0);
         u_mes_out   : out std_logic_vector (3 downto 0);
         d_dia_out   : out std_logic_vector (1 downto 0);
         u_dia_out   : out std_logic_vector (3 downto 0);
