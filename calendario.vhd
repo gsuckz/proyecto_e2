@@ -115,10 +115,16 @@ u_dia_out <=   u_dia;
                         mes := mes + x"10";
                     when x"6" => 
                         mes := mes + x"01";
+                        if mes(3 downto 0) > x"9" then
+                            mes : mes + x"0F";
+                        end if;
                     when x"7" => 
                         dia := dia + x"10";
                     when x"8" => 
                         dia := dia + x"10";
+                        if dia(3 downto 0) > x"9" then
+                            dia : dia + x"0F";
+                        end if;
                 end case;
             end if;
             if menos = '1' then
@@ -127,10 +133,16 @@ u_dia_out <=   u_dia;
                         mes := mes - x"10";
                     when x"6" => 
                         mes := mes - x"01";
+                        if mes(3 downto 0) > x"9" then
+                            mes : mes - x"0F";
+                        end if;
                     when x"7" => 
                         dia := dia - x"10";
                     when x"8" => 
                         dia := dia - x"10";
+                        if dia(3 downto 0) > x"9" then
+                            dia : dia - x"0F";
+                        end if;
                 end case;
                 if dia > unsigned(dia_max) then -- Si bajamos del dia 1 (por el ajuste) nos vamos al dia máximo
                     dia := dia_max;   --cambia algo si la comprobacion se hace antes o despues?
@@ -139,6 +151,7 @@ u_dia_out <=   u_dia;
                     mes := 12; 
                 end if;
             end if;
+            
             if new_day = '1' and ajuste = x"F" then
                 dia := dia + 1;
             end if;
