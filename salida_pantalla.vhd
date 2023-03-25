@@ -34,7 +34,7 @@ begin
                    "1011"          when "01010",
                  "00" & d_dia    when "01110", 
                   u_dia           when "10010", 
-                  ajuste when "01101",
+               --   ajuste when "01101",
                     "1111"          when others;  
  
                     
