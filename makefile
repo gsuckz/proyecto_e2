@@ -36,7 +36,7 @@ reloj.ghw: $(arch_cf)
 calendario: $(arch_cf) 
 	ghdl -m $(ops) calendario_tb
 	ghdl -r $(ops) calendario_tb
-wav_calendario: calendario.ghw
+wav_calendario: calendario_tb.ghw
 	gtkwave -f calendario.ghw
 calendario.ghw: $(arch_cf)
 	ghdl -m $(ops) calendario_tb

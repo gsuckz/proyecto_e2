@@ -93,110 +93,58 @@ with d_mes&u_mes select
                 x"30" when x"11",
                 x"31" when x"12",                                                  
                 x"31" when others;
-
--- dia             <= d_dia & u_dia;  --??consultar
--- dia_maximo <= '1' when dia = dia_max else '0';
-
-
-
-
-
-
---dia_unidades: process (all)
---variable nuevo_valor : unsigned (3 downto 0);
---begin
---nuevo_valor := unsigned(d_mes);
---d_mes_d <= d_mes;
---if (ajuste = "1111" and new_day = '1' and u_dia = dia_max (3 downto 0) and d_dia = dia_max (5 downto 4) and ((u_mes = x"9") or (U_mes = x"2" and d_mes = "1" ) then
---    nuevo_valor := nuevo_valor + 1;
---elsif (ajuste = "0001") then
---    if mas = '1' then
---        nuevo_valor := nuevo_valor + 1;
---    elsif menos = '1' then
---        nuevo_valor := nuevo_valor - 1;
---    end if;
---end if;
---if  nuevo_valor > 9 or (nuevo_valor > dia_max(3 downto 0)) then
---    nuevo_valor := x"0";
---end if;
---d_mes_d <= std_logic_vector(nuevo_valor);    
---end process;
-
--- d_mes_d <= not d_mes when (ajuste = "1111" and new_day = '1'  and u_dia = dia_max (3 downto 0) and d_dia = dia_max (5 downto 4)) or (ajuste = "" and (mas = '1' or menos = '1')) else 
---                     d_mes;
-
-mes_unidades: process (all)
-    variable nuevo_valor : unsigned (3 downto 0);
-begin
-    nuevo_valor := unsigned(u_mes);
-    if (ajuste = "1111" and new_day = '1'  and d_dia&u_dia = dia_max) then
-        nuevo_valor := nuevo_valor + 1;
-    elsif (ajuste = "0101") then
-        if mas = '1' then
-            nuevo_valor := nuevo_valor + 1;
-        elsif menos = '1' then
-            nuevo_valor := nuevo_valor - 1;
-        end if;
-    end if;
-    if  nuevo_valor > 9 or (d_mes = "1" and unsigned (u_mes) > 2) then
-        nuevo_valor := x"0";
-    end if;
-    u_mes_d <= std_logic_vector(nuevo_valor);    
-end process;
-
-
-
-
-
-dia_decenas: process (all)
-variable nuevo_valor1 : unsigned (1 downto 0);
-begin
-    nuevo_valor1 :=unsigned(d_dia);
-    if (ajuste = "1111" and new_day = '1' and u_dia = x"9") then 
-        nuevo_valor1 := nuevo_valor1 + 1;
-        elsif  (ajuste = "0110" and mas = '1') then
-            nuevo_valor1 := nuevo_valor1 + 1;
-        elsif  (ajuste = "0110" and menos = '1' ) then
-                nuevo_valor1 := nuevo_valor1 - 1 ;
-    end if;
-
-
-        
-end process;
-
-
-
-dia_unidades: process (all)
-    variable nuevo_valor : unsigned (3 downto 0);
-begin
-    nuevo_valor := unsigned(u_dia);
-    u_dia_d <= u_dia;
-    if (ajuste = "1111" and new_day = '1') then
-        nuevo_valor := nuevo_valor + 1; --Latch? 
-    elsif (ajuste = "0111") then
-        if mas = '1' then
-            nuevo_valor := nuevo_valor + 1;
-        elsif menos = '1' then
-            nuevo_valor := nuevo_valor - 1;
-        end if;
-    end if;
-    if  nuevo_valor > 9 or unsigned(d_dia)&nuevo_valor > unsigned(dia_max) then
-        nuevo_valor := x"1";
-    elsif nuevo_valor < 1 then
-        if d_dia = dia_max(7 downto 4) then
-            nuevo_valor := unsigned(dia_max(3 downto 0));
-        else
-            nuevo_valor := x"9";
-        end if;
-    end if;
-    u_dia_d <= std_logic_vector(nuevo_valor);   
-end process;
-
 d_mes_out <=   d_mes;
 u_mes_out <=   u_mes;
 d_dia_out <=   d_dia;
 u_dia_out <=   u_dia;
 
-
+    process (all)
+    variable dia, mes : unsigned (7 downto 0);
+        begin
+            dia := unsigned (d_dia & u_dia);
+            mes := unsigned (d_mes & u_mes);
+            if mas = '1' then
+                case ajuste is 
+                    when x"5" => 
+                        mes := mes + x"10";
+                    when x"6" => 
+                        mes := mes + x"01";
+                    when x"7" => 
+                        dia := dia + x"10";
+                    when x"8" => 
+                        dia := dia + x"10";
+                end case;
+            end if;
+            if menos = '1' then
+                case ajuste is 
+                    when x"5" => 
+                        mes := mes - x"10";
+                    when x"6" => 
+                        mes := mes - x"01";
+                    when x"7" => 
+                        dia := dia - x"10";
+                    when x"8" => 
+                        dia := dia - x"10";
+                end case;
+            end if;
+            if new_day = '1' and ajuste = x"F" then
+                dia := dia + 1;
+            end if;
+            if dia > dia_max then
+                dia:= 0;
+                mes:= mes + 1;
+            elsif dia(3 downto 0) > x"9" then
+                dia(3 downto 0) := x"0";
+            end if;
+            if mes > 12 then 
+                mes:= 0;
+            elsif mes (3 downto 0) > x"9" then
+                mes(3 downto 0) := x"0";
+            end if;
+            d_mes <= mes(7 downto 4);
+            u_mes <= mes(3 downto 0);
+            d_dia <= dia(7 downto 4);
+            u_dia <= dia(3 downto 0);
+    end process;
 end solucion;
     
