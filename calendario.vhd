@@ -152,7 +152,7 @@ u_dia_out <=   u_dia;
                     dia := dia_max;   --cambia algo si la comprobacion se hace antes o despues?
                 end if;
                 if mes > 12 or mes(3 downto 0) > x"09" then -- Si bajamos del mes 1 entonces 
-                    mes := 12; 
+                    mes := x"12"; 
                 end if;
             end if;
             
