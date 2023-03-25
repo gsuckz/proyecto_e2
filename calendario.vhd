@@ -163,8 +163,9 @@ u_dia_out <=   u_dia;
                 dia:= x"01";
                 mes:= mes + x"01";
                 if mes(3 downto 0) > x"9" then
-                    mes := mes + x"0F";
-            end if;
+                        mes := mes + x"0F";
+                end if;
+            end if;          
             if mes > 12 then  --Si nos pasamos por 
                 mes:= 1;
             end if;
