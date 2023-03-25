@@ -125,6 +125,8 @@ u_dia_out <=   u_dia;
                         if dia(3 downto 0) > x"9" then
                             dia := dia + x"16";
                         end if;
+                    when others =>
+                        mes := mes;
                 end case;
             end if;
             if menos = '1' then
@@ -143,6 +145,8 @@ u_dia_out <=   u_dia;
                         if dia(3 downto 0) > x"9" then
                             dia := dia - x"16";
                         end if;
+                    when others =>
+                        mes := mes;
                 end case;
                 if dia > unsigned(dia_max) then -- Si bajamos del dia 1 (por el ajuste) nos vamos al dia máximo
                     dia := dia_max;   --cambia algo si la comprobacion se hace antes o despues?
