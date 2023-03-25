@@ -93,9 +93,9 @@ with d_mes&u_mes select
                 x"30" when x"11",
                 x"31" when x"12",                                                  
                 x"31" when others;
-d_mes_out <=   d_mes;
+d_mes_out <=   d_mes(0 downto 0);
 u_mes_out <=   u_mes;
-d_dia_out <=   d_dia;
+d_dia_out <=   d_dia(1 downto 0);
 u_dia_out <=   u_dia;
 
     process (all)
@@ -132,8 +132,8 @@ u_dia_out <=   u_dia;
                     when x"8" => 
                         dia := dia - x"10";
                 end case;
-                if dia > dia_max then -- Si bajamos del dia 1 (por el ajuste) nos vamos al dia máximo
-                    dia = dia _max;   --cambia algo si la comprobacion se hace antes o despues?
+                if dia > unsigned(dia_max) then -- Si bajamos del dia 1 (por el ajuste) nos vamos al dia máximo
+                    dia := dia_max;   --cambia algo si la comprobacion se hace antes o despues?
                 end if;
                 if mes > 12 then -- Si bajamos del mes 1 entonces 
                     mes := 12; 
@@ -142,7 +142,7 @@ u_dia_out <=   u_dia;
             if new_day = '1' and ajuste = x"F" then
                 dia := dia + 1;
             end if;
-            if dia > dia_max then -- Si pasamos el dia maximo (sea por el reloj o ajuste) vamos al dia 1
+            if dia > unsigned(dia_max) then -- Si pasamos el dia maximo (sea por el reloj o ajuste) vamos al dia 1
                 dia:= 1;
                 mes:= mes + 1;
             elsif dia(3 downto 0) > x"9" then
@@ -153,10 +153,10 @@ u_dia_out <=   u_dia;
             elsif mes (3 downto 0) > x"9" then
                 mes(3 downto 0) := x"0";
             end if;
-            d_mes <= std_logic_vector(mes(7 downto 4));
-            u_mes <= std_logic_vector(mes(3 downto 0));
-            d_dia <= std_logic_vector(dia(7 downto 4));
-            u_dia <= std_logic_vector(dia(3 downto 0));
+            d_mes_d <= std_logic_vector(mes(7 downto 4));
+            u_mes_d <= std_logic_vector(mes(3 downto 0));
+            d_dia_d <= std_logic_vector(dia(7 downto 4));
+            u_dia_d <= std_logic_vector(dia(3 downto 0));
     end process;
 end solucion;
     
