@@ -121,7 +121,7 @@ u_dia_out <=   u_dia;
                     when x"7" => 
                         dia := dia + x"10";
                     when x"8" => 
-                        dia := dia + x"10";
+                        dia := dia + x"01";
                         if dia(3 downto 0) > x"9" then
                             dia := dia + x"0F";
                         end if;
@@ -139,7 +139,7 @@ u_dia_out <=   u_dia;
                     when x"7" => 
                         dia := dia - x"10";
                     when x"8" => 
-                        dia := dia - x"10";
+                        dia := dia - x"01";
                         if dia(3 downto 0) > x"9" then
                             dia := dia - x"0F";
                         end if;
@@ -160,15 +160,13 @@ u_dia_out <=   u_dia;
                 end if;
 
             if dia > unsigned(dia_max) then -- Si pasamos el dia maximo (sea por el reloj o ajuste) vamos al dia 1
-                dia:= 1;
-                mes:= mes + 1;
-            elsif dia(3 downto 0) > x"9" then
-                dia(3 downto 0) := x"0";
+                dia:= x"01";
+                mes:= mes + x"01";
+                if mes(3 downto 0) > x"9" then
+                    mes := mes + x"0F";
             end if;
             if mes > 12 then  --Si nos pasamos por 
                 mes:= 1;
-            elsif mes (3 downto 0) > x"9" then
-                mes(3 downto 0) := x"0";
             end if;
             d_mes_d <= std_logic_vector(mes(7 downto 4));
             u_mes_d <= std_logic_vector(mes(3 downto 0));
