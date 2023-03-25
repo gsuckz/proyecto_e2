@@ -116,12 +116,12 @@ u_dia_out <=   u_dia;
                     when x"5" => 
                         mes := mes + x"01";
                         if mes(3 downto 0) > x"9" then
-                            mes := mes + x"0F";
+                            mes := mes + x"16";
                         end if;
                     when x"6" => 
                         dia := dia + x"10";
                     when x"7" => 
-                        dia := dia + x"01";
+                        dia := dia + x"16";
                         if dia(3 downto 0) > x"9" then
                             dia := dia + x"0F";
                         end if;
@@ -155,7 +155,7 @@ u_dia_out <=   u_dia;
             if new_day = '1' and ajuste = x"F" then
                 dia := dia + 1;
                 if dia(3 downto 0) > x"9" then
-                    dia := dia + x"0F";
+                    dia := dia + x"16";
                     end if;
                 end if;
 
@@ -163,7 +163,7 @@ u_dia_out <=   u_dia;
                 dia:= x"01";
                 mes:= mes + x"01";
                 if mes(3 downto 0) > x"9" then
-                        mes := mes + x"0F";
+                        mes := mes + x"16";
                 end if;
             end if;          
             if mes > 12 then  --Si nos pasamos por 
