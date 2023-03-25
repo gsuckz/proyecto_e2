@@ -14,6 +14,7 @@ entity salida_pantalla is
     u_hora          : in std_logic_vector (3 downto 0);
     d_min           : in std_logic_vector (2 downto 0);
     u_min           : in std_logic_vector (3 downto 0);
+    ajuste           : in std_logic_vector (3 downto 0);
     char_code       : out std_logic_vector (3 downto 0)
     );
 end salida_pantalla;
@@ -33,6 +34,7 @@ begin
                    "1011"          when "01010",
                  "00" & d_dia    when "01110", 
                   u_dia           when "10010", 
+                  ajuste when "01101"
                     "1111"          when others;  
  
                     

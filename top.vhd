@@ -74,6 +74,7 @@ architecture solucion of top is
         u_hora          : in std_logic_vector (3 downto 0);
         d_min           : in std_logic_vector (2 downto 0);
         u_min           : in std_logic_vector (3 downto 0);
+        ajuste           : in std_logic_vector (3 downto 0);
         char_code       : out std_logic_vector (3 downto 0)
         );
     end component;
@@ -287,6 +288,7 @@ begin
         u_hora    => u_hora,
         d_min     => d_min,
         u_min     => u_min,
+        ajuste    => ajuste,
         char_code => char_code  
     );
 end solucion;

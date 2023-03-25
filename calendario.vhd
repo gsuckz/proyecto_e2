@@ -166,7 +166,7 @@ u_dia_out <=   u_dia;
                         mes := mes + x"16";
                 end if;
             end if;          
-            if mes > 12 then  --Si nos pasamos por 
+            if mes > x"12" then  --Si nos pasamos por 
                 mes:= 1;
             end if;
             d_mes_d <= std_logic_vector(mes(7 downto 4));

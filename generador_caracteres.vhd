@@ -29,6 +29,7 @@ architecture solucion of generador_caracteres is
                             '0'             when n_zona = "01000" and ajuste = "1111" else
                             '0'             when n_zona = "01100" and ajuste = "0010" else
                             '0'             when n_zona = "10000" and ajuste = "0011" else
+                            
                             '0'             when n_zona = "00010" and ajuste = "0100" else
                             '0'             when n_zona = "00110" and ajuste = "0101" else
                             '0'             when n_zona = "01110" and ajuste = "0110" else
