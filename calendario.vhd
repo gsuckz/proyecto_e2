@@ -154,7 +154,11 @@ u_dia_out <=   u_dia;
             
             if new_day = '1' and ajuste = x"F" then
                 dia := dia + 1;
-            end if;
+                if dia(3 downto 0) > x"9" then
+                    dia : dia + x"0F";
+                    end if;
+                end if;
+
             if dia > unsigned(dia_max) then -- Si pasamos el dia maximo (sea por el reloj o ajuste) vamos al dia 1
                 dia:= 1;
                 mes:= mes + 1;
