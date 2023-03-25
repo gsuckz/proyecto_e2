@@ -111,16 +111,16 @@ u_dia_out <=   u_dia;
             end if;
             if mas = '1' then
                 case ajuste is 
-                    when x"5" => 
+                    when x"4" => 
                         mes := mes + x"10";
-                    when x"6" => 
+                    when x"5" => 
                         mes := mes + x"01";
                         if mes(3 downto 0) > x"9" then
                             mes := mes + x"0F";
                         end if;
-                    when x"7" => 
+                    when x"6" => 
                         dia := dia + x"10";
-                    when x"8" => 
+                    when x"7" => 
                         dia := dia + x"01";
                         if dia(3 downto 0) > x"9" then
                             dia := dia + x"0F";
@@ -129,16 +129,16 @@ u_dia_out <=   u_dia;
             end if;
             if menos = '1' then
                 case ajuste is 
-                    when x"5" => 
+                    when x"4" => 
                         mes := mes - x"10";
-                    when x"6" => 
+                    when x"5" => 
                         mes := mes - x"01";
                         if mes(3 downto 0) > x"9" then
                             mes := mes - x"0F";
                         end if;
-                    when x"7" => 
+                    when x"6" => 
                         dia := dia - x"10";
-                    when x"8" => 
+                    when x"7" => 
                         dia := dia - x"01";
                         if dia(3 downto 0) > x"9" then
                             dia := dia - x"0F";
