@@ -115,14 +115,14 @@ u_dia_out <=   u_dia;
                         mes := mes + x"10";
                     when x"5" => 
                         mes := mes + x"01";
-                        if mes(3 downto 0) > x"9" then
+                        if mes(3 downto 0) > x"09" then
                             mes := mes + x"16";
                         end if;
                     when x"6" => 
                         dia := dia + x"10";
                     when x"7" => 
                         dia := dia + x"01";
-                        if dia(3 downto 0) > x"9" then
+                        if dia(3 downto 0) > x"09" then
                             dia := dia + x"16";
                         end if;
                     when others =>
@@ -135,14 +135,14 @@ u_dia_out <=   u_dia;
                         mes := mes - x"10";
                     when x"5" => 
                         mes := mes - x"01";
-                        if mes(3 downto 0) > x"9" then
+                        if mes(3 downto 0) > x"09" then
                             mes := mes - x"16";
                         end if;
                     when x"6" => 
                         dia := dia - x"10";
                     when x"7" => 
                         dia := dia - x"01";
-                        if dia(3 downto 0) > x"9" then
+                        if dia(3 downto 0) > x"09" then
                             dia := dia - x"16";
                         end if;
                     when others =>
@@ -158,7 +158,7 @@ u_dia_out <=   u_dia;
             
             if new_day = '1' and ajuste = x"F" then
                 dia := dia + 1;
-                if dia(3 downto 0) > x"9" then
+                if dia(3 downto 0) > x"09" then
                     dia := dia + x"16";
                     end if;
                 end if;
@@ -166,7 +166,7 @@ u_dia_out <=   u_dia;
             if dia > unsigned(dia_max) then -- Si pasamos el dia maximo (sea por el reloj o ajuste) vamos al dia 1
                 dia:= x"01";
                 mes:= mes + x"01";
-                if mes(3 downto 0) > x"9" then
+                if mes(3 downto 0) > x"09" then
                         mes := mes + x"16";
                 end if;
             end if;          
