@@ -151,7 +151,7 @@ u_dia_out <=   u_dia;
                 if dia > unsigned(dia_max) then -- Si bajamos del dia 1 (por el ajuste) nos vamos al dia máximo
                     dia := dia_max;   --cambia algo si la comprobacion se hace antes o despues?
                 end if;
-                if mes > 12 then -- Si bajamos del mes 1 entonces 
+                if mes > 12 or mes(3 downto 0) > x"09" then -- Si bajamos del mes 1 entonces 
                     mes := 12; 
                 end if;
             end if;
@@ -171,7 +171,7 @@ u_dia_out <=   u_dia;
                 end if;
             end if;          
             if mes > x"12" then  --Si nos pasamos por 
-                mes:= 5;
+                mes:= 1;
             end if;
             d_mes_d <= std_logic_vector(mes(7 downto 4));
             u_mes_d <= std_logic_vector(mes(3 downto 0));
