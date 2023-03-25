@@ -93,7 +93,7 @@ with d_mes&u_mes select
                 x"30" when x"11",
                 x"31" when x"12",                                                  
                 x"31" when others;
-d_mes_out <=   d_mes(0 downto 0);
+d_mes_out <=   d_mes(3 downto 0);
 u_mes_out <=   u_mes;
 d_dia_out <=   d_dia(1 downto 0);
 u_dia_out <=   u_dia;
