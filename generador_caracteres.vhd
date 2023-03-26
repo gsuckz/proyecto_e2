@@ -1,7 +1,8 @@
-
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use work.ffd_pkg.all;
+
 
 entity generador_caracteres is
     port (
@@ -21,6 +22,17 @@ entity generador_caracteres is
 end  generador_caracteres;
 
 architecture solucion of generador_caracteres is
+    component ffd is
+        generic(
+            constant N : natural := 1);
+        port(
+            rst : in std_logic;
+            D   : in std_logic_vector (N-1 downto 0);
+            hab : in std_logic;
+            clk : in std_logic;
+            Q   : out std_logic_vector (N-1 downto 0));
+    end component;
+    
     signal color : std_logic_vector (2 downto 0);
     signal static : std_logic;
     signal px_visible : std_logic;

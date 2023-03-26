@@ -147,46 +147,38 @@ begin
     hora_unidades: process (all)
         variable nueva_u_hora : unsigned (3 downto 0);
     begin
-        nueva_u_hora := unsigned(u_hora);
-        u_hora_d <= u_hora;
-        if (minuto = '1' and u_min = x"9" and d_min = o"5") then
-            nueva_u_hora := nueva_u_hora + 1;
-        elsif (ajuste = "0001") then
-            if mas = '1' then
-                nueva_u_hora := nueva_u_hora + 1;
-            elsif menos = '1' then
-                nueva_u_hora := nueva_u_hora - 1;
-            end if;
+    if (minuto = '1' and u_min = x"9" and d_min = x"5") or (ajuste = "0001" and mas = '1') then
+        if u_hora = x"9" or (d_hora = "10" and u_hora = x"3") then
+            u_hora_d <= x"0";
+        else 
+            d_min_d <= std_logic_vector ( unsigned (d_min) + 1);
         end if;
-        if  nueva_u_hora > 9 or (nueva_u_hora > 3 and d_hora = "10") then
-            nueva_u_hora := x"0";
-        end if;
-        u_hora_d <= std_logic_vector(nueva_u_hora);    
+    elsif (ajuste = "0010" and d_min = x"0" and menos = '1') or (ajuste = "0001" and menos = '1') then
+        if (d_hora = "10" and u_hora = x"0") then
+            u_hora_d <= x"3";
+        elsif u_hora = x"0" then
+            u_hora_d <= x"0"
+        else 
+            u_hora_d <= std_logic_vector (unsigned (u_hora) - 1);
+        end if; 
+    end if;  
     end process;
 
     minuto_decena : process (all)
     begin
         d_min_d <= d_min;
-        if (minuto = '1' and u_min = x"9") then
+        if (minuto = '1' and u_min = x"9") or (ajuste = "0010" and mas = '1') then
             if d_min = o"5" then
                 d_min_d <= o"0";
             else 
                 d_min_d <= std_logic_vector ( unsigned (d_min) + 1);
             end if;
-        elsif (ajuste = "0010") then
-            if mas = '1' then
-                if d_min = o"5" then
-                    d_min_d <= o"0";
-                else 
-                    d_min_d <= std_logic_vector ( unsigned (d_min) + 1);
-                end if;               
-            elsif menos = '1' then
-                if d_min = o"0" then
-                    d_min_d <= o"5";
-                else 
-                    d_min_d <= std_logic_vector ( unsigned (d_min) - 1); 
-                end if; 
-            end if;
+        elsif (ajuste = "0011" and u_min = x"0" and menos = '1') or (ajuste = "0010" and menos = '1') then
+            if d_min = o"0" then
+                d_min_d <= o"5";
+            else 
+                d_min_d <= std_logic_vector ( unsigned (d_min) - 1); 
+            end if;   
         end if;
     end process;
 

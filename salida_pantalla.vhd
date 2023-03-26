@@ -6,7 +6,7 @@ use work.ffd_pkg.all;
 entity salida_pantalla is
     port (
     n_zona          : in std_logic_vector (4 downto 0);
-    d_mes           : in std_logic_vector (3 downto 0 );
+    d_mes           : in std_logic_vector (3 downto 0);
     u_mes           : in std_logic_vector (3 downto 0);
     d_dia           : in std_logic_vector (1 downto 0);
     u_dia           : in std_logic_vector (3 downto 0);
@@ -29,11 +29,11 @@ begin
                     "1010"          when "01000", 
                     "0" & d_min     when "01100", 
                     u_min           when "10000", 
-                  d_mes   when "00010", 
-                  u_mes           when "00110", 
-                   "1011"          when "01010",
-                 "00" & d_dia    when "01110", 
-                  u_dia           when "10010", 
+                    d_mes           when "00010", 
+                    u_mes           when "00110", 
+                    "1011"          when "01010",
+                    "00" & d_dia    when "01110", 
+                    u_dia           when "10010", 
                --   ajuste when "01101",
                     "1111"          when others;  
  
