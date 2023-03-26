@@ -151,7 +151,7 @@ begin
         if u_hora = x"9" or (d_hora = "10" and u_hora = x"3") then
             u_hora_d <= x"0";
         else 
-            d_min_d <= std_logic_vector ( unsigned (d_min) + 1);
+            u_hora_d <= std_logic_vector ( unsigned (u_hora) + 1);
         end if;
     elsif (ajuste = "0010" and d_min = x"0" and menos = '1') or (ajuste = "0001" and menos = '1') then
         if (d_hora = "10" and u_hora = x"0") then
