@@ -39,6 +39,7 @@ signal izq   : std_logic_vector (1 downto 0);
 signal izq_d : std_logic_vector (1 downto 0);
 signal der   : std_logic_vector (1 downto 0);
 signal der_d : std_logic_vector (1 downto 0);
+signal contador,contador_d   : std_logic_vector (26 downto 0);
 
 
 

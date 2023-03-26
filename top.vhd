@@ -53,6 +53,7 @@ architecture solucion of top is
         n_zona      : in std_logic_vector (4 downto 0);
         mas         : in std_logic;
         menos       : in std_logic;
+        p_clk       : in std_logic;
         red         : out std_logic;
         green       : out std_logic;
         blue        : out std_logic   
@@ -260,6 +261,7 @@ begin
         pul_seg    => pps,
         mas         =>mas  ,
         menos       =>menos,
+        p_clk       => p_clk,
         red         =>red  ,
         green       =>green,
         blue        =>blue     

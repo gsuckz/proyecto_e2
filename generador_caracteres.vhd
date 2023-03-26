@@ -15,6 +15,7 @@ entity generador_caracteres is
     n_zona      : in std_logic_vector (4 downto 0);
     mas         : in std_logic;
     menos       : in std_logic;
+    p_clk       : in std_logic;
     red         : out std_logic;
     green       : out std_logic;
     blue        : out std_logic   
@@ -33,7 +34,7 @@ architecture solucion of generador_caracteres is
             Q   : out std_logic_vector (N-1 downto 0));
     end component;
     
-    signal color : std_logic_vector (2 downto 0);
+    signal color, color_d : std_logic_vector (2 downto 0);
     signal static : std_logic;
     signal px_visible : std_logic;
     begin
