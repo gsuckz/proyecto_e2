@@ -115,7 +115,7 @@ begin
 
     segundo_D(1) <= segundo(0);
     segundo_D(0) <= seg_ref;
-    cnt_min_d <= "000000" when cnt_min = "111100" or ajuste /= "1111" else std_logic_vector(unsigned(cnt_min) + 1) when segundo = "10" and ajuste = "1111" else cnt_min;
+    cnt_min_d <= "000000" when cnt_min = "111100" or ajuste /= "1011" else std_logic_vector(unsigned(cnt_min) + 1) when segundo = "10" and ajuste = "1111" else cnt_min;
     minuto <= '1' when cnt_min = "111100" else '0';
 
     hora_decenas: process (all)
@@ -194,7 +194,7 @@ begin
     minuto_unidad : process (all)
     begin
         u_min_d <= u_min;
-        if (ajuste = "1111" and minuto = '1') then
+        if (ajuste = "1011" and minuto = '1') then
             if u_min = x"9" then
                 u_min_d <= x"0";
             else 
