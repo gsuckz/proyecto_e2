@@ -27,7 +27,7 @@ architecture solucion of ajust is
             clk : in std_logic;
             Q   : out std_logic_vector (N-1 downto 0));
 end component;    
-constant rst : std_logic:='0';
+signal rst : std_logic;
 constant hab : std_logic:='1';
 signal ajuste   : std_logic_vector (3 downto 0);
 signal ajuste_d : std_logic_vector (3 downto 0);
@@ -45,72 +45,90 @@ signal der_d : std_logic_vector (1 downto 0);
 
 begin 
 --registros de estado
-    registro_ajuste : ffd
-    generic map (N=>4)
-    port map (
-    rst => rst,
-    D   => ajuste_d,
-    hab => hab,
-    clk => p_clk,
-    Q   => ajuste
-    );
-    registro_mas : ffd
-    generic map (N=>2)
-    port map (
-    rst => rst,
-    D   => mas_d,
-    hab => hab,
-    clk => p_clk,
-    Q   => mas
-    );
-    registro_menos : ffd
-    generic map (N=>2)
-    port map (
-    rst => rst,
-    D   => menos_d,
-    hab => hab,
-    clk => p_clk,
-    Q   => menos
-    );
-    registro_izq : ffd
-    generic map (N=>2)
-    port map (
-    rst => rst,
-    D   => izq_d,
-    hab => hab,
-    clk => p_clk,
-    Q   => izq
-    );        
-    registro_der : ffd
-    generic map (N=>2)
-    port map (
-    rst => rst,
-    D   => der_d,
-    hab => hab,
-    clk => p_clk,
-    Q   => der
-    );
-        
-        
+--   registro_ajuste : ffd
+--   generic map (N=>4)
+--   port map (
+--   rst => rst,
+--   D   => ajuste_d,
+--   hab => hab,
+--   clk => p_clk,
+--   Q   => ajuste
+--   );
+--   registro_mas : ffd
+--   generic map (N=>2)
+--   port map (
+--   rst => rst,
+--   D   => mas_d,
+--   hab => hab,
+--   clk => p_clk,
+--   Q   => mas
+--   );
+--   registro_menos : ffd
+--   generic map (N=>2)
+--   port map (
+--   rst => rst,
+--   D   => menos_d,
+--   hab => hab,
+--   clk => p_clk,
+--   Q   => menos
+--   );
+--   registro_izq : ffd
+--   generic map (N=>2)
+--   port map (
+--   rst => rst,
+--   D   => izq_d,
+--   hab => hab,
+--   clk => p_clk,
+--   Q   => izq
+--   );        
+--   registro_der : ffd
+--   generic map (N=>2)
+--   port map (
+--   rst => rst,
+--   D   => der_d,
+--   hab => hab,
+--   clk => p_clk,
+--   Q   => der
+--   );
+            
 
 
 --logica de salida
-    ajuste_o <= ajuste; 
-    mas_o   <= '1' when mas = "10" else '0';
-    menos_o <= '1' when menos = "10" else '0';
-    mas_d(0) <= bot_mas;
-    mas_d(1) <= mas(0);
-    menos_d(0) <= bot_men;
-    menos_d(1) <= menos(0);
+---    ajuste_o <= ajuste; 
+---    mas_o   <= '1' when mas = "10" else '0';
+---    menos_o <= '1' when menos = "10" else '0';
+---    mas_d(0) <= bot_mas;
+---    mas_d(1) <= mas(0);
+---    menos_d(0) <= bot_men;
+---    menos_d(1) <= menos(0);
+---
+---    izq_d(0) <= bot_izq;
+---    izq_d(1) <= izq(0);
+---    der_d(0) <= bot_der;
+---    der_d(1) <= der(0);
+---
+---        ajuste_d <=  std_logic_vector( unsigned (ajuste) + 1) when der = "10" else
+---                     std_logic_vector( unsigned (ajuste) - 1) when izq = "10" else 
+---                     ajuste;
+    
+    contador_antirrebote : ffd
+    generic map (N=>12) 
+    port map (
+    rst => rst,
+    D => contador_d,
+    hab => hab,
+    clk => p_clk,
+    Q => contador);
 
-    izq_d(0) <= bot_izq;
-    izq_d(1) <= izq(0);
-    der_d(0) <= bot_der;
-    der_d(1) <= der(0);
+    rst <= '0' when (mas or menos or izq or der) = '1' else '1';
+    contador_d <= x"000" when contador = x"400" else std_logic_vector (unsigned (contador) + 1);
 
-        ajuste_d <=  std_logic_vector( unsigned (ajuste) + 1) when der = "10" else
-                     std_logic_vector( unsigned (ajuste) - 1) when izq = "10" else 
-                     ajuste;
-
-
+    ajuste_d <= "0000" when ajuste = "1010" and der = "10"  and contador = x"400" else
+                "1010" when ajuste = "0000" and izq = "10"  and contador = x"400" else
+                std_logic_vector( unsigned (ajuste) + 1) when der = "10"  and contador = x"400" else
+                std_logic_vector( unsigned (ajuste) - 1) when izq = "10"  and contador = x"400" else 
+                ajuste;
+    mas_o   <= '1' when mas = '1'  and contador = x"400" else '0';
+    menos_o <= '1' when menos = '1' and contador = x"400" else '0';
+           
 end solucion;

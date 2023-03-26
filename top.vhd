@@ -6,7 +6,9 @@ use work.ffd_pkg.all;
 entity top is
     port (
 
-        pixel   : out std_logic;
+        red   : out std_logic;
+        green   : out std_logic;
+        blue   : out std_logic;
         h_sync  : out std_logic;
         v_sync  : out  std_logic;
         led_1   : out std_logic;
@@ -49,7 +51,11 @@ architecture solucion of top is
         visible     : in std_logic;
         pul_seg     : in std_logic;
         n_zona : in std_logic_vector (4 downto 0);
-        px_visible     : out       std_logic
+        mas         : in std_logic;
+        menos       : in std_logic;
+        red         : out std_logic;
+        green       : out std_logic;
+        blue        : out std_logic   
         );
     end  component;
     component posicion_txt is
@@ -262,8 +268,11 @@ begin
         ajuste     => ajuste,
         visible    => valido,
         pul_seg    => pps,
-        n_zona     => n_zona,
-        px_visible => pixel    
+        mas         =>mas  ,
+        menos       =>menos,
+        red         =>red  ,
+        green       =>green,
+        blue        =>blue     
     );
 
     posicion : posicion_txt 
