@@ -59,51 +59,51 @@ begin
 
 --Logica combinacional/Salida
 
-logica_contador_columna: process (all)
-    begin
-        if unsigned(columna) = 799 then
-            columna_D <= (others => '0');
-            hab_linea <= '1';
-        else
-            columna_D <= std_logic_vector (unsigned (columna) + 1);
-            hab_linea <= '0';
-        end if;    
-end process;
+    logica_contador_columna: process (all)
+        begin
+            if unsigned(columna) = 799 then
+                columna_D <= (others => '0');
+                hab_linea <= '1';
+            else
+                columna_D <= std_logic_vector (unsigned (columna) + 1);
+                hab_linea <= '0';
+            end if;    
+    end process;
 
-logica_contador_fila: process (all)
-    begin
-        if unsigned(linea) = 524 then
-            linea_D <= (others => '0');
-        else
-            linea_D <= std_logic_vector (unsigned (linea) + 1);
-        end if;    
-end process;
+    logica_contador_fila: process (all)
+        begin
+            if unsigned(linea) = 524 then
+                linea_D <= (others => '0');
+            else
+                linea_D <= std_logic_vector (unsigned (linea) + 1);
+            end if;    
+    end process;
 
-logica_salida_visible: process (all)
-    begin
-        if  unsigned(linea) <= 479 and unsigned ( columna) <= 639 then
-            visible <= '1';
-        else
-            visible <= '0';
-        end if;
-end process;
+    logica_salida_visible: process (all)
+        begin
+            if  unsigned(linea) <= 479 and unsigned ( columna) <= 639 then
+                visible <= '1';
+            else
+                visible <= '0';
+            end if;
+    end process;
 
-logica_salida_columna: process (all)
-    begin 
+    logica_salida_columna: process (all)
+        begin 
             if unsigned (columna) > 655 and unsigned (columna) < 751 then
                 hsync <= '0';
             else
                 hsync <= '1';
             end if;
-end process;
+    end process;
 
-logica_salida_linea: process (all)
-    begin 
+    logica_salida_linea: process (all)
+        begin 
             if unsigned (linea) > 512 and unsigned (linea) < 722 then
                 vsync <= '0';
             else
                 vsync <= '1';
             end if;
-end process;
+    end process;
 
 end solucion;

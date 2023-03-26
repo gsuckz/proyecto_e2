@@ -6,10 +6,10 @@ use work.ffd_pkg.all;
 entity reloj is
     port (
     rst                   : in std_logic;
-    c_clk                 : in std_logic; --? p_clk?
-    ajuste                : in std_logic_vector (3 downto 0); --?
-    mas                   : in std_logic; --?
-    menos                 : in std_logic; --?
+    c_clk                 : in std_logic; 
+    ajuste                : in std_logic_vector (3 downto 0); 
+    mas                   : in std_logic; 
+    menos                 : in std_logic; 
     new_day               : out std_logic;
     seg_ref               : in std_logic;
     d_hora_out            : out std_logic_vector ( 1 downto 0);
@@ -18,7 +18,6 @@ entity reloj is
     u_min_out             : out std_logic_vector ( 3 downto 0)
     );
 end reloj;
-
 
 architecture solucion of reloj is
     component ffd is
@@ -94,7 +93,7 @@ begin
 
     habx <= '1';
     e_segundo : ffd 
-    generic map (N => 2) -- frecuencia de c_clk?
+    generic map (N => 2) 
     port map( 
         rst => rst,
         hab => habx,
@@ -104,7 +103,7 @@ begin
     );
 
     registro_minuto : ffd 
-    generic map (N => 6) -- frecuencia de c_clk?
+    generic map (N => 6) 
     port map( 
         rst => rst,
         hab => habx,
@@ -116,12 +115,8 @@ begin
 
     segundo_D(1) <= segundo(0);
     segundo_D(0) <= seg_ref;
-
     cnt_min_d <= "000000" when cnt_min = "111100" or ajuste /= "1111" else std_logic_vector(unsigned(cnt_min) + 1) when segundo = "10" and ajuste = "1111" else cnt_min;
     minuto <= '1' when cnt_min = "111100" else '0';
-
-
-
 
     hora_decenas: process (all)
     begin
@@ -148,7 +143,7 @@ begin
             end if;
         end if;
     end process;
-   
+
     hora_unidades: process (all)
         variable nueva_u_hora : unsigned (3 downto 0);
     begin
@@ -224,12 +219,11 @@ begin
 
 --Logica de salida
 
- hab        <=  "1111";
-
-new_day    <= '1' when d_hora = "10" and u_hora  = x"3" and d_min = o"5" and u_min = x"9" and minuto = '1' and ajuste ="1111" else '0';
-d_hora_out <=  d_hora;
-u_hora_out <=  u_hora;
-d_min_out  <=  d_min;
-u_min_out  <=  u_min;
+    hab        <=  "1111";
+    new_day    <= '1' when d_hora = "10" and u_hora  = x"3" and d_min = o"5" and u_min = x"9" and minuto = '1' and ajuste ="1111" else '0';
+    d_hora_out <=  d_hora;
+    u_hora_out <=  u_hora;
+    d_min_out  <=  d_min;
+    u_min_out  <=  u_min;
 
 end solucion;

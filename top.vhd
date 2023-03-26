@@ -6,9 +6,9 @@ use work.ffd_pkg.all;
 entity top is
     port (
 
-        red   : out std_logic;
+        red     : out std_logic;
         green   : out std_logic;
-        blue   : out std_logic;
+        blue    : out std_logic;
         h_sync  : out std_logic;
         v_sync  : out  std_logic;
         led_1   : out std_logic;
@@ -44,13 +44,13 @@ architecture solucion of top is
     end component ;
     component generador_caracteres is
         port (
-        linea_z     : in        std_logic_vector    (2 downto 0);
-        columna_z   : in        std_logic_vector    (2 downto 0);
-        char        : in        std_logic_vector    (63 downto 0);
-        ajuste      : in        std_logic_vector (3 downto 0);
+        linea_z     : in std_logic_vector    (2 downto 0);
+        columna_z   : in std_logic_vector    (2 downto 0);
+        char        : in std_logic_vector    (63 downto 0);
+        ajuste      : in std_logic_vector (3 downto 0);
         visible     : in std_logic;
         pul_seg     : in std_logic;
-        n_zona : in std_logic_vector (4 downto 0);
+        n_zona      : in std_logic_vector (4 downto 0);
         mas         : in std_logic;
         menos       : in std_logic;
         red         : out std_logic;
@@ -62,8 +62,8 @@ architecture solucion of top is
         port (
             linea           : in    std_logic_vector    (9 downto 0);
             columna         : in    std_logic_vector    (9 downto 0);        
-            linea_z         : out    std_logic_vector    (2 downto 0);
-            columna_Z       : out    std_logic_vector    (2 downto 0);  
+            linea_z         : out   std_logic_vector    (2 downto 0);
+            columna_Z       : out   std_logic_vector    (2 downto 0);  
             n_zona          : out   std_logic_vector    (4 downto 0);
             visible         : in    std_logic;
             valido          : out   std_logic
@@ -71,40 +71,40 @@ architecture solucion of top is
     end component;
     component salida_pantalla is
         port (
-        n_zona          : in std_logic_vector (4 downto 0);
-        d_mes           : in std_logic_vector (3 downto 0);
-        u_mes           : in std_logic_vector (3 downto 0);
-        d_dia           : in std_logic_vector (1 downto 0);
-        u_dia           : in std_logic_vector (3 downto 0);
-        d_hora          : in std_logic_vector (1 downto 0);
-        u_hora          : in std_logic_vector (3 downto 0);
-        d_min           : in std_logic_vector (2 downto 0);
-        u_min           : in std_logic_vector (3 downto 0);
-        ajuste           : in std_logic_vector (3 downto 0);
+        n_zona          : in  std_logic_vector (4 downto 0);
+        d_mes           : in  std_logic_vector (3 downto 0);
+        u_mes           : in  std_logic_vector (3 downto 0);
+        d_dia           : in  std_logic_vector (1 downto 0);
+        u_dia           : in  std_logic_vector (3 downto 0);
+        d_hora          : in  std_logic_vector (1 downto 0);
+        u_hora          : in  std_logic_vector (3 downto 0);
+        d_min           : in  std_logic_vector (2 downto 0);
+        u_min           : in  std_logic_vector (3 downto 0);
+        ajuste          : in  std_logic_vector (3 downto 0);
         char_code       : out std_logic_vector (3 downto 0)
         );
     end component;
 
     component reloj is
         port (
-            rst        : in std_logic;
-            c_clk      : in std_logic; --? p_clk?
-            ajuste     : in std_logic_vector (3 downto 0); --?
-            mas        : in std_logic; --?
-            menos      : in std_logic; --?
+            rst        : in  std_logic;
+            c_clk      : in  std_logic; 
+            ajuste     : in  std_logic_vector (3 downto 0); 
+            mas        : in  std_logic; 
+            menos      : in  std_logic; 
             new_day    : out std_logic;
             d_hora_out : out std_logic_vector ( 1 downto 0);
             u_hora_out : out std_logic_vector ( 3 downto 0 );
             d_min_out  : out std_logic_vector ( 2 downto 0);
             u_min_out  : out std_logic_vector ( 3 downto 0);
-            seg_ref    : in std_logic
+            seg_ref    : in  std_logic
         );
     end component;
 
 
     component tabla_caracteres is 
     port (
-        codigo_char     : in std_logic_vector (3 downto 0);
+        codigo_char     : in  std_logic_vector (3 downto 0);
         char            : out std_logic_vector (63 downto 0)
     );
     end component;
@@ -125,17 +125,17 @@ architecture solucion of top is
 
   component calendario is
       port (
-    mas             : in std_logic;
-    menos           : in std_logic;       
-    c_clk           : in std_logic;
-    ajuste          : in std_logic_vector (3 downto 0);
-    new_day         : in std_logic;
+    mas             : in  std_logic;
+    menos           : in  std_logic;       
+    c_clk           : in  std_logic;
+    ajuste          : in  std_logic_vector (3 downto 0);
+    new_day         : in  std_logic;
     d_mes_out       : out std_logic_vector (3 downto 0);
     u_mes_out       : out std_logic_vector (3 downto 0);
     d_dia_out       : out std_logic_vector (1 downto 0);
     u_dia_out       : out std_logic_vector (3 downto 0);
-    rst             : in std_logic;
-    hab             : in std_logic
+    rst             : in  std_logic;
+    hab             : in  std_logic
       );
   end component;
 
@@ -187,18 +187,14 @@ begin
                     q   => div_pps);
     div_pps_d <= cuenta_div_pps when unsigned(div_pps) = 0 else 
                  std_logic_vector (unsigned(div_pps) - 1);
-    pps <= '1' when unsigned(div_pps) < unsigned('0'&cuenta_div_pps(31 downto 1)) else '0';
-
-    
+    pps <= '1' when unsigned(div_pps) < unsigned('0'&cuenta_div_pps(31 downto 1)) else '0';   
     led_1 <= u_min(0);
-
     -- Frecuencia p_clk: 25.13 MHz
     pll : pll_px_clk port map(
         REFERENCECLK => clk,
         RESET  => '1',
         PLLOUTGLOBAL => p_clk
     );
-
    calendario_1 : calendario 
    port map (
     mas       => mas  ,
@@ -213,7 +209,6 @@ begin
        hab => '1',
        rst => rst
        );
-
     ajst : ajust 
     port map (
         bot_mas  => bot_mas ,
@@ -225,7 +220,6 @@ begin
         menos_o  => menos ,
         ajuste_o => ajuste
     );
-
     relo : reloj 
     port map (
         rst         => rst,    
@@ -240,8 +234,6 @@ begin
         d_min_out   => d_min,  
         u_min_out   => u_min   
     );
-
-
     sincronismo : sincronismo_vga
     port map (
         hsync       => h_sync,
@@ -253,13 +245,11 @@ begin
         linea       => linea,
         columna     => columna
     );
-
     tabla : tabla_caracteres 
     port map (
         codigo_char     => char_code,
         char            => char
     );
-
     generador : generador_caracteres
     port map (
         linea_z    => linea_z,
@@ -274,7 +264,6 @@ begin
         green       =>green,
         blue        =>blue     
     );
-
     posicion : posicion_txt 
     port map(
         linea          => linea,   
@@ -285,7 +274,6 @@ begin
         visible        => visible,   
         valido         => valido         
     );
-
     salida : salida_pantalla
     port map(
         n_zona    => n_zona, 

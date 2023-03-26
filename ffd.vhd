@@ -42,5 +42,4 @@ begin
     end if;
 end process P1;
 
-
 end solucion;

@@ -52,14 +52,9 @@ architecture solucion of generador_caracteres is
     red   <= '1' when color(0)and px_visible = '1' else '0';
     green <= '1' when color(1)and px_visible = '1' else '0';
     blue  <= '1' when color(2)and px_visible = '1' else '0';
-
     color_d <= std_logic_vector(unsigned(color)+1) when (mas = '1' and ajuste = "1010") else
                std_logic_vector(unsigned(color)+1) when (mas = '1' and ajuste = "1010") else
                color;
-
-    
-
-
 
     end solucion;
 

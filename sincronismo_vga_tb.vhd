@@ -41,10 +41,6 @@ columna => columna_out,
 rst => rst,
 hab => hab); 
 
-
-
-
-
 sim: process
 begin
     rst <= '1';
@@ -61,7 +57,5 @@ begin
     p_clk_in <= '1';
     wait for pixel_clk / 2;
 end process;
-
-
 
 end tb;
