@@ -133,5 +133,6 @@ begin
                     ajuste;
     mas_o   <= '1' when bot_mas = '1'  and contador  = x"0000000" else '0';
     menos_o <= '1' when bot_men = '1' and contador = x"0000000" else '0';
+    ajuste_o <= ajuste;
            
 end solucion;
