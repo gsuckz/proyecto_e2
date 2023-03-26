@@ -112,7 +112,7 @@ begin
 ---                     ajuste;
     
     contador_antirrebote : ffd
-    generic map (N=>12) 
+    generic map (N=>27) 
     port map (
     rst => rst,
     D => contador_d,
@@ -120,14 +120,16 @@ begin
     clk => p_clk,
     Q => contador);
 
-    rst <= '0' when (mas or menos or izq or der) = '1' else '1';
-    contador_d <= x"000" when contador = x"400" else std_logic_vector (unsigned (contador) + 1);
+ --   rst <= '0' when (mas or menos or izq or der) = '1' and contador(11) = '1' else '1';
 
-    ajuste_d <= "0000" when ajuste = "1010" and der = "10"  and contador = x"400" else
-                "1010" when ajuste = "0000" and izq = "10"  and contador = x"400" else
-                std_logic_vector( unsigned (ajuste) + 1) when der = "10"  and contador = x"400" else
-                std_logic_vector( unsigned (ajuste) - 1) when izq = "10"  and contador = x"400" else 
-                ajuste;
+    contador_d <= x"0000000" when (contador = x"007AB48" or contador = x"0000000") and (mas or menos or izq or der) = '0' else 
+                  x"0000000" when contador = x"0BFBA08" else  
+                  std_logic_vector (unsigned (contador) + 1);
+    ajuste_d   <=   "0000" when ajuste = "1010" and der = "10"  and contador = x"000" else
+                    "1010" when ajuste = "0000" and izq = "10"  and contador = x"000" else
+                    std_logic_vector( unsigned (ajuste) + 1) when der = "10"  and contador = x"000" else
+                    std_logic_vector( unsigned (ajuste) - 1) when izq = "10"  and contador = x"000" else 
+                    ajuste;
     mas_o   <= '1' when mas = '1'  and contador = x"400" else '0';
     menos_o <= '1' when menos = '1' and contador = x"400" else '0';
            
