@@ -43,9 +43,9 @@ architecture solucion of generador_caracteres is
     color_registro : ffd 
     generic map (N => 3)
     port map (
-    rst => rst,
+    rst => '0',
     D => color_d,
-    hab => hab,
+    hab => '1',
     clk => p_clk,
     Q => color);
     

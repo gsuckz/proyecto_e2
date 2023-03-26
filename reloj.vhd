@@ -157,7 +157,7 @@ begin
         if (d_hora = "10" and u_hora = x"0") then
             u_hora_d <= x"3";
         elsif u_hora = x"0" then
-            u_hora_d <= x"0"
+            u_hora_d <= x"0";
         else 
             u_hora_d <= std_logic_vector (unsigned (u_hora) - 1);
         end if; 

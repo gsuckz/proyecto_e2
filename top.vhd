@@ -259,6 +259,7 @@ begin
         ajuste     => ajuste,
         visible    => valido,
         pul_seg    => pps,
+	n_zona 	=> n_zona,
         mas         =>mas  ,
         menos       =>menos,
         p_clk       => p_clk,
