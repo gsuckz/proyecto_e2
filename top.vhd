@@ -44,19 +44,14 @@ architecture solucion of top is
     end component ;
     component generador_caracteres is
         port (
-        linea_z     : in std_logic_vector    (2 downto 0);
-        columna_z   : in std_logic_vector    (2 downto 0);
-        char        : in std_logic_vector    (63 downto 0);
-        ajuste      : in std_logic_vector (3 downto 0);
+        linea_z     : in        std_logic_vector    (2 downto 0);
+        columna_z   : in        std_logic_vector    (2 downto 0);
+        char        : in        std_logic_vector    (63 downto 0);
+        ajuste      : in        std_logic_vector (3 downto 0);
         visible     : in std_logic;
         pul_seg     : in std_logic;
-        n_zona      : in std_logic_vector (4 downto 0);
-        mas         : in std_logic;
-        menos       : in std_logic;
-        p_clk       : in std_logic;
-        red         : out std_logic;
-        green       : out std_logic;
-        blue        : out std_logic   
+        n_zona : in std_logic_vector (4 downto 0);
+        px_visible     : out       std_logic
         );
     end  component;
     component posicion_txt is
@@ -118,10 +113,11 @@ architecture solucion of top is
             bot_der  : in std_logic;
             bot_men  : in std_logic;
             p_clk    : in std_logic;
+            lee_bot  : in std_logic; -- lee boton al pasar de 0 a 1 
             mas_o    : out std_logic;
             menos_o  : out std_logic;
             ajuste_o : out std_logic_vector (3 downto 0)
-        );
+            );
     end component;
 
   component calendario is
@@ -151,10 +147,9 @@ architecture solucion of top is
     signal d_min      : std_logic_vector (2 downto 0);
     signal u_min      : std_logic_vector (3 downto 0);
     signal char_code  : std_logic_vector (3 downto 0);
-    signal hsync      : std_logic;
     signal rst        : std_logic;
     signal hab        : std_logic;
-    signal vsync      : std_logic;
+    signal s_v_sync   : std_logic;
     signal p_clk      : std_logic; -- 25.13 MHz
     signal visible    : std_logic;
     signal linea      : std_logic_vector (9 downto 0);
@@ -171,9 +166,9 @@ architecture solucion of top is
     signal pps        : std_logic;
     signal div_pps    : std_logic_vector (31 downto 0);
     signal div_pps_d  : std_logic_vector (31 downto 0);
-
-    constant cuenta_div_pps : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(25,32)); -- Para 1 seg : 25130000
-
+    signal px_visible : std_logic;
+    constant cuenta_div_pps : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(2513,32)); -- Para 1 seg : 25130000
+    signal color,color_d : std_logic_vector(2 downto 0);
 begin 
 
     hab <= '1';
@@ -217,10 +212,18 @@ begin
         bot_der  => bot_der ,
         bot_men  => bot_men ,
         p_clk    => p_clk   ,
+        lee_bot  => s_v_sync,
         mas_o    => mas   ,
         menos_o  => menos ,
         ajuste_o => ajuste
     );
+    reg_color : ffd generic map (N=>color'length) port map (rst=>rst,hab=>hab,clk=>p_clk,d=>color_d,q=>color);
+
+    color_d <= "001"                                  when color = "000" else
+                color                                 when  not (ajuste = x"9" and (mas = '1' or menos='1')) else 
+                std_logic_vector(unsigned(color) + 1) when mas = '1' else 
+                std_logic_vector(unsigned(color) - 1);  
+
     relo : reloj 
     port map (
         rst         => rst,    
@@ -240,12 +243,13 @@ begin
         hsync       => h_sync,
         rst         => rst,
         hab         => hab,
-        vsync       => v_sync,
+        vsync       => s_v_sync,
         p_clk       => p_clk,
         visible     => visible,
         linea       => linea,
         columna     => columna
     );
+    v_sync <= s_v_sync;
     tabla : tabla_caracteres 
     port map (
         codigo_char     => char_code,
@@ -259,14 +263,12 @@ begin
         ajuste     => ajuste,
         visible    => valido,
         pul_seg    => pps,
-	n_zona 	=> n_zona,
-        mas         =>mas  ,
-        menos       =>menos,
-        p_clk       => p_clk,
-        red         =>red  ,
-        green       =>green,
-        blue        =>blue     
+	    n_zona 	   => n_zona,
+        px_visible => px_visible
     );
+    red     <= px_visible and color(0);
+    green   <= px_visible and color(1);
+    blue    <= px_visible and color(2);
     posicion : posicion_txt 
     port map(
         linea          => linea,   
