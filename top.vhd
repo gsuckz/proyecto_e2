@@ -30,6 +30,17 @@ architecture solucion of top is
             PLLOUTGLOBAL : out std_logic
         );
     end component;
+    component base_tiempo_seg is
+        generic(
+            constant frec_clk_hz : integer
+        );
+        port (
+            rst : in std_logic;
+            hab : in std_logic;
+            clk : in std_logic; -- frec_clk_hz
+            pps : out std_logic
+        );
+    end component;
     component  sincronismo_vga is 
         port (
             hsync       :   out std_logic;
@@ -164,33 +175,32 @@ architecture solucion of top is
     signal mas        : std_logic;
     signal menos      : std_logic;
     signal pps        : std_logic;
-    signal div_pps    : std_logic_vector (31 downto 0);
-    signal div_pps_d  : std_logic_vector (31 downto 0);
     signal px_visible : std_logic;
-    constant cuenta_div_pps : std_logic_vector (31 downto 0) := std_logic_vector(to_unsigned(2513,32)); -- Para 1 seg : 25130000
     signal color,color_d : std_logic_vector(2 downto 0);
 begin 
 
     hab <= '1';
     rst <= '0';
-
-    reg_div_pps : ffd generic map (N=>32) 
-                  port map (
-                    rst => rst,
-                    hab => hab,
-                    clk => p_clk,
-                    d   => div_pps_d,
-                    q   => div_pps);
-    div_pps_d <= cuenta_div_pps when unsigned(div_pps) = 0 else 
-                 std_logic_vector (unsigned(div_pps) - 1);
-    pps <= '1' when unsigned(div_pps) < unsigned('0'&cuenta_div_pps(31 downto 1)) else '0';   
-    led_1 <= u_min(0);
+-- Componente base_tiempo_segundo
+    
     -- Frecuencia p_clk: 25.13 MHz
     pll : pll_px_clk port map(
         REFERENCECLK => clk,
         RESET  => '1',
         PLLOUTGLOBAL => p_clk
     );
+    base_tiempo : base_tiempo_seg
+        generic map (
+            frec_clk_hz => 25130000
+        )
+        port map(
+            clk=>p_clk,
+            rst=>rst,
+            hab=>hab,
+            pps=>pps
+        );
+    led_1 <= pps;
+
    calendario_1 : calendario 
    port map (
     mas       => mas  ,
@@ -217,6 +227,7 @@ begin
         menos_o  => menos ,
         ajuste_o => ajuste
     );
+    -- selector_color
     reg_color : ffd generic map (N=>color'length) port map (rst=>rst,hab=>hab,clk=>p_clk,d=>color_d,q=>color);
 
     color_d <= "001"                                  when color = "000" else

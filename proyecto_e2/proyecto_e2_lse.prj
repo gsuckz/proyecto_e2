@@ -41,6 +41,7 @@
 -lib work -vhd "../reloj.vhd" 
 -lib work -vhd "../ajuste.vhd" 
 -lib work -vhd "../calendario.vhd" 
+-lib work -vhd "../base_tiempo_seg.vhd" 
 -p "C:/Users/Labtel/Documents/eii/Avila Jesus/proyecto_e2/proyecto_e2"
 
 #set result format/file last
