@@ -45,7 +45,7 @@ signal contador,contador_d   : std_logic_vector (27 downto 0);
 
 
 begin 
-registros de estado
+-- registros de estado
    registro_ajuste : ffd
    generic map (N=>4)
    port map (
@@ -92,7 +92,7 @@ registros de estado
    Q   => der
    );
           
-logica de salida
+-- logica de salida
     ajuste_o <= ajuste; 
     mas_o   <= '1' when mas = "10" else '0';
     menos_o <= '1' when menos = "10" else '0';

@@ -104,10 +104,10 @@ u_dia_out <=   u_dia;
             dia := unsigned (d_dia & u_dia);
             mes := unsigned (d_mes & u_mes);
             if dia = 0 then --para empezar a contar desde 1 al principio o ante un reset
-                dia := 1;
+                dia := x"01";
             end if;
             if mes = 0 then --para empezar a contar desde 1 al principio o ante un reset
-                mes := 1;
+                mes := x"01";
             end if;
             if mas = '1' then
                 case ajuste is 
@@ -149,7 +149,7 @@ u_dia_out <=   u_dia;
                         mes := mes;
                 end case;
                 if dia > unsigned(dia_max) then -- Si bajamos del dia 1 (por el ajuste) nos vamos al dia máximo
-                    dia := dia_max;   --cambia algo si la comprobacion se hace antes o despues?
+                    dia := unsigned(dia_max);   --cambia algo si la comprobacion se hace antes o despues?
                 end if;
                 if mes > 12 or mes(3 downto 0) > x"09" then -- Si bajamos del mes 1 entonces 
                     mes := x"12"; 
@@ -171,7 +171,7 @@ u_dia_out <=   u_dia;
                 end if;
             end if;          
             if mes > x"12" then  --Si nos pasamos por 
-                mes:= 1;
+                mes:= x"01";
             end if;
             d_mes_d <= std_logic_vector(mes(7 downto 4));
             u_mes_d <= std_logic_vector(mes(3 downto 0));
