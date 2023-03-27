@@ -112,8 +112,10 @@ begin
     der_d(0) <= bot_der;
     der_d(1) <= der(0);
 
-        ajuste_d <=  std_logic_vector( unsigned (ajuste) + 1) when der = "10" else
-                     std_logic_vector( unsigned (ajuste) - 1) when izq = "10" else 
+        ajuste_d <=  "1111" when ajuste = "1000" and der = "10" else
+                     "1000" when ajuste = "1111" and izq = "10" else
+                     std_logic_vector( unsigned (ajuste) + 1) when der = "10" else
+                     std_logic_vector( unsigned (ajuste) - 1) when izq = "10" else
                      ajuste;
 
 

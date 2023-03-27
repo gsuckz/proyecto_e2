@@ -231,7 +231,7 @@ begin
     reg_color : ffd generic map (N=>color'length) port map (rst=>rst,hab=>hab,clk=>p_clk,d=>color_d,q=>color);
 
     color_d <= "001"                                  when color = "000" else
-                color                                 when  not (ajuste = x"9" and (mas = '1' or menos='1')) else 
+                color                                 when  not (ajuste = x"8" and (mas = '1' or menos='1')) else 
                 std_logic_vector(unsigned(color) + 1) when mas = '1' else 
                 std_logic_vector(unsigned(color) - 1);  
 
