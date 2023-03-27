@@ -76,6 +76,22 @@ architecture solucion of top is
             valido          : out   std_logic
         );
     end component;
+
+
+    component selector_color is
+        port (
+            rst    : in std_logic;
+            hab    : in std_logic;
+            clk    : in std_logic;
+            mas    : in std_logic;
+            menos  : in std_logic;
+            ajuste : in std_logic_vector (3 downto 0);
+        
+            color : out std_logic_vector (2 downto 0) 
+    
+        );
+    end component;
+    
     component salida_pantalla is
         port (
         n_zona          : in  std_logic_vector (4 downto 0);
@@ -176,7 +192,7 @@ architecture solucion of top is
     signal menos      : std_logic;
     signal pps        : std_logic;
     signal px_visible : std_logic;
-    signal color,color_d : std_logic_vector(2 downto 0);
+    signal color: std_logic_vector(2 downto 0);
 begin 
 
     hab <= '1';
@@ -227,13 +243,7 @@ begin
         menos_o  => menos ,
         ajuste_o => ajuste
     );
-    -- selector_color
-    reg_color : ffd generic map (N=>color'length) port map (rst=>rst,hab=>hab,clk=>p_clk,d=>color_d,q=>color);
-
-    color_d <= "001"                                  when color = "000" else
-                color                                 when  not (ajuste = x"8" and (mas = '1' or menos='1')) else 
-                std_logic_vector(unsigned(color) + 1) when mas = '1' else 
-                std_logic_vector(unsigned(color) - 1);  
+ 
 
     relo : reloj 
     port map (
@@ -277,9 +287,7 @@ begin
 	    n_zona 	   => n_zona,
         px_visible => px_visible
     );
-    red     <= px_visible and color(0);
-    green   <= px_visible and color(1);
-    blue    <= px_visible and color(2);
+
     posicion : posicion_txt 
     port map(
         linea          => linea,   
@@ -290,6 +298,22 @@ begin
         visible        => visible,   
         valido         => valido         
     );
+
+    selector : selector_color 
+    port map(
+            rst => rst,
+            hab => hab,
+            clk => p_clk,
+            mas => mas,
+            menos => menos,
+            ajuste => ajuste,
+            color => color
+    
+        );
+    red     <= px_visible and color(0);
+    green   <= px_visible and color(1);
+    blue    <= px_visible and color(2);
+
     salida : salida_pantalla
     port map(
         n_zona    => n_zona, 
