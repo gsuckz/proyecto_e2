@@ -45,94 +45,92 @@ signal contador,contador_d   : std_logic_vector (27 downto 0);
 
 
 begin 
---registros de estado
---   registro_ajuste : ffd
---   generic map (N=>4)
---   port map (
---   rst => rst,
---   D   => ajuste_d,
---   hab => hab,
---   clk => p_clk,
---   Q   => ajuste
---   );
---   registro_mas : ffd
---   generic map (N=>2)
---   port map (
---   rst => rst,
---   D   => mas_d,
---   hab => hab,
---   clk => p_clk,
---   Q   => mas
---   );
---   registro_menos : ffd
---   generic map (N=>2)
---   port map (
---   rst => rst,
---   D   => menos_d,
---   hab => hab,
---   clk => p_clk,
---   Q   => menos
---   );
---   registro_izq : ffd
---   generic map (N=>2)
---   port map (
---   rst => rst,
---   D   => izq_d,
---   hab => hab,
---   clk => p_clk,
---   Q   => izq
---   );        
---   registro_der : ffd
---   generic map (N=>2)
---   port map (
---   rst => rst,
---   D   => der_d,
---   hab => hab,
---   clk => p_clk,
---   Q   => der
---   );
-            
+registros de estado
+   registro_ajuste : ffd
+   generic map (N=>4)
+   port map (
+   rst => rst,
+   D   => ajuste_d,
+   hab => hab,
+   clk => p_clk,
+   Q   => ajuste
+   );
+   registro_mas : ffd
+   generic map (N=>2)
+   port map (
+   rst => rst,
+   D   => mas_d,
+   hab => hab,
+   clk => p_clk,
+   Q   => mas
+   );
+   registro_menos : ffd
+   generic map (N=>2)
+   port map (
+   rst => rst,
+   D   => menos_d,
+   hab => hab,
+   clk => p_clk,
+   Q   => menos
+   );
+   registro_izq : ffd
+   generic map (N=>2)
+   port map (
+   rst => rst,
+   D   => izq_d,
+   hab => hab,
+   clk => p_clk,
+   Q   => izq
+   );        
+   registro_der : ffd
+   generic map (N=>2)
+   port map (
+   rst => rst,
+   D   => der_d,
+   hab => hab,
+   clk => p_clk,
+   Q   => der
+   );
+          
+logica de salida
+    ajuste_o <= ajuste; 
+    mas_o   <= '1' when mas = "10" else '0';
+    menos_o <= '1' when menos = "10" else '0';
+    mas_d(0) <= bot_mas;
+    mas_d(1) <= mas(0);
+    menos_d(0) <= bot_men;
+    menos_d(1) <= menos(0);
 
+    izq_d(0) <= bot_izq;
+    izq_d(1) <= izq(0);
+    der_d(0) <= bot_der;
+    der_d(1) <= der(0);
 
---logica de salida
----    ajuste_o <= ajuste; 
----    mas_o   <= '1' when mas = "10" else '0';
----    menos_o <= '1' when menos = "10" else '0';
----    mas_d(0) <= bot_mas;
----    mas_d(1) <= mas(0);
----    menos_d(0) <= bot_men;
----    menos_d(1) <= menos(0);
----
----    izq_d(0) <= bot_izq;
----    izq_d(1) <= izq(0);
----    der_d(0) <= bot_der;
----    der_d(1) <= der(0);
----
----        ajuste_d <=  std_logic_vector( unsigned (ajuste) + 1) when der = "10" else
----                     std_logic_vector( unsigned (ajuste) - 1) when izq = "10" else 
----                     ajuste;
-    
-    contador_antirrebote : ffd
-    generic map (N=>28) 
-    port map (
-    rst => rst,
-    D => contador_d,
-    hab => hab,
-    clk => p_clk,
-    Q => contador);
-
- --   rst <= '0' when (mas or menos or izq or der) = '1' and contador(11) = '1' else '1';
-
-    contador_d <= x"0000000" when  contador = x"0000000" or ((contador = x"007AB48" and (bot_mas = '1' or bot_men = '1'  or bot_izq = '1'  or bot_der = '1') )) else 
-                  x"0000000" when contador  = x"0BFBA08" else  
-                  std_logic_vector (unsigned (contador) + 1);
-    ajuste_d   <=   "0000" when ajuste = "1011" and bot_der = '1'  and contador = x"0000000" else
-                    "1011" when ajuste = "0000" and bot_izq = '1'  and contador = x"0000000" else
-                    std_logic_vector( unsigned (ajuste) + 1) when bot_der = '1'  and contador = x"0000000" else
-                    std_logic_vector( unsigned (ajuste) - 1) when bot_izq = '1'  and contador = x"0000000" else 
-                    ajuste;
-    mas_o   <= '1' when bot_mas = '1'  and contador  = x"0000000" else '0';
-    menos_o <= '1' when bot_men = '1' and contador = x"0000000" else '0';
-    ajuste_o <= ajuste;
+        ajuste_d <=  std_logic_vector( unsigned (ajuste) + 1) when der = "10" else
+                     std_logic_vector( unsigned (ajuste) - 1) when izq = "10" else 
+                     ajuste;
+  
+ -- contador_antirrebote : ffd
+ --   generic map (N=>28) 
+ --   port map (
+ --   rst => rst,
+ --   D => contador_d,
+ --   hab => hab,
+ --   clk => p_clk,
+ --   Q => contador);
+--
+ ----   rst <= '0' when (mas or menos or izq or der) = '1' and contador(11) = '1' else '1';
+--
+ --   contador_d <= x"0000000" when  contador = x"0000000" or ((contador = x"007AB48" and (bot_mas = '1' or bot_men = '1'  or bot_izq = '1'  or bot_der = '1') )) else 
+ --                 x"0000000" when contador  = x"0BFBA08" else  
+ --                 std_logic_vector (unsigned (contador) + 1);
+ --   ajuste_d   <=   "0000" when ajuste = "1011" and bot_der = '1'  and contador = x"0000000" else
+ --                   "1011" when ajuste = "0000" and bot_izq = '1'  and contador = x"0000000" else
+ --                   std_logic_vector( unsigned (ajuste) + 1) when bot_der = '1'  and contador = x"0000000" else
+ --                   std_logic_vector( unsigned (ajuste) - 1) when bot_izq = '1'  and contador = x"0000000" else 
+ --                   ajuste;
+ --   mas_o   <= '1' when bot_mas = '1'  and contador  = x"0000000" else '0';
+ --   menos_o <= '1' when bot_men = '1' and contador = x"0000000" else '0';
+ --   ajuste_o <= ajuste;
            
 end solucion;
