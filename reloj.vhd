@@ -121,7 +121,7 @@ begin
     hora_decenas: process (all)
     begin
         d_hora_d <= d_hora;
-        if (minuto = '1' and u_min = x"9" and d_min = o"5" and ((u_hora = x"3" and d_hora = "10") or u_hora = x"9")) then
+        if (ajuste = "0001" and mas = '1' and u_hora = x"9") or (minuto = '1' and u_min = x"9" and d_min = o"5" and ((u_hora = x"3" and d_hora = "10") or u_hora = x"9")) then
             if d_hora = "10" then
                 d_hora_d <= "00";
             else 
@@ -155,7 +155,7 @@ begin
     begin
         nueva_u_hora := unsigned(u_hora);
         u_hora_d <= u_hora;
-        if (minuto = '1' and u_min = x"9" and d_min = o"5") then
+        if (minuto = '1' and u_min = x"9" and d_min = o"5") or (mas = '1' and ajuste = "0010" and d_min = o"5") then
             nueva_u_hora := nueva_u_hora + 1;
         elsif (ajuste = "0001") then
             if mas = '1' then
@@ -176,7 +176,7 @@ begin
     minuto_decena : process (all)
     begin
         d_min_d <= d_min;
-        if (minuto = '1' and u_min = x"9") then
+        if (minuto = '1' and u_min = x"9") or (ajuste = "0011" and mas = '1' and u_min = x"9" ) then
             if d_min = o"5" then
                 d_min_d <= o"0";
             else 
