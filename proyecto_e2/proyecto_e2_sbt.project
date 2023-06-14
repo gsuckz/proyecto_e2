@@ -4,7 +4,7 @@ Version=Lattice Semiconductor Corporation iCEcube - Release: 2020.12.27943 - Bui
 ProjectName=proyecto_e2
 Vendor=SiliconBlue
 Synthesis=lse
-ProjectVFiles=../ffd.vhd=work,../generador_caracteres.vhd=work,../posicion_txt.vhd=work,../salida_pantalla.vhd=work,../sincronismo_vga.vhd=work,../tabla_caraceteres.vhd=work,../top.vhd=work,pll_px_clk.v=work,../reloj.vhd=work,../ajuste.vhd=work,../calendario.vhd=work,../base_tiempo_seg.vhd,../selector_color.vhd
+ProjectVFiles=../ffd.vhd=work,../generador_caracteres.vhd=work,../posicion_txt.vhd=work,../salida_pantalla.vhd=work,../sincronismo_vga.vhd=work,../tabla_caraceteres.vhd=work,../top.vhd=work,pll_px_clk.v=work,../reloj.vhd=work,../ajuste.vhd=work,../calendario.vhd=work,../base_tiempo_seg.vhd=work,../selector_color.vhd=work
 ProjectCFiles=
 CurImplementation=proyecto_e2_Implmnt
 Implementations=proyecto_e2_Implmnt
@@ -47,7 +47,7 @@ NetlistFile=proyecto_e2_Implmnt/proyecto_e2.edf
 AdditionalEDIFFile=
 IPEDIFFile=
 DesignLib=proyecto_e2_Implmnt/sbt/netlist/oadb-top
-DesignView=_rt
+DesignView=_ep
 DesignCell=top
 SynthesisSDCFile=proyecto_e2_Implmnt/proyecto_e2.scf
 UserPinConstraintFile=
